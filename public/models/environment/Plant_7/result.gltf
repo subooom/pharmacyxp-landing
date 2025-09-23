@@ -1,0 +1,167 @@
+{
+    "asset": {
+        "version": "2.0",
+        "generator": "Open Asset Import Library (assimp v5.2.cf7d3637)"
+    },
+    "extensionsUsed": [
+        "KHR_materials_volume",
+        "FB_ngon_encoding"
+    ],
+    "accessors": [
+        {
+            "bufferView": 0,
+            "byteOffset": 0,
+            "componentType": 5126,
+            "count": 624,
+            "type": "VEC3",
+            "max": [
+                59.845619201660159,
+                151.73202514648438,
+                59.84562301635742
+            ],
+            "min": [
+                -59.845619201660159,
+                -1.9045660495758057,
+                -59.84561538696289
+            ]
+        },
+        {
+            "bufferView": 1,
+            "byteOffset": 0,
+            "componentType": 5126,
+            "count": 624,
+            "type": "VEC3",
+            "max": [
+                0.9624168276786804,
+                0.8187928795814514,
+                0.9624168276786804
+            ],
+            "min": [
+                -0.9624168276786804,
+                -0.8187928795814514,
+                -0.9624168276786804
+            ]
+        },
+        {
+            "bufferView": 2,
+            "byteOffset": 0,
+            "componentType": 5126,
+            "count": 624,
+            "type": "VEC2",
+            "max": [
+                0.9999999403953552,
+                1.0
+            ],
+            "min": [
+                0.0,
+                0.0
+            ]
+        },
+        {
+            "bufferView": 3,
+            "byteOffset": 0,
+            "componentType": 5125,
+            "count": 624,
+            "type": "SCALAR",
+            "max": [
+                623
+            ],
+            "min": [
+                0
+            ]
+        }
+    ],
+    "buffers": [
+        {
+            "byteLength": 22464,
+            "uri": "result.bin"
+        }
+    ],
+    "bufferViews": [
+        {
+            "buffer": 0,
+            "byteOffset": 0,
+            "byteLength": 7488,
+            "target": 34962
+        },
+        {
+            "buffer": 0,
+            "byteOffset": 7488,
+            "byteLength": 7488,
+            "target": 34962
+        },
+        {
+            "buffer": 0,
+            "byteOffset": 14976,
+            "byteLength": 4992,
+            "target": 34962
+        },
+        {
+            "buffer": 0,
+            "byteOffset": 19968,
+            "byteLength": 2496,
+            "target": 34963
+        }
+    ],
+    "materials": [
+        {
+            "name": "Green.9",
+            "pbrMetallicRoughness": {
+                "baseColorFactor": [
+                    0.1856849193572998,
+                    0.3855425715446472,
+                    0.04380812123417854,
+                    1.0
+                ],
+                "metallicFactor": 0.0,
+                "roughnessFactor": 0.690034806728363
+            }
+        }
+    ],
+    "meshes": [
+        {
+            "name": "Plane.004",
+            "primitives": [
+                {
+                    "extensions": {
+                        "FB_ngon_encoding": {}
+                    },
+                    "mode": 4,
+                    "material": 0,
+                    "indices": 3,
+                    "attributes": {
+                        "POSITION": 0,
+                        "NORMAL": 1,
+                        "TEXCOORD_0": 2
+                    }
+                }
+            ]
+        }
+    ],
+    "nodes": [
+        {
+            "name": "RootNode",
+            "children": [
+                1
+            ]
+        },
+        {
+            "name": "Plant_7",
+            "mesh": 0,
+            "extras": {
+                "UserProperties": "",
+                "IsNull": false,
+                "DefaultAttributeIndex": 0,
+                "InheritType": 1
+            }
+        }
+    ],
+    "scenes": [
+        {
+            "nodes": [
+                0
+            ]
+        }
+    ],
+    "scene": 0
+}

@@ -1,0 +1,78 @@
+.price-card-selected {
+  transform: translateY(-5px);
+  z-index: 10;
+}
+
+.pricing-card {
+  position: relative;
+}
+
+.demo-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #00bc9c;
+  color: white;
+  padding: 0.3rem 0.8rem;
+  border-radius: 50px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.popular-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #ff6b6b;
+  color: white;
+  padding: 0.3rem 0.8rem;
+  border-radius: 50px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.features-content ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.features-content li {
+  margin-bottom: 0.5rem;
+  position: relative;
+  padding-left: 1.5rem;
+}
+
+.features-content li:before {
+  content: "✓";
+  color: #00bc9c;
+  position: absolute;
+  left: 0;
+}
+
+.choose-btn:hover {
+  background: #3b368c !important;
+  color: white !important;
+}
+
+.free-trial-icon {
+  position: absolute;
+  height: 130px;
+  top: -24px;
+  right: -12px;
+  rotate: -12deg;
+}
+.choose-btn {
+  background: #3b368c;
+  color: white;
+}

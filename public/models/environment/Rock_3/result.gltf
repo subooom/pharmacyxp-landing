@@ -1,0 +1,185 @@
+{
+    "asset": {
+        "version": "2.0",
+        "generator": "Open Asset Import Library (assimp v5.2.cf7d3637)"
+    },
+    "extensionsUsed": [
+        "KHR_materials_volume",
+        "FB_ngon_encoding"
+    ],
+    "accessors": [
+        {
+            "bufferView": 0,
+            "byteOffset": 0,
+            "componentType": 5126,
+            "count": 144,
+            "type": "VEC3",
+            "max": [
+                139.36843872070313,
+                124.45813751220703,
+                169.4452362060547
+            ],
+            "min": [
+                -308.6665344238281,
+                -122.96712493896485,
+                -221.3155517578125
+            ]
+        },
+        {
+            "bufferView": 1,
+            "byteOffset": 0,
+            "componentType": 5126,
+            "count": 144,
+            "type": "VEC3",
+            "max": [
+                0.9680190682411194,
+                0.9640313982963562,
+                0.9781577587127686
+            ],
+            "min": [
+                -0.9963562488555908,
+                -0.9962891340255737,
+                -0.961067259311676
+            ]
+        },
+        {
+            "bufferView": 2,
+            "byteOffset": 0,
+            "componentType": 5126,
+            "count": 144,
+            "type": "VEC2",
+            "max": [
+                1.0,
+                1.0
+            ],
+            "min": [
+                0.0,
+                0.0
+            ]
+        },
+        {
+            "bufferView": 3,
+            "byteOffset": 0,
+            "componentType": 5125,
+            "count": 144,
+            "type": "SCALAR",
+            "max": [
+                143
+            ],
+            "min": [
+                0
+            ]
+        }
+    ],
+    "buffers": [
+        {
+            "byteLength": 5184,
+            "uri": "result.bin"
+        }
+    ],
+    "bufferViews": [
+        {
+            "buffer": 0,
+            "byteOffset": 0,
+            "byteLength": 1728,
+            "target": 34962
+        },
+        {
+            "buffer": 0,
+            "byteOffset": 1728,
+            "byteLength": 1728,
+            "target": 34962
+        },
+        {
+            "buffer": 0,
+            "byteOffset": 3456,
+            "byteLength": 1152,
+            "target": 34962
+        },
+        {
+            "buffer": 0,
+            "byteOffset": 4608,
+            "byteLength": 576,
+            "target": 34963
+        }
+    ],
+    "materials": [
+        {
+            "name": "Gray.3",
+            "pbrMetallicRoughness": {
+                "baseColorFactor": [
+                    0.24255798757076264,
+                    0.24255798757076264,
+                    0.24255798757076264,
+                    1.0
+                ],
+                "metallicFactor": 0.0,
+                "roughnessFactor": 0.690034806728363
+            }
+        }
+    ],
+    "meshes": [
+        {
+            "name": "Cube.001",
+            "primitives": [
+                {
+                    "extensions": {
+                        "FB_ngon_encoding": {}
+                    },
+                    "mode": 4,
+                    "material": 0,
+                    "indices": 3,
+                    "attributes": {
+                        "POSITION": 0,
+                        "NORMAL": 1,
+                        "TEXCOORD_0": 2
+                    }
+                }
+            ]
+        }
+    ],
+    "nodes": [
+        {
+            "name": "RootNode",
+            "children": [
+                1
+            ]
+        },
+        {
+            "name": "Rock_3",
+            "matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                50.02640914916992,
+                0.0,
+                26.800537109375,
+                1.0
+            ],
+            "mesh": 0,
+            "extras": {
+                "UserProperties": "",
+                "IsNull": false,
+                "DefaultAttributeIndex": 0,
+                "InheritType": 1
+            }
+        }
+    ],
+    "scenes": [
+        {
+            "nodes": [
+                0
+            ]
+        }
+    ],
+    "scene": 0
+}

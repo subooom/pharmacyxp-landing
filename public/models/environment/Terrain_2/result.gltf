@@ -1,0 +1,167 @@
+{
+    "asset": {
+        "version": "2.0",
+        "generator": "Open Asset Import Library (assimp v5.2.cf7d3637)"
+    },
+    "extensionsUsed": [
+        "KHR_materials_volume",
+        "FB_ngon_encoding"
+    ],
+    "accessors": [
+        {
+            "bufferView": 0,
+            "byteOffset": 0,
+            "componentType": 5126,
+            "count": 3471,
+            "type": "VEC3",
+            "max": [
+                1000.2879638671875,
+                170.88523864746095,
+                1000.1265258789063
+            ],
+            "min": [
+                -1000.4781494140625,
+                -5.429631233215332,
+                -1000.0838623046875
+            ]
+        },
+        {
+            "bufferView": 1,
+            "byteOffset": 0,
+            "componentType": 5126,
+            "count": 3471,
+            "type": "VEC3",
+            "max": [
+                0.6668746471405029,
+                0.9999992847442627,
+                0.5338819026947022
+            ],
+            "min": [
+                -0.6676331162452698,
+                0.5901828408241272,
+                -0.8068166375160217
+            ]
+        },
+        {
+            "bufferView": 2,
+            "byteOffset": 0,
+            "componentType": 5126,
+            "count": 3471,
+            "type": "VEC2",
+            "max": [
+                1.0,
+                1.0
+            ],
+            "min": [
+                0.0,
+                0.0
+            ]
+        },
+        {
+            "bufferView": 3,
+            "byteOffset": 0,
+            "componentType": 5125,
+            "count": 3471,
+            "type": "SCALAR",
+            "max": [
+                3470
+            ],
+            "min": [
+                0
+            ]
+        }
+    ],
+    "buffers": [
+        {
+            "byteLength": 124956,
+            "uri": "result.bin"
+        }
+    ],
+    "bufferViews": [
+        {
+            "buffer": 0,
+            "byteOffset": 0,
+            "byteLength": 41652,
+            "target": 34962
+        },
+        {
+            "buffer": 0,
+            "byteOffset": 41652,
+            "byteLength": 41652,
+            "target": 34962
+        },
+        {
+            "buffer": 0,
+            "byteOffset": 83304,
+            "byteLength": 27768,
+            "target": 34962
+        },
+        {
+            "buffer": 0,
+            "byteOffset": 111072,
+            "byteLength": 13884,
+            "target": 34963
+        }
+    ],
+    "materials": [
+        {
+            "name": "Green.13",
+            "pbrMetallicRoughness": {
+                "baseColorFactor": [
+                    0.16235442459583283,
+                    0.2804437577724457,
+                    0.06557588279247284,
+                    1.0
+                ],
+                "metallicFactor": 0.0,
+                "roughnessFactor": 0.690034806728363
+            }
+        }
+    ],
+    "meshes": [
+        {
+            "name": "Plane.001",
+            "primitives": [
+                {
+                    "extensions": {
+                        "FB_ngon_encoding": {}
+                    },
+                    "mode": 4,
+                    "material": 0,
+                    "indices": 3,
+                    "attributes": {
+                        "POSITION": 0,
+                        "NORMAL": 1,
+                        "TEXCOORD_0": 2
+                    }
+                }
+            ]
+        }
+    ],
+    "nodes": [
+        {
+            "name": "RootNode",
+            "children": [
+                1
+            ]
+        },
+        {
+            "name": "Terrain_2",
+            "mesh": 0,
+            "extras": {
+                "UserProperties": "",
+                "IsNull": false,
+                "DefaultAttributeIndex": 0,
+                "InheritType": 1
+            }
+        }
+    ],
+    "scenes": [
+        {
+            "nodes": [
+                0
+            ]
+        }
+    ],
+    "scene": 0
+}

@@ -1,0 +1,276 @@
+{
+    "asset": {
+        "version": "2.0",
+        "generator": "Open Asset Import Library (assimp v5.2.cf7d3637)"
+    },
+    "extensionsUsed": [
+        "KHR_materials_volume",
+        "FB_ngon_encoding"
+    ],
+    "accessors": [
+        {
+            "bufferView": 0,
+            "byteOffset": 0,
+            "componentType": 5126,
+            "count": 480,
+            "type": "VEC3",
+            "max": [
+                76.29232025146485,
+                247.5889892578125,
+                65.82022857666016
+            ],
+            "min": [
+                -78.56273651123047,
+                57.70063781738281,
+                -85.33100128173828
+            ]
+        },
+        {
+            "bufferView": 1,
+            "byteOffset": 0,
+            "componentType": 5126,
+            "count": 480,
+            "type": "VEC3",
+            "max": [
+                0.9950147867202759,
+                0.9985858201980591,
+                0.9961644411087036
+            ],
+            "min": [
+                -0.9866871237754822,
+                -0.9981240630149841,
+                -0.9984644055366516
+            ]
+        },
+        {
+            "bufferView": 2,
+            "byteOffset": 0,
+            "componentType": 5126,
+            "count": 480,
+            "type": "VEC2",
+            "max": [
+                1.0,
+                1.0
+            ],
+            "min": [
+                0.0,
+                0.0
+            ]
+        },
+        {
+            "bufferView": 3,
+            "byteOffset": 0,
+            "componentType": 5125,
+            "count": 480,
+            "type": "SCALAR",
+            "max": [
+                479
+            ],
+            "min": [
+                0
+            ]
+        },
+        {
+            "bufferView": 4,
+            "byteOffset": 0,
+            "componentType": 5126,
+            "count": 600,
+            "type": "VEC3",
+            "max": [
+                22.424955368041993,
+                218.87033081054688,
+                8.830873489379883
+            ],
+            "min": [
+                -8.929312705993653,
+                -6.796067237854004,
+                -20.766630172729493
+            ]
+        },
+        {
+            "bufferView": 5,
+            "byteOffset": 0,
+            "componentType": 5126,
+            "count": 600,
+            "type": "VEC3",
+            "max": [
+                0.9679057598114014,
+                0.6953251957893372,
+                0.9875867962837219
+            ],
+            "min": [
+                -0.9698542952537537,
+                -0.9671739935874939,
+                -0.9918556213378906
+            ]
+        },
+        {
+            "bufferView": 6,
+            "byteOffset": 0,
+            "componentType": 5126,
+            "count": 600,
+            "type": "VEC2",
+            "max": [
+                0.9850015044212341,
+                0.7613487243652344
+            ],
+            "min": [
+                0.22127863764762879,
+                0.035584092140197757
+            ]
+        },
+        {
+            "bufferView": 7,
+            "byteOffset": 0,
+            "componentType": 5125,
+            "count": 600,
+            "type": "SCALAR",
+            "max": [
+                599
+            ],
+            "min": [
+                0
+            ]
+        }
+    ],
+    "buffers": [
+        {
+            "byteLength": 38880,
+            "uri": "result.bin"
+        }
+    ],
+    "bufferViews": [
+        {
+            "buffer": 0,
+            "byteOffset": 0,
+            "byteLength": 5760,
+            "target": 34962
+        },
+        {
+            "buffer": 0,
+            "byteOffset": 5760,
+            "byteLength": 5760,
+            "target": 34962
+        },
+        {
+            "buffer": 0,
+            "byteOffset": 11520,
+            "byteLength": 3840,
+            "target": 34962
+        },
+        {
+            "buffer": 0,
+            "byteOffset": 15360,
+            "byteLength": 1920,
+            "target": 34963
+        },
+        {
+            "buffer": 0,
+            "byteOffset": 17280,
+            "byteLength": 7200,
+            "target": 34962
+        },
+        {
+            "buffer": 0,
+            "byteOffset": 24480,
+            "byteLength": 7200,
+            "target": 34962
+        },
+        {
+            "buffer": 0,
+            "byteOffset": 31680,
+            "byteLength": 4800,
+            "target": 34962
+        },
+        {
+            "buffer": 0,
+            "byteOffset": 36480,
+            "byteLength": 2400,
+            "target": 34963
+        }
+    ],
+    "materials": [
+        {
+            "name": "Green.1",
+            "pbrMetallicRoughness": {
+                "baseColorFactor": [
+                    0.1009952649474144,
+                    0.3742271065711975,
+                    0.02985500730574131,
+                    1.0
+                ],
+                "metallicFactor": 0.0,
+                "roughnessFactor": 0.690034806728363
+            }
+        },
+        {
+            "name": "Brown.9",
+            "pbrMetallicRoughness": {
+                "baseColorFactor": [
+                    0.23655317723751069,
+                    0.11035861819982529,
+                    0.02763272263109684,
+                    1.0
+                ],
+                "metallicFactor": 0.0,
+                "roughnessFactor": 0.690034806728363
+            }
+        }
+    ],
+    "meshes": [
+        {
+            "name": "Cube",
+            "primitives": [
+                {
+                    "mode": 4,
+                    "material": 0,
+                    "indices": 3,
+                    "attributes": {
+                        "POSITION": 0,
+                        "NORMAL": 1,
+                        "TEXCOORD_0": 2
+                    }
+                },
+                {
+                    "extensions": {
+                        "FB_ngon_encoding": {}
+                    },
+                    "mode": 4,
+                    "material": 1,
+                    "indices": 7,
+                    "attributes": {
+                        "POSITION": 4,
+                        "NORMAL": 5,
+                        "TEXCOORD_0": 6
+                    }
+                }
+            ]
+        }
+    ],
+    "nodes": [
+        {
+            "name": "RootNode",
+            "children": [
+                1
+            ]
+        },
+        {
+            "name": "Bush_2",
+            "mesh": 0,
+            "extras": {
+                "UserProperties": "",
+                "IsNull": false,
+                "DefaultAttributeIndex": 0,
+                "InheritType": 1
+            }
+        }
+    ],
+    "scenes": [
+        {
+            "nodes": [
+                0
+            ]
+        }
+    ],
+    "scene": 0
+}

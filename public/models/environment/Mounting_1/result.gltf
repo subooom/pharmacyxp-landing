@@ -1,0 +1,167 @@
+{
+    "asset": {
+        "version": "2.0",
+        "generator": "Open Asset Import Library (assimp v5.2.cf7d3637)"
+    },
+    "extensionsUsed": [
+        "KHR_materials_volume",
+        "FB_ngon_encoding"
+    ],
+    "accessors": [
+        {
+            "bufferView": 0,
+            "byteOffset": 0,
+            "componentType": 5126,
+            "count": 9114,
+            "type": "VEC3",
+            "max": [
+                778.6902465820313,
+                764.708251953125,
+                800.1209106445313
+            ],
+            "min": [
+                -793.1149291992188,
+                -15.724775314331055,
+                -875.314697265625
+            ]
+        },
+        {
+            "bufferView": 1,
+            "byteOffset": 0,
+            "componentType": 5126,
+            "count": 9114,
+            "type": "VEC3",
+            "max": [
+                0.9505581259727478,
+                0.9999989867210388,
+                0.9729948043823242
+            ],
+            "min": [
+                -0.9720626473426819,
+                -0.771736204624176,
+                -0.9931501746177673
+            ]
+        },
+        {
+            "bufferView": 2,
+            "byteOffset": 0,
+            "componentType": 5126,
+            "count": 9114,
+            "type": "VEC2",
+            "max": [
+                0.9999999403953552,
+                1.0
+            ],
+            "min": [
+                0.0,
+                0.0
+            ]
+        },
+        {
+            "bufferView": 3,
+            "byteOffset": 0,
+            "componentType": 5125,
+            "count": 9114,
+            "type": "SCALAR",
+            "max": [
+                9113
+            ],
+            "min": [
+                0
+            ]
+        }
+    ],
+    "buffers": [
+        {
+            "byteLength": 328104,
+            "uri": "result.bin"
+        }
+    ],
+    "bufferViews": [
+        {
+            "buffer": 0,
+            "byteOffset": 0,
+            "byteLength": 109368,
+            "target": 34962
+        },
+        {
+            "buffer": 0,
+            "byteOffset": 109368,
+            "byteLength": 109368,
+            "target": 34962
+        },
+        {
+            "buffer": 0,
+            "byteOffset": 218736,
+            "byteLength": 72912,
+            "target": 34962
+        },
+        {
+            "buffer": 0,
+            "byteOffset": 291648,
+            "byteLength": 36456,
+            "target": 34963
+        }
+    ],
+    "materials": [
+        {
+            "name": "Orange.3",
+            "pbrMetallicRoughness": {
+                "baseColorFactor": [
+                    0.64000004529953,
+                    0.32111844420433047,
+                    0.09197729080915451,
+                    1.0
+                ],
+                "metallicFactor": 0.0,
+                "roughnessFactor": 0.690034806728363
+            }
+        }
+    ],
+    "meshes": [
+        {
+            "name": "Plane",
+            "primitives": [
+                {
+                    "extensions": {
+                        "FB_ngon_encoding": {}
+                    },
+                    "mode": 4,
+                    "material": 0,
+                    "indices": 3,
+                    "attributes": {
+                        "POSITION": 0,
+                        "NORMAL": 1,
+                        "TEXCOORD_0": 2
+                    }
+                }
+            ]
+        }
+    ],
+    "nodes": [
+        {
+            "name": "RootNode",
+            "children": [
+                1
+            ]
+        },
+        {
+            "name": "Mounting_1",
+            "mesh": 0,
+            "extras": {
+                "UserProperties": "",
+                "IsNull": false,
+                "DefaultAttributeIndex": 0,
+                "InheritType": 1
+            }
+        }
+    ],
+    "scenes": [
+        {
+            "nodes": [
+                0
+            ]
+        }
+    ],
+    "scene": 0
+}
