@@ -24,10 +24,11 @@ const ChooseYourPlan = () => {
   const hoverElemRef = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
+    console.log(plans);
     if (plans?.length === 0) {
       fetchPlans();
     }
-  }, [fetchPlans, plans, plansLoading]);
+  }, [plans]);
 
   const [localPlan] = useState<number>();
   useEffect(() => {

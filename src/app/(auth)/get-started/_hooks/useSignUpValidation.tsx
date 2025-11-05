@@ -253,55 +253,79 @@ export interface UploadedFile {
 }
 
 export function imageValidator(config: ImageValidatorConfig = {}) {
-  return (value: UploadedFile, helpers: CustomHelpers) => {
+  return async (value: any, helpers: CustomHelpers) => {
     let errorMessage: string | null = null;
 
     if (!value || typeof value !== "object") {
       errorMessage = "Please select a valid image file";
     } else {
-      const { buffer, mimetype, size } = value;
+      let buffer: Buffer;
+      let mimetype: string;
+      let size: number;
 
-      // Mime type check
-      if (config.mimeTypes && !config.mimeTypes.includes(mimetype)) {
-        const allowedTypes = config.mimeTypes
-          .map((type) => type.split("/")[1].toUpperCase())
-          .join(", ");
-        errorMessage = `File type not supported. Please use ${allowedTypes} formats`;
-      }
-
-      // File size check
-      if (config.maxSize && size > config.maxSize) {
-        const maxSizeMB = config.maxSize / (1024 * 1024);
-        errorMessage = `File size too large. Maximum allowed size is ${maxSizeMB}MB`;
-      }
-
-      // Dimension check
-      if (
-        !errorMessage &&
-        (config.minWidth ||
-          config.minHeight ||
-          config.maxWidth ||
-          config.maxHeight)
-      ) {
+      // Handle native File object
+      if (value instanceof File) {
         try {
-          const { width, height } = imageSize(buffer);
+          const arrayBuffer = await value.arrayBuffer();
+          buffer = Buffer.from(arrayBuffer);
+          mimetype = value.type;
+          size = value.size;
+        } catch (error) {
+          errorMessage = "Failed to process the image file";
+        }
+      }
+      // Handle your custom UploadedFile object (backward compatibility)
+      else if (value.buffer && value.mimetype) {
+        buffer = value.buffer;
+        mimetype = value.mimetype;
+        size = value.size;
+      } else {
+        errorMessage = "Invalid file format. Please select a valid image file";
+      }
 
-          if (!width || !height) {
-            errorMessage = "Invalid image file. Please try another image";
-          } else {
-            if (config.minWidth && width < config.minWidth) {
-              errorMessage = `Image width too small. Minimum width is ${config.minWidth}px`;
-            } else if (config.minHeight && height < config.minHeight) {
-              errorMessage = `Image height too small. Minimum height is ${config.minHeight}px`;
-            } else if (config.maxWidth && width > config.maxWidth) {
-              errorMessage = `Image width too large. Maximum width is ${config.maxWidth}px`;
-            } else if (config.maxHeight && height > config.maxHeight) {
-              errorMessage = `Image height too large. Maximum height is ${config.maxHeight}px`;
+      if (!errorMessage) {
+        // Mime type check
+        if (config.mimeTypes && !config.mimeTypes.includes(mimetype)) {
+          const allowedTypes = config.mimeTypes
+            .map((type) => type.split("/")[1].toUpperCase())
+            .join(", ");
+          errorMessage = `File type not supported. Please use ${allowedTypes} formats`;
+        }
+
+        // File size check
+        if (config.maxSize && size > config.maxSize) {
+          const maxSizeMB = config.maxSize / (1024 * 1024);
+          errorMessage = `File size too large. Maximum allowed size is ${maxSizeMB}MB`;
+        }
+
+        // Dimension check
+        if (
+          !errorMessage &&
+          (config.minWidth ||
+            config.minHeight ||
+            config.maxWidth ||
+            config.maxHeight)
+        ) {
+          try {
+            const { width, height } = imageSize(buffer);
+
+            if (!width || !height) {
+              errorMessage = "Invalid image file. Please try another image";
+            } else {
+              if (config.minWidth && width < config.minWidth) {
+                errorMessage = `Image width too small. Minimum width is ${config.minWidth}px`;
+              } else if (config.minHeight && height < config.minHeight) {
+                errorMessage = `Image height too small. Minimum height is ${config.minHeight}px`;
+              } else if (config.maxWidth && width > config.maxWidth) {
+                errorMessage = `Image width too large. Maximum width is ${config.maxWidth}px`;
+              } else if (config.maxHeight && height > config.maxHeight) {
+                errorMessage = `Image height too large. Maximum height is ${config.maxHeight}px`;
+              }
             }
+          } catch {
+            errorMessage =
+              "Cannot read image dimensions. Please try another image";
           }
-        } catch {
-          errorMessage =
-            "Cannot read image dimensions. Please try another image";
         }
       }
     }

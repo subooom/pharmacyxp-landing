@@ -4,7 +4,7 @@ const baseURL = "http://localhost:8000/api/";
 
 const Api = axios.create({
   baseURL,
-  timeout: 10000,
+  timeout: 30000,
 });
 
 export default Api;

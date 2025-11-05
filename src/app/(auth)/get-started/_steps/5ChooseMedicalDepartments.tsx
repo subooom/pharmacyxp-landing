@@ -106,7 +106,9 @@ const ChooseYourDepartments = () => {
       error={servicesError || ""}
       isLoading={servicesLoading}
       hasSuccess={servicesSuccess}
-      reloadHandler={() => {}}
+      reloadHandler={() => {
+        fetchServices();
+      }}
       ChildContainer={React.Fragment}
     >
       <StepPageLayout title="Choose Your Departments" subtitle={subtitle}>

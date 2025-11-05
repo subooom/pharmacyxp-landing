@@ -1,5 +1,4 @@
 import { Metadata } from "next";
-import ClinicBuilder3D from "@/components/composits/Clinic3D";
 import Banner from "@/components/composits/Banner";
 import PenAndPaper from "@/components/composits/PenAndPaper";
 import GrowthAndImpact from "@/components/composits/GrowthFeatureCard";
@@ -8,7 +7,6 @@ import TestimonialSection from "@/components/composits/TestimonialSection";
 import FaqPanel from "@/components/composits/FaqPanel";
 import WaveDivider from "@/components/composits/WaveDivider";
 import PricePanel from "@/components/composits/PricePanel";
-import OurLocations from "@/components/composits/OurLocationsMap/page";
 import { Callout } from "@/components/ui/callout";
 import BackersPanel from "@/components/composits/BackersPanel";
 
@@ -30,7 +28,7 @@ export default function Home() {
       <GrowthAndImpact />
       <TestimonialSection />
       <PricePanel />
-      <OurLocations />
+      {/* <OurLocations /> */}
       <FaqPanel />
     </div>
   );

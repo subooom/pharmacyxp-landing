@@ -1,132 +1,114 @@
-import React, { useEffect, useRef, JSX } from "react";
-import { useSignUpContext } from "../_utils/sign-up.context";
+import React, { useEffect, useRef } from "react";
 import Api from "@/lib/api";
 import { debounce } from "@/lib/utils";
 import { AxiosResponse } from "axios";
 import EventCard from "../_components/EventCard";
+import { useSignUpStore } from "@/store/sing-up.store";
 import {
-  Table,
-  TableHeader,
-  TableRow,
-  TableHead,
-  TableBody,
-  TableCell,
-} from "@/components/ui/table";
-const getActualUrl = (url: string): string => {
-  if (url.includes("localhost")) {
-    return "http://" + url + ":8000/admin";
-  } else {
-    return "https://" + url + "/admin";
-  }
-};
-
-const getTime = (time: Date): string => {
-  const m = time.getMinutes();
-  return `${time.getHours() % 12}:${m < 10 ? "0" + m : m} ${
-    time.getHours() > 12 ? "PM" : "AM"
-  }`;
-};
-
-export const unslugify = (str: string): string =>
-  str
-    .replace("-", " ")
-    .replace(/(^\w{1})|(\s+\w{1})/g, (letter) => letter.toUpperCase());
-
-const objectToTable = (obj: Record<string, any>): JSX.Element => {
-  const theads = Object.keys(obj).map((key) => (
-    <TableHead key={key} className="px-4 py-2">
-      {key}
-    </TableHead>
-  ));
-
-  const tBody = (
-    <TableRow>
-      {Object.values(obj).map((value, index) =>
-        typeof value === "object" ? (
-          <TableCell key={index}>{objectToTable(value)}</TableCell>
-        ) : (
-          <TableCell key={index} className="px-4 py-2">
-            {String(value)}
-          </TableCell>
-        ),
-      )}
-    </TableRow>
-  );
-
-  return (
-    <Table className="my-5 text-xs border border-gray-400">
-      <TableHeader>
-        <TableRow>{theads}</TableRow>
-      </TableHeader>
-      <TableBody>{tBody}</TableBody>
-    </Table>
-  );
-};
+  getActualUrl,
+  getTime,
+  objectToTable,
+  unslugify,
+} from "../_utils/utils";
 
 const ThankYou = () => {
   const {
-    onEmailVerified,
-    tenantEvent,
-    setTenantEvent,
-    databaseEvent,
-    setDatabaseEvent,
-    domainEvent,
-    setDomainEvent,
-    seedingDatabaseEvent,
-    setSeedingDatabaseEvent,
-    foreignKey,
-    emailVerifiedEvent,
-    setEmailVerifiedEvent,
+    timelineEvents: {
+      databaseEvent,
+      tenantEvent,
+      domainEvent,
+      emailVerifiedEvent,
+      seedingDatabaseEvent,
+    },
+    formData: {
+      admin_email
+    },
     setForeignKey,
-  } = useSignUpContext();
+    foreignKey,
+    setTimelineEvent,
+    handlers: { onEmailVerified },
+  } = useSignUpStore();
 
+  console.log({
+    databaseEvent,
+    tenantEvent,
+    domainEvent,
+    emailVerifiedEvent,
+    seedingDatabaseEvent,
+    foreignKey
+  });
+  
   const interval = useRef<NodeJS.Timeout | null>(null);
-  console.log({ emailVerifiedEvent });
+  // Use a ref to track the current identifier without causing re-renders
+  const currentIdentifierRef = useRef(admin_email);
+  
+  // Update the ref whenever tenantEvent or foreignKey changes
+  useEffect(() => {
+    if (foreignKey) {
+      currentIdentifierRef.current = foreignKey;
+    } else if (tenantEvent?.data?.tenant_id) {
+      currentIdentifierRef.current = tenantEvent.data.tenant_id;
+    } else {
+      currentIdentifierRef.current = admin_email;
+    }
+  }, [foreignKey, tenantEvent?.data?.tenant_id, admin_email]);
+  
   useEffect(() => {
     const debouncedFunction = debounce(() => {
+      // Clear any existing interval
+      if (interval.current) {
+        clearInterval(interval.current);
+        interval.current = null;
+      }
+      
       interval.current = setInterval(() => {
-        // Assuming Api is available globally or imported
-        Api.get(`/tenant-registry-feedback/${foreignKey}`).then(
+        // Use the current identifier from the ref
+        const identifier = currentIdentifierRef.current;
+        
+        console.log("Making API call with identifier:", identifier);
+        Api.get(`/tenant-registry-feedback/${identifier}`).then(
           (resp: AxiosResponse) => {
             const d = resp.data;
             if (d) {
               const time = new Date(d.created_at);
+              console.log("Received event:", d.data.name, d);
               switch (d.data.name) {
                 case "email-verified":
                   if (emailVerifiedEvent === undefined) {
-                    setEmailVerifiedEvent({
+                    setTimelineEvent("emailVerifiedEvent", {
                       ...d,
                       time: getTime(time),
                       pending: false,
                     });
-                    console.log("hello");
                     onEmailVerified();
                   }
                   break;
                 case "creating-tenant":
-                  setTenantEvent({
+                  setTimelineEvent("tenantEvent", {
                     ...d,
                     time: getTime(time),
                     pending: true,
                   });
                   break;
                 case "tenant-created":
+                  // Switch to using tenant_id from now on
+                  console.log("Setting foreign key to:", d.data.tenant_id);
                   setForeignKey(d.data.tenant_id);
-                  setTenantEvent({
+                  setTimelineEvent("tenantEvent", {
                     ...d,
                     time: getTime(time),
                     pending: false,
                   });
                   break;
                 case "creating-domain":
-                  setDomainEvent({
+                  setTimelineEvent("domainEvent", {
                     ...d,
                     time: getTime(time),
                     pending: true,
                   });
                   break;
                 case "domain-created":
-                  setDomainEvent({
+                  setTimelineEvent("domainEvent", {
                     ...d,
                     time: getTime(time),
                     data: d.data,
@@ -134,42 +116,42 @@ const ThankYou = () => {
                   });
                   break;
                 case "creating-database":
-                  setDatabaseEvent({
+                  setTimelineEvent("databaseEvent", {
                     ...d,
                     time: getTime(time),
                     pending: true,
                   });
                   break;
                 case "database-created":
-                  setDatabaseEvent({
+                  setTimelineEvent("databaseEvent", {
                     ...d,
                     time: getTime(time),
                     pending: true,
                   });
                   break;
                 case "migrating-database":
-                  setDatabaseEvent({
+                  setTimelineEvent("databaseEvent", {
                     ...d,
                     time: getTime(time),
                     pending: true,
                   });
                   break;
                 case "database-migrated":
-                  setDatabaseEvent({
+                  setTimelineEvent("databaseEvent", {
                     ...d,
                     time: getTime(time),
                     pending: false,
                   });
                   break;
                 case "seeding-database":
-                  setSeedingDatabaseEvent({
+                  setTimelineEvent("seedingDatabaseEvent", {
                     ...d,
                     time: getTime(time),
                     pending: true,
                   });
                   break;
                 case "database-seeded":
-                  setSeedingDatabaseEvent({
+                  setTimelineEvent("seedingDatabaseEvent", {
                     ...d,
                     time: getTime(time),
                     pending: false,
@@ -180,8 +162,10 @@ const ThankYou = () => {
               }
             }
           },
-        );
-      }, 1000);
+        ).catch((error) => {
+          console.error("API call failed:", error);
+        });
+      }, 2000);
     }, 1000);
 
     debouncedFunction();
@@ -192,7 +176,7 @@ const ThankYou = () => {
         interval.current = null;
       }
     };
-  }, [foreignKey]);
+  }, [admin_email]); // Only depend on admin_email, the ref will handle the tenant_id
 
   return (
     <div className="container mx-auto mt-2 p-0">
