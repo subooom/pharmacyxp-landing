@@ -10,7 +10,7 @@ const WelcomeScreen = () => {
         <Image
           height={400}
           width={400}
-          src="http://localhost:8000/web/subooom_a_light_themed_image_of_a_doctor_wearing_a_stethoscope__b5c2bff0-8744-40c3-b590-94b3812622fc.png"
+          src="https://medicinexp-staging.com/web/subooom_a_light_themed_image_of_a_doctor_wearing_a_stethoscope__b5c2bff0-8744-40c3-b590-94b3812622fc.png"
           alt="bannerImage"
           className="w-[400px] rounded-tl-[122px] rounded-br-[122px]"
         />

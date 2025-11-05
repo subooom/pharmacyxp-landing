@@ -14,7 +14,7 @@ export const backupPlans: Plan[] = [
     id: 1,
     name: "Basic",
     image:
-      "http://localhost:8000/plans/February2021/as8d3fdIoPII3opxzSqqw3.png",
+      "https://medicinexp-staging.com/plans/February2021/as8d3fdIoPII3opxzSqqw3.png",
     price_for_first_year: 10000,
     price_per_year: 10656,
     features:
@@ -26,7 +26,8 @@ export const backupPlans: Plan[] = [
   {
     id: 2,
     name: "Premium",
-    image: "http://localhost:8000/plans/February2021/Egzbh3FSbqxlokjw9pUz.png",
+    image:
+      "https://medicinexp-staging.com/plans/February2021/Egzbh3FSbqxlokjw9pUz.png",
     price_for_first_year: 30000,
     price_per_year: 11988,
     features:
@@ -38,7 +39,8 @@ export const backupPlans: Plan[] = [
   {
     id: 3,
     name: "Executive",
-    image: "http://localhost:8000/plans/February2021/fyDM5YPV5FGaj4zLoAiK.png",
+    image:
+      "https://medicinexp-staging.com/plans/February2021/fyDM5YPV5FGaj4zLoAiK.png",
     price_for_first_year: 50000,
     price_per_year: 24000,
     features:
@@ -50,7 +52,8 @@ export const backupPlans: Plan[] = [
   {
     id: 4,
     name: "Elite",
-    image: "http://localhost:8000/plans/February2021/ktYkhkrZZjDvG99t8l6C.png",
+    image:
+      "https://medicinexp-staging.com/plans/February2021/ktYkhkrZZjDvG99t8l6C.png",
     price_for_first_year: 60000,
     price_per_year: 48000,
     features:
