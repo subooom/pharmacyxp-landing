@@ -109,14 +109,14 @@ export const useSignUpStore = create<SignUpStore>()(
     // --- Initial State for Form Data ---
     formData: {
       // ... initial state from useSignUpState ...
-      admin_name: "Subham Kharel",
-      admin_email: "subhamkharel12@gmail.com",
-      admin_contact: "9810401522",
-      organization_name: "Bishesh Pharmacy",
-      organization_contact: "9810401522",
+      admin_name: "",
+      admin_email: "",
+      admin_contact: "",
+      organization_name: "",
+      organization_contact: "",
       organization_logo: undefined,
-      organization_pan_number: "3742783476",
-      organization_description: "Pharmacy located at baneswor.",
+      organization_pan_number: "",
+      organization_description: "",
       organization_address: {
         line_1_number_building: "",
         line_2_number_street: "",
