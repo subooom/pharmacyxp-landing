@@ -19,7 +19,7 @@ export const metadata: Metadata = {
 
 export default function Home() {
   return (
-    <div className="">
+    <div className="max-w-screen">
       {/* <FixedCTAButton /> */}
       <Banner />
       {/* <ClinicBuilder3D /> */}

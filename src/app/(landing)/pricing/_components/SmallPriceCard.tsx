@@ -20,7 +20,7 @@ function SmallPriceCard({ plan }: { plan: Plan }) {
   const router = useRouter();
   const planKey = plan.name.toLowerCase() as PlanName;
   return (
-    <div className="relative border bg-card-radial-reversed rounded-3xl border-primary-900/[0.1] px-4 py-6 flex flex-col bg-primary-100 text-foreground transition-all duration-150 ease-in-out">
+    <div className="relative border bg-card-radial-reversed rounded-3xl border-primary-900/[0.1] px-4 py-6 flex flex-col bg-primary-100 text-foreground transition-all duration-150 ease-in-out ">
       {/* Free Trial Badge */}
       <Image
         width={154.19 * 0.6}

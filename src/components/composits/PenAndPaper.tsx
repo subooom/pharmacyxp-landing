@@ -156,7 +156,7 @@ const PenAndPaper: React.FC = () => {
   return (
     <section className="flex gap-14 layout-container flex-col lg:flex-row items-center justify-between max-w-screen-xl mx-auto px-4 my-24">
       {/* Canvas Section */}
-      <div className="w-full lg:w-5/12 mt-24 overflow-hidden">
+      <div className="w-full lg:w-5/12 mt-24 overflow-hidden lg:flex md:flex hidden ">
         <canvas
           ref={canvasRef}
           id="banner-canvas"
@@ -182,7 +182,7 @@ const PenAndPaper: React.FC = () => {
         <h1 className="text-primary font-bold text-4xl md:text-5xl leading-snug">
           Never use pen and paper again!
         </h1>
-        <p className="mt-4 text-primary-700 text-lg mb-10">
+        <p className="mt-4 text-primary-700 mb-10 text-lg  ">
           Alongside resource management and printable bills, our powerful widget
           system lets you add tools like to-do lists and notepads on the fly.
         </p>

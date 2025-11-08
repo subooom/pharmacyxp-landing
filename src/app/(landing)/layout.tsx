@@ -29,7 +29,12 @@ export default function RootLayout({
           defer
         ></script>
       </head>
-      <body className={`${josefinSans.variable} antialiased`}>
+      <body
+        style={{
+          overflowX: "hidden",
+        }}
+        className={`${josefinSans.variable} antialiased max-w-screen`}
+      >
         <ThemeProvider
           attribute="class"
           defaultTheme="system"

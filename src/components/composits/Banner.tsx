@@ -6,29 +6,46 @@ import { Button } from "../ui/button";
 
 function Banner() {
   return (
-    <div className="flex mt-[200px] flex-col lg:flex-row justify-start items-start max-w-screen-xl mx-auto px-4 pt-24 layout-container">
-      <Fade direction="left">
-        <div className="w-full lg:w-full">
-          <h1 className="font-bold max-w-xl text-5xl md:text-7xl text-primary leading-tight">
-            Monitor your business with medicinexp
-          </h1>
-          <p className="my-4 max-w-md text-primary text-2xl">
-            Manage your pharmacy with less chaos and more control.
-          </p>
-          <Link href="/get-started">
-            <Button>Get Started</Button>
-          </Link>
-        </div>
-      </Fade>
-
-      <Fade direction="right">
-        <div className="w-full lg:w-full mt-12 lg:mt-0 flex justify-center">
+    <div className="flex mt-0 md:mt-18 lg:mt-20 xl:mt-[120px] 2xl:mt-[200px] flex-col lg:flex-row justify-center items-center max-w-screen-xl mx-auto px-4 pt-20 lg:pt-24 layout-container">
+      {/* Mobile Image - Shows on small screens (hidden above 1023px) */}
+      <Fade direction="down">
+        <div className="flex mb-8 sm:mb-10 w-full lg:w-full mt-8 lg:mt-0 justify-center lg:hidden">
           <Image
             height={507}
             width={888}
             src="/assets/images/banner-7.png"
             alt="ultraxp"
-            className="w-full h-auto max-w-[90%] lg:max-w-full"
+            className="w-full h-auto max-w-[280px] sm:max-w-[350px] md:max-w-[400px] lg:max-w-full"
+          />
+        </div>
+      </Fade>
+
+      <Fade direction="left">
+        <div className="w-full lg:w-full flex flex-col items-center justify-center text-center lg:items-start lg:text-left">
+          <h1 className="font-bold max-w-xl text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-primary leading-tight text-center lg:text-left">
+            Monitor your business with medicinexp
+          </h1>
+          <p className="my-4 max-w-lg text-primary text-lg md:text-2xl lg:text-2xl  text-center lg:text-left">
+            Manage your pharmacy with less chaos and more control.
+          </p>
+          <Link
+            href="/get-started"
+            className="flex justify-center lg:justify-start mt-2 lg:mt-0"
+          >
+            <Button>Get Started</Button>
+          </Link>
+        </div>
+      </Fade>
+
+      {/* Desktop Image - Hidden on screens 1023px and below */}
+      <Fade direction="right">
+        <div className="hidden lg:flex w-full lg:w-full mt-8 xl:mt-12 justify-center">
+          <Image
+            height={507}
+            width={888}
+            src="/assets/images/banner-7.png"
+            alt="ultraxp"
+            className="w-full h-auto max-w-[500px] xl:max-w-[600px] 2xl:max-w-full"
           />
         </div>
       </Fade>

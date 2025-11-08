@@ -12,7 +12,7 @@ function DarkPanel({
   return (
     <section
       className={cn(
-        "growth-and-impact w-full lg:w-auto pt-6 lg:pt-24 flex gap-6 flex-col items-center justify-center min-h-dvh bg-primary-100 text-primary-50",
+        "growth-and-impact w-full lg:w-auto pt-18 lg:pt-24 flex gap-6 flex-col items-center justify-center min-h-dvh bg-primary-100 text-primary-50",
         className,
       )}
       id={id}

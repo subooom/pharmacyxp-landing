@@ -1,6 +1,6 @@
 export function Callout() {
   return (
-    <div className="max-w-[max-content] mx-auto mt-4 lg:pt-0 min-h-fit">
+    <div className="max-w-[max-content] mx-auto mt-4 md:mt-2 lg:pt-0 min-h-fit">
       <div className="relative isolate flex items-center gap-x-6 overflow-hidden bg-gray-50 px-6 py-2.5 sm:px-3.5 sm:before:flex-1">
         <div
           aria-hidden="true"

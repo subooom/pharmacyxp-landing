@@ -59,7 +59,7 @@ function PricePanel() {
         reloadHandler={getPlans}
         ChildContainer={Fragment}
       >
-        <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 w-full">
+        <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-4 lg:gap-5 md:gap-4 w-full justify-items-center md:justify-items-stretch">
           {plans &&
             plans.map((plan) => {
               const {
@@ -90,15 +90,15 @@ function PricePanel() {
             })}
         </div>
 
-        <p className="mt-3 mx-auto text-[#948ebe] text-lg mb-10 text-center max-w-2xl">
+        <p className="mt-3 lg:max-w-2xl lg:mx-auto text-[#948ebe] text-lg mb-6 text-left lg:text-center">
           <small className="text-sm">
             Accounts with overdue payments will be paused until the outstanding
             balance is settled
           </small>
         </p>
 
-        <Link href={Routes.sign_up} className="mx-auto">
-          <Button className="mx-auto">Get Started</Button>
+        <Link href={Routes.sign_up} className="flex justify-center lg:mx-auto">
+          <Button className="lg:mx-auto ">Get Started</Button>
         </Link>
       </APIFetchHandler>
     </DarkPanel>

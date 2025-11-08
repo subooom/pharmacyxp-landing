@@ -15,6 +15,7 @@ function Logo({ className }: { className?: string }) {
           width={2562 / 10}
           height={460 / 10}
           viewBox="0 0 2562 460"
+          className="scale-[0.7] -ml-8 lg:scale-[1]"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
         >

@@ -23,12 +23,22 @@ function CardImage({
   return (
     <div className="feature-card-image">
       <div className="mx-6 relative">
-        <img
+        {/* <img
           className={cn(
             "rounded-md mx-auto overflow-hidden z-0 object-cover",
             className,
           )}
           style={{ opacity, height, width, objectPosition }}
+          src={image}
+          alt={alt}
+        /> */}
+
+        <img
+          className={cn(
+            "rounded-md mx-auto overflow-hidden z-0 object-cover",
+            className,
+          )}
+          style={{ opacity, width, objectPosition }}
           src={image}
           alt={alt}
         />
