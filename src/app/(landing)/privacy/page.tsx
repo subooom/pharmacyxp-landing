@@ -2,8 +2,8 @@ import { Metadata } from "next";
 import { Separator } from "@/components/ui/separator";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy | MedicineXP",
-  description: "Learn how MedicineXP handles your data and privacy.",
+  title: "Privacy Policy | medicinexp",
+  description: "Learn how medicinexp handles your data and privacy.",
 };
 
 export default function PrivacyPage() {
@@ -17,7 +17,7 @@ export default function PrivacyPage() {
       <section className="space-y-4">
         <h2 className="text-xl font-semibold text-primary">1. Introduction</h2>
         <p>
-          At MedicineXP, we respect your privacy and are committed to protecting
+          At medicinexp, we respect your privacy and are committed to protecting
           any personal data you provide. This Privacy Policy outlines how we
           collect, use, and safeguard your information.
         </p>

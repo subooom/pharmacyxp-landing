@@ -96,7 +96,7 @@ export function InvoiceModal({
             <p>Pay To:</p>
             <p className="mt-1">
               Standard Chattered <br />
-              PharmacyXP Pvt. Ltd. <br />
+              medicinexp pvt. ltd. <br />
               45773272999201110
             </p>
           </div>

@@ -2,8 +2,8 @@ import { Metadata } from "next";
 import { Separator } from "@/components/ui/separator";
 
 export const metadata: Metadata = {
-  title: "Terms of Service | MedicineXP",
-  description: "Read the full terms and conditions for using MedicineXP.",
+  title: "Terms of Service | medicinexp",
+  description: "Read the full terms and conditions for using medicinexp.",
 };
 
 export default function TermsPage() {
@@ -19,7 +19,7 @@ export default function TermsPage() {
           1. Acceptance of Terms
         </h2>
         <p>
-          By accessing or using MedicineXP, you agree to be bound by these Terms
+          By accessing or using medicinexp, you agree to be bound by these Terms
           of Service. If you do not agree, please do not use our platform.
         </p>
       </section>
@@ -27,7 +27,7 @@ export default function TermsPage() {
       <section className="space-y-4 mt-8">
         <h2 className="text-xl font-semibold text-primary">2. Our Role</h2>
         <p>
-          MedicineXP is a software provider only. We offer tools for pharmacy
+          medicinexp is a software provider only. We offer tools for pharmacy
           management, but we do not issue official tax-compliant invoices or VAT
           bills. It is the responsibility of each user (pharmacy) to ensure
           compliance with their regional legal and tax regulations.
@@ -72,7 +72,7 @@ export default function TermsPage() {
         </h2>
         <p>
           We are not liable for any loss or damage resulting from your use of
-          MedicineXP, including loss of data or downtime.
+          medicinexp, including loss of data or downtime.
         </p>
       </section>
 

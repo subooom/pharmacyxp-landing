@@ -10,8 +10,8 @@ const josefinSans = Josefin_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "MedicineXP - From Racks to Receipts",
-  description: "MedicineXP - built for pharmacies",
+  title: "medicinexp - From Racks to Receipts",
+  description: "medicinexp - built for pharmacies, polyclinics, and hospitals",
 };
 
 export default function RootLayout({

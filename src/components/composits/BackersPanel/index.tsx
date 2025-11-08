@@ -21,7 +21,7 @@ function BackersPanel() {
   return (
     <DarkPanel className="py-16 -mt-16 mb-0 flex min-h-fit flex-col gap-6 items-center justify-center">
       <p className="text-3xl text-primary-800 font-medium">
-        Backed by 200+ Growing Pharmacies
+        Trusted by 200+ healthcare orgs
       </p>
       <div className="flex gap-8 flex-wrap">
         {Array.from({ length: 6 }).map((_, i) => (

@@ -123,7 +123,7 @@ export default function RackIntelligence() {
                   />
                   <Image
                     src="/logo.png"
-                    alt="MedicineXP Logo"
+                    alt="medicinexp Logo"
                     width={169}
                     height={120}
                     className="absolute bottom-4 right-4 bg-primary-100 dark:bg-primary-950 p-3 rounded-xl"

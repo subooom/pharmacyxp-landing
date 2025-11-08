@@ -13,10 +13,10 @@ function TestimonialSection() {
   return testimonials.length === 0 ? null : (
     <DarkPanel className="testimonial-section">
       <SectionTitle
-        title="Hear It From Those"
-        titleContinued="Who Matter Most"
+        title="What Modern Medical Teams Are"
+        titleContinued="Saying"
         description="From inventory to insights, each feature is built to save time, cut
-        costs, and scale your pharmacy faster."
+        costs, and scale your medical organization faster."
       />
       {testimonials.length > 6 ? (
         <>

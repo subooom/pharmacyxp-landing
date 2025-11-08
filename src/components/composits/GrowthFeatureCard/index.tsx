@@ -15,10 +15,9 @@ function GrowthAndImpact() {
       className="pt-[60px_!important] bg-transparent -my-32 mb-4"
     >
       <SectionTitle
-        title="The Tools That Power"
-        titleContinued="Your Pharmacy"
-        description="From inventory to insights, each feature is built to save time, cut
-        costs, and scale your pharmacy faster."
+        title="Everything you need"
+        titleContinued="in one place"
+        description="More control and clarity across every medical department."
       />
       <div className="features layout-container">
         {/* Section 1: Two-column dashboard + roles */}
@@ -71,7 +70,7 @@ function GrowthAndImpact() {
                 id: 20,
                 title: "...and many more",
                 subtitle:
-                  "Discover advanced capabilities designed to scale and streamline every aspect of your pharmacy operations.",
+                  "Discover advanced capabilities designed to scale and streamline every aspect of your medical operations.",
                 type: "explore-more",
               }}
             />
