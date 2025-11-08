@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseURL = "https://medicinexp-staging.com/api/";
+const baseURL = "http://localhost:8000/api/";
 
 const Api = axios.create({
   baseURL,

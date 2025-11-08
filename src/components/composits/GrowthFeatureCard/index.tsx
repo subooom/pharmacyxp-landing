@@ -10,7 +10,10 @@ import DarkPanel from "../DarkPanel";
 
 function GrowthAndImpact() {
   return (
-    <DarkPanel id="features" className="pt-[60px_!important]">
+    <DarkPanel
+      id="features"
+      className="pt-[60px_!important] bg-transparent -my-32 mb-4"
+    >
       <SectionTitle
         title="The Tools That Power"
         titleContinued="Your Pharmacy"
@@ -32,16 +35,12 @@ function GrowthAndImpact() {
           {data.filter((item) => item.type === "3d-rack").map(renderFeature)}
           <div className="grid grid-cols-1 gap-4">
             {data
-              .filter((item) => item.type === "income-expenditure")
+              .filter(
+                (item) =>
+                  item.type === "income-expenditure" ||
+                  item.type === "rack-intelligence",
+              )
               .map(renderFeature)}
-            <div className="small-cards grid grid-cols-1 max-h-min gap-4">
-              {data
-                .filter(
-                  (item) =>
-                    item.type === "updates" || item.type === "call-support",
-                )
-                .map(renderFeature)}
-            </div>
           </div>
           {data
             .filter(
@@ -52,6 +51,14 @@ function GrowthAndImpact() {
             )
             .map(renderFeature)}
           <div className="grid grid-cols-1 gap-4">
+            <div className="small-cards grid grid-cols-1 max-h-min gap-4">
+              {data
+                .filter(
+                  (item) =>
+                    item.type === "updates" || item.type === "call-support",
+                )
+                .map(renderFeature)}
+            </div>
             <GrowthFeatureCard
               bottomPanel={
                 <div className="h-12">
@@ -144,7 +151,7 @@ const renderMap: Record<
   ),
   "early-alerts": (item: Feature) => (
     <CardImage
-      height={400}
+      height={250}
       objectPosition="center"
       image="/assets/images/early-alerts.jpg"
       alt={item.title}
@@ -161,6 +168,14 @@ const renderMap: Record<
       overlay={false}
     />
   ),
+  "rack-intelligence": (item: Feature) => (
+    <CardImage
+      height={244}
+      image="Gemini_Generated_Image_exvo2yexvo2yexvo.png"
+      alt={item.title}
+      opacity={1}
+    />
+  ),
   "income-expenditure": (item: Feature) => (
     <CardImage
       height={200}
@@ -172,7 +187,7 @@ const renderMap: Record<
   ),
   "print-support": (item: Feature) => (
     <CardImage
-      height={400}
+      height={285}
       objectPosition="center"
       image="/assets/images/print.png"
       alt={item.title}
@@ -181,7 +196,7 @@ const renderMap: Record<
   ),
   "salary-management": (item: Feature) => (
     <CardImage
-      height={400}
+      height={285}
       image="/assets/images/salary-management.jpg"
       alt={item.title}
       opacity={1}
@@ -204,9 +219,10 @@ const classNamesMap: Record<Feature["type"], string> = {
   roles: "",
   updates: "justify-start max-h-min",
   "call-support": "justify-start max-h-min",
-  "early-alerts": "",
+  "early-alerts": "h-fit mb-auto",
   "3d-rack": "",
   "income-expenditure": "",
+  "rack-intelligence": "",
   "print-support": "",
   "salary-management": "",
 };

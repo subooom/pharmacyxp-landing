@@ -43,7 +43,7 @@ function PricePanel() {
   }, [plans]);
 
   return (
-    <DarkPanel className="flex flex-col items-center gap-4 relative">
+    <DarkPanel className="flex flex-col items-center gap-4 relative bg-transparent py-0 -mt-44 -mb-22">
       <SectionTitle
         title="Our"
         titleContinued="Plans"
@@ -53,13 +53,13 @@ function PricePanel() {
         height="auto"
         name="Our Plans"
         error={plansError}
-        className="layout-container flex flex-col gap-4"
+        className="layout-container flex flex-col gap-4 mt-6"
         isLoading={plansLoading}
         hasSuccess={plansSuccess}
         reloadHandler={getPlans}
         ChildContainer={Fragment}
       >
-        <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 w-full">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 w-full">
           {plans &&
             plans.map((plan) => {
               const {

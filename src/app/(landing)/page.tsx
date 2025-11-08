@@ -9,6 +9,9 @@ import WaveDivider from "@/components/composits/WaveDivider";
 import PricePanel from "@/components/composits/PricePanel";
 import { Callout } from "@/components/ui/callout";
 import BackersPanel from "@/components/composits/BackersPanel";
+import RackIntelligence from "@/components/composits/RackIntelligence";
+import RapidRetrieval from "@/components/composits/RapidRetrieval";
+import FEFOIntegration from "@/components/composits/FEFOIntegrations";
 
 export const metadata: Metadata = {
   title: "MedicineXP - From Racks to Receipts",
@@ -23,11 +26,22 @@ export default function Home() {
       {/* <ClinicBuilder3D /> */}
       <PenAndPaper />
       <Callout />
+      <RackIntelligence />
+      {/* <InventoryAccuracy /> */}
+      {/* <PharmacyAnalytics /> */}
+      {/* <IntegrationsPanel /> */}
+      {/* <CustomerLogos /> */}
       <WaveDivider />
       <BackersPanel />
+      <RapidRetrieval />
+      <WaveDivider invert />
       <GrowthAndImpact />
+      <WaveDivider />
+      <FEFOIntegration />
       <TestimonialSection />
+      <WaveDivider className="mt-0" invert />
       <PricePanel />
+      <WaveDivider />
       {/* <OurLocations /> */}
       <FaqPanel />
     </div>

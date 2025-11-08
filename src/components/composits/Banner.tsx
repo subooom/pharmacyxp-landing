@@ -10,13 +10,14 @@ function Banner() {
       <Fade direction="left">
         <div className="w-full lg:w-full">
           <h1 className="font-bold max-w-xl text-5xl md:text-7xl text-primary leading-tight">
-            Monitor your business with medicinexp
+            Monitor your med-org with medicinexp
           </h1>
           <p className="my-4 max-w-md text-primary text-2xl">
-            Manage your pharmacy with less chaos and more control.
+            Pharmacies. Polyclinics. Hospitals.
+            <br /> Every role gets their own experience.
           </p>
           <Link href="/get-started">
-            <Button>Get Started</Button>
+            <Button>Get Started Free</Button>
           </Link>
         </div>
       </Fade>
