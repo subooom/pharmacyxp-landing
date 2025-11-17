@@ -1,6 +1,7 @@
+import constants from "@/config/constants";
 import axios from "axios";
 
-const baseURL = "https://medicinexp-staging.com/api/";
+const baseURL = constants.apiUrl;
 
 const Api = axios.create({
   baseURL,

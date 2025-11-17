@@ -20,9 +20,7 @@ const ThankYou = () => {
       emailVerifiedEvent,
       seedingDatabaseEvent,
     },
-    formData: {
-      admin_email
-    },
+    formData: { admin_email },
     setForeignKey,
     foreignKey,
     setTimelineEvent,
@@ -35,13 +33,13 @@ const ThankYou = () => {
     domainEvent,
     emailVerifiedEvent,
     seedingDatabaseEvent,
-    foreignKey
+    foreignKey,
   });
-  
+
   const interval = useRef<NodeJS.Timeout | null>(null);
   // Use a ref to track the current identifier without causing re-renders
   const currentIdentifierRef = useRef(admin_email);
-  
+
   // Update the ref whenever tenantEvent or foreignKey changes
   useEffect(() => {
     if (foreignKey) {
@@ -52,7 +50,7 @@ const ThankYou = () => {
       currentIdentifierRef.current = admin_email;
     }
   }, [foreignKey, tenantEvent?.data?.tenant_id, admin_email]);
-  
+
   useEffect(() => {
     const debouncedFunction = debounce(() => {
       // Clear any existing interval
@@ -60,14 +58,14 @@ const ThankYou = () => {
         clearInterval(interval.current);
         interval.current = null;
       }
-      
+
       interval.current = setInterval(() => {
         // Use the current identifier from the ref
         const identifier = currentIdentifierRef.current;
-        
+
         console.log("Making API call with identifier:", identifier);
-        Api.get(`/tenant-registry-feedback/${identifier}`).then(
-          (resp: AxiosResponse) => {
+        Api.get(`/tenant-registry-feedback/${identifier}`)
+          .then((resp: AxiosResponse) => {
             const d = resp.data;
             if (d) {
               const time = new Date(d.created_at);
@@ -161,10 +159,10 @@ const ThankYou = () => {
                   break;
               }
             }
-          },
-        ).catch((error) => {
-          console.error("API call failed:", error);
-        });
+          })
+          .catch((error) => {
+            console.error("API call failed:", error);
+          });
       }, 2000);
     }, 1000);
 
@@ -255,14 +253,13 @@ const ThankYou = () => {
             </div>
           </div>
         </div>
-        <div className="flex flex-col mt-5">
-          {domainEvent ? objectToTable(domainEvent) : ""}
+        <div className="flex flex-col items-center mt-5 w-fill">
           {domainEvent?.data.url ? (
             <a
               href={getActualUrl(domainEvent.data.url)}
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-2 mb-2 inline-block"
+              className="bg-primary hover:primary/90 text-white font-bold py-2 px-4 rounded-md h-12 flex items-center justify-center mt-2 mb-2"
             >
-              Click to goto your admin panel.
+              Click to goto your admin panel
             </a>
           ) : (
             ""

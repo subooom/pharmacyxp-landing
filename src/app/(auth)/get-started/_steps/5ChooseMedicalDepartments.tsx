@@ -95,6 +95,7 @@ const ChooseYourDepartments = () => {
 
     onChange(newServiceIds, Number(currentPlanId));
   };
+
   const subtitle = currentPlan
     ? `You have choosen ${currentPlan?.name} which allows you to select upto ${currentPlan?.number_of_services} departments.`
     : "";

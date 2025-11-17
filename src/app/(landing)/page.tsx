@@ -12,6 +12,8 @@ import BackersPanel from "@/components/composits/BackersPanel";
 import RackIntelligence from "@/components/composits/RackIntelligence";
 import RapidRetrieval from "@/components/composits/RapidRetrieval";
 import FEFOIntegration from "@/components/composits/FEFOIntegrations";
+import TrustAndSecuritySection from "../../components/composits/TrustAndSecurity";
+import DatabaseReliabilityCard from "@/components/composits/DatabaseReliabilityCard";
 
 export const metadata: Metadata = {
   title: "medicinexp - From Racks to Receipts",
@@ -27,20 +29,22 @@ export default function Home() {
       <PenAndPaper />
       <Callout />
       <RackIntelligence />
+      <DatabaseReliabilityCard />
       {/* <InventoryAccuracy /> */}
       {/* <PharmacyAnalytics /> */}
       {/* <IntegrationsPanel /> */}
       {/* <CustomerLogos /> */}
       <WaveDivider />
-      <BackersPanel />
       <RapidRetrieval />
       <FEFOIntegration />
       <WaveDivider invert />
       <GrowthAndImpact />
+      <BackersPanel />
       <WaveDivider />
       <TestimonialSection />
       <WaveDivider className="mt-0" invert />
       <PricePanel />
+      <TrustAndSecuritySection />
       <WaveDivider />
       {/* <OurLocations /> */}
       <FaqPanel />

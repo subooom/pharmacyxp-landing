@@ -43,7 +43,7 @@ function PricePanel() {
   }, [plans]);
 
   return (
-    <DarkPanel className="flex flex-col items-center gap-4 relative bg-transparent py-0 -mt-44 -mb-22">
+    <DarkPanel className="flex flex-col items-center gap-4 relative bg-transparent py-0 -mt-44">
       <SectionTitle
         title="Our"
         titleContinued="Plans"

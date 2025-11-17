@@ -401,3 +401,7 @@ export const useSignUpFlow = () =>
     setUid: state.setUid,
     setIsEmailVerified: state.setIsEmailVerified,
   }));
+
+export const useTimelineEvents = () =>
+  useSignUpStore((state) => state.timelineEvents);
+export const usePage = () => useSignUpStore((state) => state.page);

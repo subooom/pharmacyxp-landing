@@ -19,9 +19,9 @@ iconMap.set(6, <BriefcaseMedicalIcon size={48} />);
 
 function BackersPanel() {
   return (
-    <DarkPanel className="py-16 -mt-16 mb-0 flex min-h-fit flex-col gap-6 items-center justify-center">
+    <DarkPanel className="py-16 mt-6 -mb-32 flex min-h-fit flex-col gap-6 bg-transparent items-center justify-center">
       <p className="text-3xl text-primary-800 font-medium">
-        Trusted by 200+ healthcare orgs
+        Trusted by 200+ Healthcare Orgs
       </p>
       <div className="flex gap-8 flex-wrap">
         {Array.from({ length: 6 }).map((_, i) => (
