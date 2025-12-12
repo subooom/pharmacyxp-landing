@@ -25,7 +25,7 @@ function FaqPanel({ className }: { className?: string }) {
   }, [query]);
 
   return (
-    <DarkPanel className={cn("min-h-fit pb-24 -mt-14", className)}>
+    <DarkPanel className={cn("min-h-fit pb-24 lg:-mt-14", className)}>
       <SectionTitle
         title="Frequently Asked"
         titleContinued="Questions"
@@ -33,13 +33,13 @@ function FaqPanel({ className }: { className?: string }) {
       />
 
       <div className="layout-container mt-10">
-        <div className="flex justify-center items-center gap-2 lg:gap-6 mb-6">
+        <div className="flex justify-center text-center  lg:justify-center items-center gap-2 lg:gap-6 mb-6">
           <Input
             type="text"
             placeholder="Search questions..."
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            className="mb-8 h-18 text-primary dark:text-white bg-white dark:bg-background max-w-2xl"
+            className="mb-8 h-18 text-primary dark:text-white bg-white dark:bg-background  max-w-sm lg:max-w-2xl "
           />
           <SearchIcon className="text-primary h-6 w-6 mb-8" />
         </div>
@@ -54,11 +54,11 @@ function FaqPanel({ className }: { className?: string }) {
               <AccordionItem
                 key={item.id}
                 value={`item-${item.id}`}
-                className="px-4 py-2 border-[1px] my-4 border-card-foreground/20 rounded-3xl hover:decoration-none bg-card transition-colors ease-in-out duration-150 hover:bg-card/80 data-[state=open]:bg-card-radial text-card-foreground data-[state=open]:text-primary"
+                className="px-4 py-2 border-[1px] my-4 border-card-foreground/20 rounded-3xl hover:decoration-none bg-card transition-colors ease-in-out duration-150 hover:bg-card/80 data-[state=open]:bg-card-radial text-card-foreground data-[state=open]:text-primary w-full lg:w-full md:w-full"
               >
                 <AccordionTrigger
                   className={cn(
-                    "text-left flex items-center gap-4 text-2xl",
+                    "text-left flex items-center gap-4 text-lg lg:text-2xl",
                     "w-full [&>svg]:transition-transform",
                   )}
                 >

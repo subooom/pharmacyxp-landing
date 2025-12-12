@@ -39,7 +39,7 @@ const PriceCard = ({
   return (
     <Card
       className={cn(
-        "group relative h-full w-full bg-card-radial-reversed overflow-hidden text-center transition-all duration-300 ease-in-out",
+        "group relative h-full w-[330px] md:w-[400px] lg:w-full bg-card-radial-reversed overflow-hidden text-center transition-all duration-300 ease-in-out",
         isSelected
           ? "border-2 border-primary shadow-[0_10px_25px_rgba(59,54,140,0.15)]"
           : "border-2 border-primary/20 shadow-[0_4px_12px_rgba(0,0,0,0.05)]",

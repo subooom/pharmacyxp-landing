@@ -11,10 +11,12 @@ function TestimonialSection() {
   const testimonialReverseRef = useAutoScrollTestimonials({ reverse: true });
 
   return testimonials.length === 0 ? null : (
-    <DarkPanel className="testimonial-section">
+    <DarkPanel className="testimonial-section justify-start pt-12 xl:px-0 xl:justify-center">
       <SectionTitle
         title="What Modern Medical Teams Are"
         titleContinued="Saying"
+        className="px-4"
+        descriptionClassName="px-4"
         description="From inventory to insights, each feature is built to save time, cut
         costs, and scale your medical organization faster."
       />

@@ -12,7 +12,7 @@ function GrowthAndImpact() {
   return (
     <DarkPanel
       id="features"
-      className="pt-[60px_!important] bg-transparent -my-32 mb-4"
+      className="pt-[60px_!important] bg-transparent -my-6 mb-4"
     >
       <SectionTitle
         title="Everything you need"
@@ -21,7 +21,7 @@ function GrowthAndImpact() {
       />
       <div className="features layout-container">
         {/* Section 1: Two-column dashboard + roles */}
-        <div className="first-row mx-24 grid grid-cols-[2fr_1.3fr] mt-6 gap-4">
+        <div className="first-row mx-6 lg:mx-24 grid grid-cols-1 lg:grid-cols-[2fr_1.3fr] mt-6 gap-4">
           {data
             .filter(
               (item) => item.type === "dashboard" || item.type === "roles",
@@ -30,7 +30,7 @@ function GrowthAndImpact() {
         </div>
 
         {/* Section 2: Left column updates + support */}
-        <div className="bigger-section mt-4 mx-4 grid grid-cols-2 gap-4 items-end">
+        <div className="bigger-section mt-4 mx-4 grid grid-cols-1 lg:grid-cols-2 gap-4 items-end">
           {data.filter((item) => item.type === "3d-rack").map(renderFeature)}
           <div className="grid grid-cols-1 gap-4">
             {data
@@ -95,13 +95,13 @@ const renderMap: Record<
     />
   ),
   roles: () => (
-    <div className="mx-6 space-y-4">
+    <div className="lg:mx-6 space-y-4">
       {users.map(({ id, avatar, name, role }) => (
         <div
           className="flex flex-row gap-4 items-center justify-between bg-primary-200/80 dark:bg-primary-600/80 text-primary-900 dark:text-primary-950 rounded-4xl p-4"
           key={id}
         >
-          <Avatar className="h-16 w-16">
+          <Avatar className=" h-8 w-8 lg:h-16 lg:w-16 md:h-12 md:w-12">
             <AvatarImage src={avatar} />
             <AvatarFallback className="bg-primary">
               {name
@@ -111,12 +111,12 @@ const renderMap: Record<
             </AvatarFallback>
           </Avatar>
           <div className="flex flex-col gap-2">
-            <p>{name}</p>
+            <p className="">{name}</p>
             <p className="font-light">{role}</p>
           </div>
           <Button
             size="icon"
-            className="bg-foreground rounded-full h-12 w-12 hover:bg-foreground/60"
+            className="bg-foreground rounded-full h-8 w-8 lg:h-16 lg:w-16 md:h-12 md:w-12 hover:bg-foreground/60"
           >
             <Settings />
           </Button>
@@ -127,9 +127,9 @@ const renderMap: Record<
   updates: (item: Feature) => (
     <div className="w-full -mb-16">
       <CardImage
-        height={100}
+        // height={100}
         image="/assets/images/caduceus-symbol.png"
-        className="float-right"
+        className="float-right h-12 md:h-24 lg:h-28 xl:h-32"
         alt={item.title}
         opacity={1}
         overlay={false}
@@ -139,10 +139,10 @@ const renderMap: Record<
   "call-support": (item: Feature) => (
     <div className="w-full -mb-16">
       <CardImage
-        height={100}
+        // height={100}
         image="/assets/images/customer-service.png"
         alt={item.title}
-        className="float-right"
+        className="float-right h-12 md:h-24 lg:h-28 xl:h-32"
         opacity={1}
         overlay={false}
       />
@@ -150,9 +150,10 @@ const renderMap: Record<
   ),
   "early-alerts": (item: Feature) => (
     <CardImage
-      height={250}
+      // height={400}
       objectPosition="center"
       image="/assets/images/early-alerts.jpg"
+      className="h-60 md:h-80 lg:h-100 "
       alt={item.title}
       opacity={1}
     />
@@ -180,6 +181,7 @@ const renderMap: Record<
       height={200}
       width="auto"
       image="/assets/images/banner1.png"
+      className="h-30 md:h-40 lg:h-50 "
       alt={item.title}
       opacity={1}
     />
@@ -189,6 +191,7 @@ const renderMap: Record<
       height={285}
       objectPosition="center"
       image="/assets/images/print.png"
+      className="h-60 md:h-80 lg:h-100 "
       alt={item.title}
       opacity={1}
     />
@@ -197,6 +200,7 @@ const renderMap: Record<
     <CardImage
       height={285}
       image="/assets/images/salary-management.jpg"
+      className="h-60 md:h-80 lg:h-100 "
       alt={item.title}
       opacity={1}
     />

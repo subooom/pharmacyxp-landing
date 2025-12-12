@@ -32,22 +32,22 @@ const Contact2 = ({
         <div className="flex flex-col min-h-[70dvh] justify-between gap-10 lg:flex-row lg:gap-20">
           <div className="flex max-w-sm flex-col justify-between gap-10">
             {" "}
-            <div className="flex flex-col gap-2 w-[500px]">
+            <div className="flex flex-col gap-2 w-[500px] ">
               <SectionTitle
                 align="left"
-                className="max-w-fit"
+                className="max-w-fit  "
                 title={title}
                 titleContinued=""
                 description={description}
               />
             </div>
             <div className="mx-auto w-fit lg:mx-0">
-              <h3 className="mb-6 text-center text-2xl font-semibold lg:text-left">
+              <h3 className="mb-6 text-center text-2xl font-semibold lg:text-left md:text-center">
                 Contact Details
               </h3>
               <ul className="ml-4 list-disc">
                 <li className="flex gap-1">
-                  <span className="font-bold">Phone: </span>
+                  <span className="font-bold ">Phone: </span>
                   <span dangerouslySetInnerHTML={{ __html: phone }}></span>
                 </li>
                 <li>
