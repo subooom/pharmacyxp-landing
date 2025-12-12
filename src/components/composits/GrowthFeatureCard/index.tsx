@@ -10,12 +10,14 @@ import DarkPanel from "../DarkPanel";
 
 function GrowthAndImpact() {
   return (
-    <DarkPanel id="features" className="pt-[60px_!important]">
+    <DarkPanel
+      id="features"
+      className="pt-[60px_!important] bg-transparent -my-6 mb-4"
+    >
       <SectionTitle
-        title="The Tools That Power"
-        titleContinued="Your Pharmacy"
-        description="From inventory to insights, each feature is built to save time, cut
-        costs, and scale your pharmacy faster."
+        title="Everything you need"
+        titleContinued="in one place"
+        description="More control and clarity across every medical department."
       />
       <div className="features layout-container">
         {/* Section 1: Two-column dashboard + roles */}
@@ -32,16 +34,12 @@ function GrowthAndImpact() {
           {data.filter((item) => item.type === "3d-rack").map(renderFeature)}
           <div className="grid grid-cols-1 gap-4">
             {data
-              .filter((item) => item.type === "income-expenditure")
+              .filter(
+                (item) =>
+                  item.type === "income-expenditure" ||
+                  item.type === "rack-intelligence",
+              )
               .map(renderFeature)}
-            <div className="small-cards grid grid-cols-1 max-h-min gap-4">
-              {data
-                .filter(
-                  (item) =>
-                    item.type === "updates" || item.type === "call-support",
-                )
-                .map(renderFeature)}
-            </div>
           </div>
           {data
             .filter(
@@ -52,6 +50,14 @@ function GrowthAndImpact() {
             )
             .map(renderFeature)}
           <div className="grid grid-cols-1 gap-4">
+            <div className="small-cards grid grid-cols-1 max-h-min gap-4">
+              {data
+                .filter(
+                  (item) =>
+                    item.type === "updates" || item.type === "call-support",
+                )
+                .map(renderFeature)}
+            </div>
             <GrowthFeatureCard
               bottomPanel={
                 <div className="h-12">
@@ -64,7 +70,7 @@ function GrowthAndImpact() {
                 id: 20,
                 title: "...and many more",
                 subtitle:
-                  "Discover advanced capabilities designed to scale and streamline every aspect of your pharmacy operations.",
+                  "Discover advanced capabilities designed to scale and streamline every aspect of your medical operations.",
                 type: "explore-more",
               }}
             />
@@ -89,7 +95,7 @@ const renderMap: Record<
     />
   ),
   roles: () => (
-    <div className="mx-6 space-y-4">
+    <div className="lg:mx-6 space-y-4">
       {users.map(({ id, avatar, name, role }) => (
         <div
           className="flex flex-row gap-4 items-center justify-between bg-primary-200/80 dark:bg-primary-600/80 text-primary-900 dark:text-primary-950 rounded-4xl p-4"
@@ -162,6 +168,14 @@ const renderMap: Record<
       overlay={false}
     />
   ),
+  "rack-intelligence": (item: Feature) => (
+    <CardImage
+      height={244}
+      image="Gemini_Generated_Image_exvo2yexvo2yexvo.png"
+      alt={item.title}
+      opacity={1}
+    />
+  ),
   "income-expenditure": (item: Feature) => (
     <CardImage
       height={200}
@@ -174,7 +188,7 @@ const renderMap: Record<
   ),
   "print-support": (item: Feature) => (
     <CardImage
-      height={400}
+      height={285}
       objectPosition="center"
       image="/assets/images/print.png"
       className="h-60 md:h-80 lg:h-100 "
@@ -184,7 +198,7 @@ const renderMap: Record<
   ),
   "salary-management": (item: Feature) => (
     <CardImage
-      height={400}
+      height={285}
       image="/assets/images/salary-management.jpg"
       className="h-60 md:h-80 lg:h-100 "
       alt={item.title}
@@ -208,9 +222,10 @@ const classNamesMap: Record<Feature["type"], string> = {
   roles: "",
   updates: "justify-start max-h-min",
   "call-support": "justify-start max-h-min",
-  "early-alerts": "",
+  "early-alerts": "h-fit mb-auto",
   "3d-rack": "",
   "income-expenditure": "",
+  "rack-intelligence": "",
   "print-support": "",
   "salary-management": "",
 };

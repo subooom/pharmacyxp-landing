@@ -11,7 +11,7 @@ export const testimonials: Testimonial[] = [
     },
     createdAgo: "2 days ago",
     message:
-      "MedicineXP has transformed our pharmacy operations. The user-friendly interface and comprehensive features have made managing our inventory and patient records a breeze. Highly recommend!",
+      "medicinexp has transformed our pharmacy operations. The user-friendly interface and comprehensive features have made managing our inventory and patient records a breeze. Highly recommend!",
   },
   {
     id: 2,
@@ -23,7 +23,7 @@ export const testimonials: Testimonial[] = [
     },
     createdAgo: "2 days ago",
     message:
-      "MedicineXP has transformed our pharmacy operations. The user-friendly interface and comprehensive features have made managing our inventory and patient records a breeze. Highly recommend!",
+      "medicinexp has transformed our pharmacy operations. The user-friendly interface and comprehensive features have made managing our inventory and patient records a breeze. Highly recommend!",
   },
   {
     id: 3,
@@ -71,7 +71,7 @@ export const testimonials: Testimonial[] = [
     },
     createdAgo: "2 weeks ago",
     message:
-      "MedicineXP keeps everything in one place. The patient record system is incredibly detailed and accessible.",
+      "medicinexp keeps everything in one place. The patient record system is incredibly detailed and accessible.",
   },
   {
     id: 7,
@@ -107,7 +107,7 @@ export const testimonials: Testimonial[] = [
     },
     createdAgo: "1 month ago",
     message:
-      "Our sales tracking and patient follow-ups have improved drastically since we adopted MedicineXP.",
+      "Our sales tracking and patient follow-ups have improved drastically since we adopted medicinexp.",
   },
   {
     id: 10,
@@ -131,7 +131,7 @@ export const testimonials: Testimonial[] = [
     },
     createdAgo: "2 months ago",
     message:
-      "MedicineXP is the backbone of our operations. It scales well with our growing business.",
+      "medicinexp is the backbone of our operations. It scales well with our growing business.",
   },
   {
     id: 12,

@@ -17,6 +17,7 @@ import { useSignUpStore } from "@/store/sing-up.store";
 import { useCoupon } from "../_hooks/useCoupon";
 import { cn } from "@/lib/utils";
 import { toast } from "sonner";
+import { useSignUpValidation } from "../_hooks/useSignUpValidation";
 
 type AuthType = "google" | "facebook" | "email";
 export interface CouponCode {
@@ -48,12 +49,18 @@ const EmailConfirmation = () => {
     },
     clearCoupon,
     updateFormData: updateState,
+    page,
     couponData,
     setErrors,
     auth: { isEmailVerified },
     setIsEmailVerified,
     showEmailVerificationLoading: loading,
+    handlers: { handleCreateApplicationClicked },
+    setForeignKey,
+    formData: state,
   } = useSignUpStore();
+
+  const { validateCurrentStep } = useSignUpValidation(page, state, plans);
 
   const { verifyCoupon } = useCoupon();
   const data = useMemo(
@@ -89,6 +96,8 @@ const EmailConfirmation = () => {
             onGoogleError("Token not found!");
             return;
           }
+          setForeignKey(email)
+          console.log('set foreign key')
           onAuthSuccess({ ...user, token });
         });
       })
@@ -217,6 +226,7 @@ const EmailConfirmation = () => {
   }, [errors]);
   const [invoiceModalOpen, setInvoiceModalOpen] = useState(false);
 
+  console.log({ isEmailVerified });
   return (
     <>
       <InvoiceModal
@@ -243,12 +253,12 @@ const EmailConfirmation = () => {
           ""
         )}
 
+        <h4 className="m-0 mt-4 flex gap-0 items-center">
+          {loading || internalLoading ? <Spinner /> : null}
+          Create your application, either with:
+        </h4>
         {!isEmailVerified ? (
           <>
-            <h4 className="m-0 mt-4 flex gap-0 items-center">
-              {loading || internalLoading ? <Spinner /> : null}
-              Create your application, either with:
-            </h4>
             <div className="flex flex-col mt-5">
               <div className="social-auth flex items-center gap-2 max-w-sm">
                 <Button
@@ -297,7 +307,7 @@ const EmailConfirmation = () => {
                     </div>
                   </div>
                 </div> */}
-              <div className="flex flex-col gap-2">
+              <div className="flex flex-col gap-2 mt-4">
                 <Label htmlFor="email" className={!isEmailVerified ? "" : ""}>
                   Email Address {!isEmailVerified ? " " : "Verified"}
                 </Label>
@@ -334,7 +344,7 @@ const EmailConfirmation = () => {
                     placeholder="Your email"
                   />
                 </div>
-                <div className={`text-sm mb-5 text-primary-800`}>
+                <div className={`text-sm mt-2 mb-8 text-primary-800`}>
                   {!isEmailVerified
                     ? "We'll send you an email with a link to verify your account."
                     : "If you have a Coupon/MR Code, enter it below."}
@@ -504,7 +514,9 @@ const EmailConfirmation = () => {
           <div className="flex justify-between items-center w-full">
             <Button
               className="flex items-center gap-2 bg-primary hover:bg-primary/80 rounded-sm h-[56px] min-w-md mt-3 disabled:opacity-90"
-              // onClick={handleCreateApplicationClicked}
+              onClick={() =>
+                handleCreateApplicationClicked(validateCurrentStep)
+              }
               disabled={loading || internalLoading || !isEmailVerified}
             >
               <Mail className="w-5 h-5" />

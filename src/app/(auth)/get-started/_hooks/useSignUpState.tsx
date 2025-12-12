@@ -21,7 +21,7 @@ export interface SignUpState {
   admin_contact: string;
   organization_name: string;
   organization_contact: string;
-  organization_logo: UploadedFile | undefined;
+  organization_logo: File | undefined;
   organization_pan_number: string;
   organization_description: string;
   organization_address: OrganizationAddress;

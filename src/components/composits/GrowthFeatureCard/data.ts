@@ -10,6 +10,7 @@ export interface Feature {
     | "early-alerts"
     | "call-support"
     | "income-expenditure"
+    | "rack-intelligence"
     | "print-support"
     | "salary-management"
     | string;
@@ -68,6 +69,13 @@ export const data: Feature[] = [
     type: "early-alerts",
     title: "Smart Alerts",
     subtitle: "Get real-time notifications for low stock or expiring items.",
+  },
+  {
+    id: 9,
+    type: "rack-intelligence",
+    title: "Automatic Rack Labelling",
+    subtitle:
+      "Optimize stock placement with color-coated, intelligent rack labels.",
   },
 ];
 

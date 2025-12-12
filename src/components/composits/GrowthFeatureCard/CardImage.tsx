@@ -35,7 +35,7 @@ function CardImage({
 
         <img
           className={cn(
-            "rounded-md mx-auto overflow-hidden z-0 object-cover",
+            "rounded-md mx-auto overflow-hidden z-0 -mr-10 object-cover",
             className,
           )}
           style={{ opacity, width, objectPosition }}

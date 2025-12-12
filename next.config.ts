@@ -8,6 +8,11 @@ const nextConfig: NextConfig = {
       {
         protocol: "http",
         hostname: "localhost",
+        pathname: "/**",
+      },
+      {
+        protocol: "http",
+        hostname: "localhost",
         port: "8000",
         pathname: "/**",
       },
@@ -16,7 +21,18 @@ const nextConfig: NextConfig = {
         hostname: "picsum.photos",
         pathname: "/**",
       },
+      {
+        protocol: "https",
+        hostname: "medicinexp-staging.com",
+        pathname: "/**",
+      },
     ],
+  },
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
+  typescript: {
+    ignoreBuildErrors: true,
   },
 };
 

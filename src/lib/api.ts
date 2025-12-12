@@ -1,10 +1,11 @@
+import constants from "@/config/constants";
 import axios from "axios";
 
-const baseURL = "http://localhost:8000/api/";
+const baseURL = constants.apiUrl;
 
 const Api = axios.create({
   baseURL,
-  timeout: 10000,
+  timeout: 30000,
 });
 
 export default Api;

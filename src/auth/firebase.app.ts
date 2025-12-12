@@ -1,4 +1,9 @@
-import { initializeApp } from "@firebase/app";
+import { getApp, getApps, initializeApp } from "@firebase/app";
 import firebaseConfig from "./config";
 
-export const initFirebaseApp = () => initializeApp(firebaseConfig);
+export const initFirebaseApp = () => {
+  if (!getApps().length) {
+    return initializeApp(firebaseConfig);
+  }
+  return getApp();
+};

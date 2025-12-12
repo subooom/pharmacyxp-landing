@@ -1,11 +1,18 @@
+import { cn } from "@/lib/utils";
 import React from "react";
 
-function WaveDivider() {
+function WaveDivider({
+  invert,
+  className,
+}: {
+  className?: string;
+  invert?: boolean;
+}) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox={`0 0 1440 210`}
-      className="-mt-32"
+      className={cn("", className, invert && "rotate-180")}
     >
       <path
         fillOpacity="1"

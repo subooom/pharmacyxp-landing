@@ -46,20 +46,22 @@ function SectionTitle({
   titleContinued,
   description,
   className,
+  descriptionClassName,
   align = "center",
 }: {
   title: string;
   titleContinued: string;
   description: string;
   className?: string;
+  descriptionClassName?: string;
   align?: "left" | "center" | "right";
 }) {
   return (
     <>
       <h2
         className={cn(
-          "text-[72px] font-black max-w-3xl leading-22 text-primary-800 " +
-            "text-3xl sm:text-4xl md:text-5xl lg:text-[72px]",
+          "font-black max-w-3xl px-4 md:px-0 leading-22 text-primary-800 ",
+          "text-5xl md:text-8xl lg:text-[72px]",
           className,
         )}
         style={{ textAlign: align }}
@@ -68,7 +70,10 @@ function SectionTitle({
         <span className="text-primary">{titleContinued}</span>
       </h2>
       <p
-        className="text-base sm:text-lg md:text-xl tracking-tight leading-6 max-w-xl text-primary-800"
+        className={cn(
+          "text-base sm:text-lg md:text-xl tracking-tight leading-6 max-w-xl text-primary-800",
+          descriptionClassName,
+        )}
         style={{ textAlign: align }}
       >
         {description}

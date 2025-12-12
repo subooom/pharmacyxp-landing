@@ -25,7 +25,7 @@ function FaqPanel({ className }: { className?: string }) {
   }, [query]);
 
   return (
-    <DarkPanel className={cn("min-h-fit pb-24", className)}>
+    <DarkPanel className={cn("min-h-fit pb-24 lg:-mt-14", className)}>
       <SectionTitle
         title="Frequently Asked"
         titleContinued="Questions"

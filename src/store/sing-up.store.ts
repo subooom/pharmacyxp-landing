@@ -5,6 +5,16 @@ import { Plan, Service } from "@/app/(auth)/get-started/_utils/types";
 import { SignUpState } from "@/app/(auth)/get-started/_hooks/useSignUpState";
 import { TimelineEvent } from "@/app/(auth)/get-started/_components/EventCard";
 import { CouponCode } from "@/app/(auth)/get-started/_steps/6EmailConfirmation";
+import Api from "@/lib/api";
+import {
+  createUserWithEmailAndPassword,
+  getAuth,
+  sendEmailVerification,
+} from "@firebase/auth";
+import { mapJoiErrorToFieldMessages } from "@/lib/utils";
+
+import renderStep from "@/app/(auth)/get-started/_utils/renderStep";
+import { fileToBase64 } from "@/app/(auth)/get-started/_utils/utils";
 
 // Define the interface for the entire store
 interface SignUpStore {
@@ -14,6 +24,7 @@ interface SignUpStore {
   updateOrganizationAddress: (
     update: Partial<SignUpState["organization_address"]>,
   ) => void;
+  foreignKey: string;
   setForeignKey: (key: string) => void;
 
   // --- UI State Slice ---
@@ -37,6 +48,7 @@ interface SignUpStore {
   setServices: (services: Service[]) => void;
   setCouponData: (data?: CouponCode) => void;
 
+  clearCoupon: () => void;
   // --- API Status Slice ---
   status: {
     plansLoading: boolean;
@@ -72,6 +84,21 @@ interface SignUpStore {
   setUid: (uid: string | null) => void;
   isEmailVerified: boolean;
   setIsEmailVerified: (verified: boolean) => void;
+  handlers: {
+    // Navigation & Validation
+    handleNext: (validateCurrentStep: () => { error: unknown }) => void;
+    handleCreateApplicationClicked: (
+      validateCurrentStep: () => { error: unknown; value: any },
+    ) => Promise<void>;
+    onEmailVerified: () => Promise<void>;
+
+    // UI Rendering
+    renderButtonText: () => string;
+    renderLegend: () => string;
+
+    // Step Management
+    renderCurrentStep: (page: number) => React.ReactNode;
+  };
 }
 
 // Create the store with Immer for mutable-looking immutable updates
@@ -82,14 +109,14 @@ export const useSignUpStore = create<SignUpStore>()(
     // --- Initial State for Form Data ---
     formData: {
       // ... initial state from useSignUpState ...
-      admin_name: "Subham Kharel",
-      admin_email: "subhamkharel12@gmail.com",
-      admin_contact: "9810401522",
-      organization_name: "Bishesh Pharmacy",
-      organization_contact: "9810401522",
+      admin_name: "",
+      admin_email: "",
+      admin_contact: "",
+      organization_name: "",
+      organization_contact: "",
       organization_logo: undefined,
-      organization_pan_number: "3742783476",
-      organization_description: "Pharmacy located at baneswor.",
+      organization_pan_number: "",
+      organization_description: "",
       organization_address: {
         line_1_number_building: "",
         line_2_number_street: "",
@@ -116,6 +143,7 @@ export const useSignUpStore = create<SignUpStore>()(
       set((state) => {
         Object.assign(state.formData.organization_address, update);
       }),
+    foreignKey: "",
     setForeignKey: (key) =>
       set((state) => {
         state.formData.foreignKey = key;
@@ -182,10 +210,12 @@ export const useSignUpStore = create<SignUpStore>()(
 
     // --- Initial State for Timeline ---
     timelineEvents: {},
-    setTimelineEvent: (key, event) =>
-      set((state) => {
+    setTimelineEvent: (key, event) => {
+      console.log(`setting ${key} with ${event}`);
+      return set((state) => {
         state.timelineEvents[key] = event;
-      }),
+      });
+    },
 
     // --- Initial State for Auth ---
     auth: {
@@ -200,6 +230,111 @@ export const useSignUpStore = create<SignUpStore>()(
       set((state) => {
         state.auth.isEmailVerified = verified;
       }),
+    handlers: {
+      handleNext: (validateCurrentStep) => {
+        const { error } = validateCurrentStep();
+        console.log(error);
+        if (error) {
+          get().setErrors(mapJoiErrorToFieldMessages(error));
+          return;
+        }
+        get().setErrors({});
+        get().nextPage();
+      },
+
+      handleCreateApplicationClicked: async (validateCurrentStep) => {
+        const {
+          setShowEmailVerificationLoading,
+          setErrors,
+          nextPage,
+          setUid,
+          auth,
+        } = get();
+
+        setShowEmailVerificationLoading(true);
+        const { error, value } = validateCurrentStep();
+        const { admin_email, password } = value;
+
+        setErrors({});
+        if (error) {
+          setShowEmailVerificationLoading(false);
+          setErrors(mapJoiErrorToFieldMessages(error));
+          return;
+        }
+
+        try {
+          const authInstance = getAuth();
+          if (!auth.isEmailVerified) {
+            const userCredential = await createUserWithEmailAndPassword(
+              authInstance,
+              admin_email,
+              password,
+            );
+
+            await Api.post("/verify-email", userCredential.user);
+
+            await sendEmailVerification(userCredential.user, {
+              url: `${process.env.NEXT_PUBLIC_API_URL}/email-verification/${userCredential.user.email}/${userCredential.user.uid}`,
+            });
+
+            setUid(userCredential.user.uid);
+            setShowEmailVerificationLoading(false);
+            nextPage();
+          } else {
+            nextPage();
+          }
+        } catch (error) {
+          console.error(error);
+          setShowEmailVerificationLoading(false);
+          setErrors({
+            admin_email: "An error occurred during email verification.",
+          });
+        }
+      },
+
+      onEmailVerified: async () => {
+        const { formData, auth } = get();
+
+        try {
+          // Convert File to base64 for organization_logo only
+          const submitData = { ...formData };
+          let orgLogo = "";
+
+          if (formData.organization_logo instanceof File) {
+            const base64String = await fileToBase64(formData.organization_logo);
+            orgLogo = base64String;
+          }
+
+          // Send everything as JSON
+          await Api.post("/create-an-account", {
+            ...submitData,
+            organization_logo: orgLogo,
+            uid: auth.uid,
+          });
+        } catch (error: unknown) {
+          console.error(error);
+          get().setErrors({
+            general: "Failed to create account. Please try again.",
+          });
+        }
+      },
+      renderButtonText: () => {
+        const { isFirstPage, isLastPage } = get();
+        return isFirstPage ? "Get Started" : isLastPage ? "Finish" : "Next";
+      },
+
+      renderLegend: () => {
+        const { isFirstPage, maxSteps, page } = get();
+        return isFirstPage
+          ? `(Total ${maxSteps} steps)`
+          : `${page} / ${maxSteps}`;
+      },
+
+      renderCurrentStep: (page: number) => {
+        // You'll need to import or define renderStep function
+        return renderStep(page);
+      },
+    },
   })),
 );
 
@@ -222,4 +357,51 @@ export const useSignUpForm = () =>
     updateOrganizationAddress: state.updateOrganizationAddress,
   }));
 
-// ... create similar hooks for services, UI, etc.
+// === NEW HANDLER SELECTORS ===
+export const useSignUpHandlers = () =>
+  useSignUpStore((state) => state.handlers);
+
+export const useSignUpNavigation = () =>
+  useSignUpStore((state) => ({
+    handleNext: state.handlers.handleNext,
+    handleCreateApplicationClicked:
+      state.handlers.handleCreateApplicationClicked,
+    onEmailVerified: state.handlers.onEmailVerified,
+    nextPage: state.nextPage,
+    goToPage: state.goToPage,
+  }));
+
+export const useSignUpUI = () =>
+  useSignUpStore((state) => ({
+    renderButtonText: state.handlers.renderButtonText,
+    renderLegend: state.handlers.renderLegend,
+    renderCurrentStep: state.handlers.renderCurrentStep,
+    page: state.page,
+    maxSteps: state.maxSteps,
+    isFirstPage: state.isFirstPage,
+    isLastPage: state.isLastPage,
+  }));
+
+// === COMPREHENSIVE SELECTOR ===
+export const useSignUpFlow = () =>
+  useSignUpStore((state) => ({
+    // State
+    page: state.page,
+    maxSteps: state.maxSteps,
+    formData: state.formData,
+    errors: state.errors,
+    auth: state.auth,
+
+    // Handlers
+    handlers: state.handlers,
+
+    // Actions
+    setErrors: state.setErrors,
+    updateFormData: state.updateFormData,
+    setUid: state.setUid,
+    setIsEmailVerified: state.setIsEmailVerified,
+  }));
+
+export const useTimelineEvents = () =>
+  useSignUpStore((state) => state.timelineEvents);
+export const usePage = () => useSignUpStore((state) => state.page);

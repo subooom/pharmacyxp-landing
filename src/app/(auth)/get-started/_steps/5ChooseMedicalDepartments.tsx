@@ -95,6 +95,7 @@ const ChooseYourDepartments = () => {
 
     onChange(newServiceIds, Number(currentPlanId));
   };
+
   const subtitle = currentPlan
     ? `You have choosen ${currentPlan?.name} which allows you to select upto ${currentPlan?.number_of_services} departments.`
     : "";
@@ -106,7 +107,9 @@ const ChooseYourDepartments = () => {
       error={servicesError || ""}
       isLoading={servicesLoading}
       hasSuccess={servicesSuccess}
-      reloadHandler={() => {}}
+      reloadHandler={() => {
+        fetchServices();
+      }}
       ChildContainer={React.Fragment}
     >
       <StepPageLayout title="Choose Your Departments" subtitle={subtitle}>

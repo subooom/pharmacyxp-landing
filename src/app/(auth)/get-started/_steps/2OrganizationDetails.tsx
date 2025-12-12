@@ -78,7 +78,7 @@ const OrganizationDetails = () => {
               const file = target.files?.[0];
               if (!file) return;
 
-              // For thumbnail preview
+              // For thumbnail preview (keep this)
               const reader = new FileReader();
               reader.onloadend = (e) => {
                 if (e.target?.result) {
@@ -88,21 +88,9 @@ const OrganizationDetails = () => {
               };
               reader.readAsDataURL(file);
 
-              // For validation payload
-              const toUploadedFile = async (file: File) => {
-                const buffer = await file.arrayBuffer();
-                return {
-                  buffer: Buffer.from(buffer),
-                  mimetype: file.type,
-                  size: file.size,
-                  originalname: file.name,
-                };
-              };
-
-              toUploadedFile(file).then((uploadedFile) => {
-                updateFormData({
-                  organization_logo: uploadedFile,
-                });
+              // For validation payload - send the actual File object
+              updateFormData({
+                organization_logo: file, // Send the File object directly
               });
             }}
           />

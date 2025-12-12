@@ -43,7 +43,7 @@ function PricePanel() {
   }, [plans]);
 
   return (
-    <DarkPanel className="flex flex-col items-center gap-4 relative">
+    <DarkPanel className="flex flex-col items-center gap-4 relative bg-transparent py-0 mt-4 lg:-mt-44">
       <SectionTitle
         title="Our"
         titleContinued="Plans"
@@ -53,7 +53,7 @@ function PricePanel() {
         height="auto"
         name="Our Plans"
         error={plansError}
-        className="layout-container flex flex-col gap-4"
+        className="layout-container flex flex-col gap-4 mt-6"
         isLoading={plansLoading}
         hasSuccess={plansSuccess}
         reloadHandler={getPlans}

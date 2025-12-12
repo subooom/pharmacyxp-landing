@@ -20,8 +20,8 @@ const PenAndPaper: React.FC = () => {
     const image1 = new Image();
     const image2 = new Image();
 
-    image1.src = "/assets/images/banner-7.png";
-    image2.src = "/assets/images/banner-8.png";
+    image2.src = "/assets/images/banner-7.png";
+    image1.src = "/assets/images/banner-8.png";
 
     let imagesLoaded = 0;
     const onImageLoad = () => {
@@ -180,11 +180,11 @@ const PenAndPaper: React.FC = () => {
           All in One Access
         </h2>
         <h1 className="text-primary font-bold text-4xl md:text-5xl leading-snug">
-          Never use pen and paper again!
+          No more pen, paper, or rigid systems.
         </h1>
         <p className="mt-4 text-primary-700 mb-10 text-lg  ">
-          Alongside resource management and printable bills, our powerful widget
-          system lets you add tools like to-do lists and notepads on the fly.
+          <b className="text-xl">medicinexp</b> adapts its dashboards, menus,
+          widgets, and workflows based on roles & permissions.
         </p>
         <Link href={Routes.sign_up} className="inline-block">
           <button

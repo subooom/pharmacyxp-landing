@@ -3,14 +3,16 @@ import { Routes } from "@/constants/routes";
 import Link from "next/link";
 import React from "react";
 import Links from "./Links";
+import WaveDivider from "../WaveDivider";
 
 function Footer() {
   return (
     <>
       <footer className="overflow-hidden relative lg:px-62 bg-card min-h-96 pt-12 py-6 text-card-foreground w-full flex flex-col items-center justify-between">
         {/* <div className="absolute bg-footer-radial inset-0 h-96 z-0"> */}
+        <WaveDivider invert className="-mt-12 lg:-mt-22 z-10 mb-12 w-screen" />
         <div className="absolute inset-0 h-96 bg-footer-radial z-0 flex justify-center items-center">
-          <h1 className="text-primary-600/10 text-center text-[60px] sm:text-[120px] lg:text-[220px] leading-none mt-18 lg:mt-25 md:25">
+          <h1 className="text-primary-600/10 text-center text-[92px] sm:text-[108px] md:text-[123px] lg:text-[220px] leading-none -mt-52 lg:mt-0">
             {/* <h1 className="text-primary-600/10 mt-22 lg:text-[220px] text-center"> */}
             medicinexp
           </h1>
@@ -35,7 +37,7 @@ function Footer() {
           </div>
         </div>
 
-        <div className="z-10 mt-8 w-full grid grid-cols-1 lg:grid-cols-2 gap-4 text-xs lg:text-sm">
+        <div className="z-10 lg:mt-8 w-full grid grid-cols-1 lg:grid-cols-2 gap-4 text-xs lg:text-sm">
           <p className="text-center lg:text-left">
             © 2025 medicinexp. All rights reserved.
           </p>

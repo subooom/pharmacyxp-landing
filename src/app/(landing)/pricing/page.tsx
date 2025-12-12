@@ -8,8 +8,8 @@ import PricePanel from "@/components/composits/PricePanel";
 import TestimonialSection from "@/components/composits/TestimonialSection";
 
 export const metadata: Metadata = {
-  title: "Our Pricing - MedicineXP",
-  description: "MedicineXP - built for pharmacies",
+  title: "Our Pricing - medicinexp",
+  description: "medicinexp - built for pharmacies, polyclinics, and hospitals",
 };
 
 function PricingPage() {

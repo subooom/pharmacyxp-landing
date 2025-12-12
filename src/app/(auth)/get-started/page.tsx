@@ -1,12 +1,12 @@
 "use client";
 import { usePlans } from "./_hooks/usePlans";
 import { useSignUpValidation } from "./_hooks/useSignUpValidation";
-import Steps from "./_components/Steps";
 import { useCallback } from "react";
 import { mapJoiErrorToFieldMessages } from "@/lib/utils";
 import renderStep from "./_utils/renderStep";
 import { initFirebaseApp } from "@/auth/firebase.app";
 import { useSignUpStore } from "@/store/sing-up.store";
+import Steps from "./_components/_steps";
 
 initFirebaseApp();
 

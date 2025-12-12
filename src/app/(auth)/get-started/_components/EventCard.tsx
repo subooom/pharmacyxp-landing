@@ -1,5 +1,5 @@
 import React, { JSX, useCallback } from "react";
-import { unslugify } from "../_steps/7ThankYouScreen";
+import { unslugify } from "../_utils/utils";
 
 export interface TimelineEvent {
   created_at: string;
