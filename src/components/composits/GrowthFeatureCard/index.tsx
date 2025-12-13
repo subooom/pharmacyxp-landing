@@ -142,7 +142,7 @@ const renderMap: Record<
         // height={100}
         image="/assets/images/customer-service.png"
         alt={item.title}
-        className="float-right h-12 md:h-24 lg:h-28 xl:h-32"
+        className="float-right h-12 md:h-24 lg:h-28 xl:h-32 -mr-10 lg:mr-0 md:mr-0"
         opacity={1}
         overlay={false}
       />
