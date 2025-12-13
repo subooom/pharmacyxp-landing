@@ -43,7 +43,7 @@ export default function FEFOIntegration() {
                   </span>
                 </h2>
 
-                <p className="text-lg text-muted-foreground md:text-xl">
+                <p className="text-lg text-primary-700 md:text-xl">
                   Stop throwing away expired stock. Our system uses rack-slot
                   location data to enforce a strict First Expired, First Out
                   (FEFO) strategy.
@@ -62,7 +62,7 @@ export default function FEFOIntegration() {
                   </div>
                   <div>
                     <h4 className="font-semibold text-lg">Priority Engine</h4>
-                    <p className="text-sm text-muted-foreground">
+                    <p className="text-sm text-primary-700">
                       The billing search auto-prioritizes critical stock
                       (expiry/low qty) — and we can locate their rack slots in
                       seconds via reports.
@@ -79,7 +79,7 @@ export default function FEFOIntegration() {
                   </div>
                   <div>
                     <h4 className="font-semibold text-lg">Proactive Alerts</h4>
-                    <p className="text-sm text-muted-foreground">
+                    <p className="text-sm text-primary-700">
                       Generate reports identifying the exact rack slots with
                       soon-to-expire or low-stock items.
                     </p>
@@ -96,7 +96,7 @@ export default function FEFOIntegration() {
                   </div>
                   <div>
                     <h4 className="font-semibold text-lg">Guided Stocking</h4>
-                    <p className="text-sm text-muted-foreground">
+                    <p className="text-sm text-primary-700">
                       Staff are guided to place incoming batches behind older,
                       existing stock based on the rack ID.
                     </p>

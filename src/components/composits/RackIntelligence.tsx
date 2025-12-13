@@ -26,7 +26,7 @@ export default function RackIntelligence() {
                 stock.
               </h2>
 
-              <p className="text-lg text-muted-foreground md:text-xl">
+              <p className="text-lg text-primary-700 md:text-xl">
                 Build color-coded racks and print smart labels up to{" "}
                 <span className="font-semibold text-foreground">
                   5&quot;×16&quot;
@@ -43,7 +43,7 @@ export default function RackIntelligence() {
                 </div>
                 <div>
                   <h4 className="font-semibold">Rack Builder</h4>
-                  <p className="text-sm text-muted-foreground">
+                  <p className="text-sm text-primary-700">
                     Set rows × columns with color mapping.
                   </p>
                 </div>
@@ -55,7 +55,7 @@ export default function RackIntelligence() {
                 </div>
                 <div>
                   <h4 className="font-semibold">Label Print</h4>
-                  <p className="text-sm text-muted-foreground">
+                  <p className="text-sm text-primary-700">
                     Print any rack size instantly.
                   </p>
                 </div>
