@@ -43,22 +43,22 @@ const Contact2 = ({
               />
             </div>
             <div className="mx-auto w-fit lg:mx-0">
-              <h3 className="mb-6 text-center text-2xl font-semibold lg:text-left md:text-center">
+              <h3 className="mb-6 text-center text-2xl font-semibold lg:text-left md:text-center text-primary-800">
                 Contact Details
               </h3>
-              <ul className="ml-4 list-disc">
+              <ul className="ml-4 list-disc text-primary-800">
                 <li className="flex gap-1">
                   <span className="font-bold ">Phone: </span>
                   <span dangerouslySetInnerHTML={{ __html: phone }}></span>
                 </li>
                 <li>
-                  <span className="font-bold">Email: </span>
+                  <span className="font-bold ">Email: </span>
                   <a href={`mailto:${email}`} className="underline">
                     {email}
                   </a>
                 </li>
                 <li>
-                  <span className="font-bold">Web: </span>
+                  <span className="font-bold ">Web: </span>
                   <a href={web.url} target="_blank" className="underline">
                     {web.label}
                   </a>
