@@ -40,7 +40,7 @@ function PriceSection() {
     <APIFetchHandler
       name="Our Plans"
       error={plansError}
-      className="grid grid-cols-5 gap-4 mt-12"
+      className="grid grid-cols-5 gap-4 mt-20"
       isLoading={plansLoading}
       hasSuccess={plansSuccess}
       reloadHandler={getPlans}
@@ -48,9 +48,31 @@ function PriceSection() {
     >
       <>
         <div className="first-col-buffer"> </div>
-        {plans.map((item) => (
+        <div className="col-span-4">
+          {/* Responsive cards grid - FIXED SECTION */}
+          <div
+            className="grid grid-cols-1 gap-6  justify-items-center
+              sm:grid-cols-2 sm:gap-4
+              md:grid-cols-2 md:gap-6
+              lg:grid-cols-3 lg:gap-8
+              xl:grid-cols-4 xl:gap-8"
+          >
+            {plans.map((item) => (
+              <div
+                key={item.id}
+                className="w-full max-w-[280px] 
+                  sm:max-w-[250px]
+                  md:max-w-[260px]
+                  lg:max-w-[280px]"
+              >
+                <SmallPriceCard plan={item} />
+              </div>
+            ))}
+          </div>
+        </div>
+        {/* {plans.map((item) => (
           <SmallPriceCard key={item.id} plan={item} />
-        ))}
+        ))} */}
         <div className="col-span-5 text-center flex flex-col bg-background gap-4">
           <FeatureComparisonTable category={1} />
           <FeatureComparisonTable category={2} />
