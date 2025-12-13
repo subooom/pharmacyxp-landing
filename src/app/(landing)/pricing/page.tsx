@@ -24,7 +24,9 @@ function PricingPage() {
         />
         <PriceSection />
         <TestimonialSection />
-        <PricePanel />
+        <div className="mt-0 lg:mt-30">
+          <PricePanel />
+        </div>
         <FaqPanel />
       </div>
     </DarkPanel>
