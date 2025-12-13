@@ -1,11 +1,14 @@
+import DarkPanel from "@/components/composits/DarkPanel";
 import GrowthAndImpact from "@/components/composits/GrowthFeatureCard";
 import React from "react";
 
 function Features() {
   return (
-    <div className="mt-50">
-      <GrowthAndImpact />
-    </div>
+    <DarkPanel>
+      <div className="mt-20">
+        <GrowthAndImpact />
+      </div>
+    </DarkPanel>
   );
 }
 

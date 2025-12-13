@@ -21,7 +21,7 @@ const PenAndPaper: React.FC = () => {
     const image2 = new Image();
     const logoImage = new Image();
 
-    image2.src = "/assets/images/banner-7.png";
+    image2.src = "/assets/images/banner-1.png";
     image1.src = "/assets/images/banner-8.png";
     logoImage.src = "/logo.png";
 
