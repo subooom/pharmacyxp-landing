@@ -19,47 +19,39 @@ const PenAndPaper: React.FC = () => {
 
     const image1 = new Image();
     const image2 = new Image();
+    const logoImage = new Image();
 
     image2.src = "/assets/images/banner-7.png";
     image1.src = "/assets/images/banner-8.png";
+    logoImage.src = "/logo.png";
 
     let imagesLoaded = 0;
     const onImageLoad = () => {
-      if (++imagesLoaded === 2) startAnimation();
+      if (++imagesLoaded === 3) startAnimation();
     };
 
     image1.onload = onImageLoad;
     image2.onload = onImageLoad;
+    logoImage.onload = onImageLoad;
 
     function drawLogo(
       ctx: CanvasRenderingContext2D,
-      text: string,
       rectX: number,
-      textY: number,
+      yPos: number,
       offset: number,
     ) {
-      ctx.font = "800 40px 'Josefin Sans'";
-      ctx.fillStyle = "#3b368c";
+      const logoHeight = 50;
+      const logoWidth = logoImage.width * (logoHeight / logoImage.height);
 
-      const spacing = 2;
-      const letters = text.split("");
-      const textWidth = letters.reduce(
-        (w, l) => w + ctx.measureText(l).width + spacing,
-        -spacing,
-      );
-
-      let textX;
-      if (+offset + textWidth > mousePosition.current.x * 1.57) {
-        textX = rectX + offset;
+      let imageX;
+      if (+offset + logoWidth > mousePosition.current.x * 1.57) {
+        imageX = rectX + offset;
       } else {
-        textX = rectX - offset - textWidth;
+        imageX = rectX - offset - logoWidth;
       }
 
-      let x = textX;
-      for (const letter of letters) {
-        ctx.fillText(letter, x, textY);
-        x += ctx.measureText(letter).width + spacing;
-      }
+      const imageY = yPos - logoHeight / 2;
+      ctx.drawImage(logoImage, imageX, imageY, logoWidth, logoHeight);
     }
 
     const drawImages = () => {
@@ -126,7 +118,33 @@ const PenAndPaper: React.FC = () => {
       ctx.fillStyle = "oklch(0.3909 0.1381 280.49)";
       ctx.fillRect(rectX, 0, rectWidth, canvas.height);
 
-      drawLogo(ctx, "medicinexp", rectX, textY, 40);
+      // Divider icon
+      ctx.fillStyle = "rgba(255, 255, 255, 0.8)";
+      const iconX = rectX + rectWidth / 2;
+      const iconY = canvas.height / 2;
+      const barWidth = 3;
+      const barHeight = 24;
+      const barSpacing = 5;
+      const radius = 1.5;
+
+      ctx.beginPath();
+      ctx.roundRect(
+        iconX - barSpacing,
+        iconY - barHeight / 2,
+        barWidth,
+        barHeight,
+        radius,
+      );
+      ctx.roundRect(
+        iconX + barSpacing - barWidth,
+        iconY - barHeight / 2,
+        barWidth,
+        barHeight,
+        radius,
+      );
+      ctx.fill();
+
+      drawLogo(ctx, rectX, textY, 40);
     };
 
     const animate = () => {
@@ -154,9 +172,9 @@ const PenAndPaper: React.FC = () => {
   }, []);
 
   return (
-    <section className="flex gap-14 layout-container flex-col lg:flex-row items-center justify-between max-w-screen-xl mx-auto px-4 my-24">
+    <section className="flex gap-14 layout-container flex-col lg:flex-row items-center justify-between max-w-screen-xl mx-auto px-4 my-12 lg:my-24">
       {/* Canvas Section */}
-      <div className="w-full lg:w-5/12 mt-24 overflow-hidden lg:flex md:flex hidden ">
+      <div className="w-full lg:w-5/12 lg:mt-24 overflow-hidden flex">
         <canvas
           ref={canvasRef}
           id="banner-canvas"
@@ -170,12 +188,27 @@ const PenAndPaper: React.FC = () => {
           onMouseOut={() => {
             targetPosition.current = { x: 444, y: 253 }; // center
           }}
+          onTouchMove={(e) => {
+            const canvas = canvasRef.current;
+            if (!canvas) return;
+            const rect = canvas.getBoundingClientRect();
+            const touch = e.nativeEvent.touches[0];
+            if (!touch) return;
+            const x = touch.clientX - rect.left;
+            const y = touch.clientY - rect.top;
+            const scaleX = canvas.width / rect.width;
+            const scaleY = canvas.height / rect.height;
+            targetPosition.current = { x: x * scaleX, y: y * scaleY };
+          }}
+          onTouchEnd={() => {
+            targetPosition.current = { x: 444, y: 253 }; // center
+          }}
           className="w-full h-auto"
         />
       </div>
 
       {/* Text Section */}
-      <div className="w-full lg:w-7/12 mt-24">
+      <div className="w-full lg:w-7/12 lg:mt-24">
         <h2 className="text-orange-500 font-medium text-xl mb-2">
           All in One Access
         </h2>
