@@ -6,10 +6,10 @@ import { Button } from "../ui/button";
 
 function Banner() {
   return (
-    <div className="flex mt-0 md:mt-18 lg:mt-20 xl:mt-[120px] 2xl:mt-[200px] flex-col lg:flex-row justify-center items-center max-w-screen-xl mx-auto layout-container xl:align-top">
+    <div className="flex mt-0 md:mt-20 lg:mt-20 xl:mt-[120px] 2xl:mt-[200px] flex-col lg:flex-row justify-center items-center max-w-screen-xl mx-auto layout-container xl:align-top">
       {/* Mobile Image - Shows on small screens (hidden above 1023px) */}
       <Fade direction="down">
-        <div className="flex mb-8 sm:mb-10 w-full lg:w-full mt-8 lg:mt-0 justify-center lg:hidden">
+        <div className="flex mb-8 sm:mb-10 w-full lg:w-full mt-35 lg:mt-0 justify-center lg:hidden">
           <Image
             height={507}
             width={888}
@@ -21,8 +21,8 @@ function Banner() {
       </Fade>
 
       <Fade direction="left">
-        <div className="w-full lg:w-full flex flex-col items-center justify-center text-center lg:items-start lg:text-left">
-          <h1 className="font-bold max-w-xl text-4xl md:text-7xl xl:text-7xl text-primary leading-tight text-center lg:text-left">
+        <div className="w-full lg:w-full flex flex-col items-center justify-center text-center lg:items-start lg:text-left mt-10 lg:mt-20">
+          <h1 className="font-bold max-w-xl text-4xl md:text-5xl xl:text-7xl text-primary leading-tight text-center lg:text-left">
             The OS for Clinics, Pharmacies & Hospitals
           </h1>
           <p className="my-4 max-w-lg text-primary text-lg md:text-2xl lg:text-2xl  text-center lg:text-left">

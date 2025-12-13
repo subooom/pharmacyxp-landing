@@ -61,7 +61,7 @@ function SectionTitle({
       <h2
         className={cn(
           "font-black max-w-3xl px-4 md:px-0 leading-22 text-primary-800 ",
-          "text-5xl md:text-8xl lg:text-[72px]",
+          "text-4xl md:text-5xl lg:text-[72px]",
           className,
         )}
         style={{ textAlign: align }}
