@@ -15,7 +15,7 @@ export default function DatabaseReliability() {
             <span className="text-primary"> Always yours.</span>
           </h2>
 
-          <p className="text-muted-foreground text-lg md:text-xl">
+          <p className="text-primary-700 text-lg md:text-xl">
             Every client runs on a private database. Isolated, backed up daily,
             and optimized for lightning-fast queries.
           </p>
@@ -42,7 +42,7 @@ export default function DatabaseReliability() {
           <div className="relative bg-background/50 border border-primary/10 backdrop-blur-xl p-8 rounded-2xl shadow-lg text-center dark:border-primary/20">
             <Database className="mx-auto mb-4 h-12 w-12 text-primary" />
             <p className="font-semibold text-lg">99.99% Uptime</p>
-            <p className="text-sm text-muted-foreground">
+            <p className="text-sm text-primary-700">
               Synced, secure, and auto-backed-up.
             </p>
           </div>

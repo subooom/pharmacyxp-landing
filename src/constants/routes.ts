@@ -1,5 +1,5 @@
 export const Routes = {
-  features: "#features",
+  features: "/features",
   sign_up: "/get-started",
   login: "/login",
   pricing: "/pricing",

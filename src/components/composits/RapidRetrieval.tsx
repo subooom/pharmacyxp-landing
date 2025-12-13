@@ -47,7 +47,7 @@ export default function RapidRetrieval() {
                 for Every Item
               </h2>
 
-              <p className="text-lg text-muted-foreground md:text-xl">
+              <p className="text-lg text-primary-700 md:text-xl">
                 Eliminate time wasted searching. Our system provides the exact
                 physical rack slot for immediate access, making new staff
                 instantly productive.
@@ -62,7 +62,7 @@ export default function RapidRetrieval() {
                 </div>
                 <div>
                   <h4 className="font-semibold text-lg">Instant Lookup</h4>
-                  <p className="text-sm text-muted-foreground">
+                  <p className="text-sm text-primary-700">
                     Digital searches return rack coordinates, not just
                     quantities.
                   </p>
@@ -75,7 +75,7 @@ export default function RapidRetrieval() {
                 </div>
                 <div>
                   <h4 className="font-semibold text-lg">Boosted Throughput</h4>
-                  <p className="text-sm text-muted-foreground">
+                  <p className="text-sm text-primary-700">
                     Faster dispensing means happier customers and more daily
                     transactions.
                   </p>
