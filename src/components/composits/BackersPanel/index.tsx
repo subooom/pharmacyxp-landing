@@ -1,48 +1,58 @@
-import {
-  BriefcaseMedicalIcon,
-  MoonIcon,
-  MoonStarIcon,
-  Smartphone,
-  StickyNote,
-  SunIcon,
-} from "lucide-react";
+"use client";
 import DarkPanel from "../DarkPanel";
+import { useEffect, useState } from "react";
+import Api from "@/lib/api";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+import Image from "next/image";
 
-const iconMap = new Map();
-iconMap.set(1, <SunIcon size={48} />);
-iconMap.set(2, <MoonIcon size={48} />);
-iconMap.set(3, <StickyNote size={48} />);
-iconMap.set(4, <MoonStarIcon size={48} />);
-iconMap.set(5, <Smartphone size={48} />);
-iconMap.set(6, <BriefcaseMedicalIcon size={48} />);
-
+type PartnersInfoType = {
+  count: number;
+  orgs: { name: string; logo: string }[];
+};
 function BackersPanel() {
-  const iconMap = new Map();
-  iconMap.set(1, <SunIcon className="size-12 max-sm:size-8 md:size-10" />);
-  iconMap.set(2, <MoonIcon className="size-12 max-sm:size-8 md:size-10" />);
-  iconMap.set(3, <StickyNote className="size-12 max-sm:size-8 md:size-10" />);
-  iconMap.set(4, <MoonStarIcon className="size-12 max-sm:size-8 md:size-10" />);
-  iconMap.set(5, <Smartphone className="size-12 max-sm:size-8 md:size-10" />);
-  iconMap.set(
-    6,
-    <BriefcaseMedicalIcon className="size-12 max-sm:size-8 md:size-10" />,
-  );
+  const [partners, setPartners] = useState<PartnersInfoType>({
+    count: 0,
+    orgs: [],
+  });
+
+  useEffect(() => {
+    Api.get("/partners/info").then((response) => {
+      // Handle the response if needed
+      setPartners(response.data);
+    });
+  }, []);
 
   return (
-    <DarkPanel className="py-4 md:py-8 lg:py-16 bg-primary-50 mt-8 lg:-mt-16 md:-mt-5  mb-0 flex min-h-fit flex-col gap-6 items-center justify-center  ">
+    <DarkPanel className="py-4 md:py-8 lg:py-16 bg-transparent mt-8 lg:mt-4 md:-mt-5 mb-0 lg:-mb-32 flex min-h-fit flex-col gap-6 items-center justify-center  ">
       <p className="text-3xl text-primary-800 font-medium max-sm:text-xl text-center  ">
-        Trusted by 200+ Healthcare Orgs
+        Trusted by{" "}
+        {partners.count === 0 ? "God!" : partners.count + "+ Healthcare Orgs"}
       </p>
-      <div className="flex gap-8 flex-wrap justify-center">
-        {Array.from({ length: 6 }).map((_, i) => (
-          <div
-            key={i}
-            className="flex flex-col gap-2 items-center text-primary-100"
-          >
-            <div className="bg-primary rounded-full p-4 max-sm:p-2">
-              {iconMap.get(i + 1)}
-            </div>
-          </div>
+      <div
+        className="flex gap-8 flex-wrap justify-center"
+        style={{ height: partners.orgs.length == 0 ? 88 : "fit-content" }}
+      >
+        {partners.orgs.map((org, i) => (
+          <Tooltip key={i}>
+            <TooltipTrigger asChild>
+              <div className="flex bg-primary rounded-full  p-2 lg:p-4 flex-col gap-2 items-center text-primary-100">
+                <Image
+                  alt="Organization Logo"
+                  height={56}
+                  width={56}
+                  src={org.logo}
+                  className="h-12 lg:h-14 w-12 lg:w-14 saturate-150 mix-blend-color-dodge rounded-full max-sm:p-2"
+                />
+              </div>
+            </TooltipTrigger>
+            <TooltipContent>
+              <p>{org.name}</p>
+            </TooltipContent>
+          </Tooltip>
         ))}
       </div>
     </DarkPanel>

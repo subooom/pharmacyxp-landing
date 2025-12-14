@@ -73,6 +73,9 @@
   --color-green-900: var(--green-900);
   --color-green-950: var(--green-950);
 }
+[data-radix-popper-content-wrapper] {
+  background-color: transparent;
+}
 
 @layer utilities {
   .bg-card-radial {
