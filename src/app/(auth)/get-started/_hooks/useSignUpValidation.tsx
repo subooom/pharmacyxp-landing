@@ -31,13 +31,15 @@ export const useSignUpValidation = (
               "string.empty": `Your email cannot be empty.`,
             }),
           admin_contact: Joi.string()
-            .length(10)
-            .pattern(/^[0-9]+$/)
+            .pattern(/^[\d\s\-+()]+$/) // Allows digits, spaces, dashes, plus, parentheses
+            .min(6) // Minimum reasonable length
+            .max(20) // Maximum reasonable length
             .required()
             .messages({
-              "string.length": `Your contact must be a 10 digit number.`,
-              "string.empty": `Your contact cannot be empty.`,
-              "string.pattern.base": `Your contact must only contain digits.`,
+              "string.min": `Phone number should be at least {#limit} characters.`,
+              "string.max": `Phone number should not exceed {#limit} characters.`,
+              "string.empty": `Phone number is required.`,
+              "string.pattern.base": `Phone number can only contain numbers, spaces, and basic punctuation (+, -, (, )).`,
             }),
         });
       case 2:
@@ -56,20 +58,22 @@ export const useSignUpValidation = (
             }),
 
           organization_contact: Joi.string()
-            .length(10)
-            .pattern(/^[0-9]+$/)
+            .pattern(/^[\d\s\-+()]+$/) // Allows digits, spaces, dashes, plus, parentheses
+            .min(6) // Minimum reasonable length
+            .max(20) // Maximum reasonable length
             .required()
             .messages({
-              "string.length": `Your contact must be a 10 digit number.`,
-              "string.empty": `Your contact cannot be empty.`,
-              "string.pattern.base": `Your contact must only contain digits.`,
+              "string.min": `Phone number should be at least {#limit} characters.`,
+              "string.max": `Phone number should not exceed {#limit} characters.`,
+              "string.empty": `Phone number is required.`,
+              "string.pattern.base": `Phone number can only contain numbers, spaces, and basic punctuation (+, -, (, )).`,
             }),
 
           organization_pan_number: Joi.string().required().messages({
             "string.empty": `Your pan number cannot be empty.`,
             "string.base": `Your pan number should only contain numbers.`,
           }),
-          organization_description: Joi.string().required(),
+          organization_description: Joi.string().allow("").optional(),
           organization_logo: Joi.object()
             .custom(
               imageValidator({
