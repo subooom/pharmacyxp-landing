@@ -13,7 +13,7 @@ function Banner() {
           <Image
             height={507}
             width={888}
-            src="/assets/images/banner.png"
+            src="/assets/images/banner-7.png"
             alt="ultraxp"
             className="w-full h-auto max-w-[280px] sm:max-w-[350px] md:max-w-[400px] lg:max-w-full"
           />
@@ -45,7 +45,7 @@ function Banner() {
           <Image
             height={507}
             width={888}
-            src="/assets/images/banner.png"
+            src="/assets/images/banner-7.png"
             alt="ultraxp"
             className="w-full h-auto max-w-[500px] xl:max-w-[600px] 2xl:max-w-full"
           />

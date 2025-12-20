@@ -38,7 +38,7 @@ export function Callout() {
             before.
           </p>
           <a
-            href="#"
+            href="/features"
             className="flex-none rounded-full bg-gray-900 px-3.5 py-1 text-sm font-semibold text-white shadow-xs hover:bg-gray-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900"
           >
             Explore Feature <span aria-hidden="true">&rarr;</span>
