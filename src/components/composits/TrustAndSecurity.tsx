@@ -47,7 +47,7 @@ export default function TrustAndSecuritySection() {
                 className="!bg-transparent !text-slate-700 dark:!text-slate-200"
                 variant="outline"
               >
-                <a href="#contact">Talk to Sales</a>
+                <a href="/contact">Talk to Sales</a>
               </Button>
             </div>
           </div>
@@ -136,7 +136,7 @@ export default function TrustAndSecuritySection() {
 
                 <div className="mt-3 sm:mt-0">
                   <a
-                    href="#security"
+                    href="/security"
                     className="inline-flex items-center gap-2 rounded-md border border-transparent bg-primary-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-300"
                   >
                     View security details
