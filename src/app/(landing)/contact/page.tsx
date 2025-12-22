@@ -9,6 +9,7 @@ import FaqPanel from "@/components/composits/FaqPanel";
 import SectionTitle from "@/components/composits/SectionTitle";
 import BackersPanel from "@/components/composits/BackersPanel";
 import { CTABanner } from "@/components/composits/CTABanner";
+import DarkPanel from "@/components/composits/DarkPanel";
 
 interface Contact2Props {
   title?: string;
@@ -26,7 +27,7 @@ const Contact2 = ({
   web = { label: "medicinexp.com", url: "https://medicinexp.com" },
 }: Contact2Props) => {
   return (
-    <div>
+    <DarkPanel>
       <section className="layout-container my-32 space-y-4 lg:space-y-32 mt-42 ">
         <FromRacksToReceipts />
         <div className="flex flex-col min-h-[70dvh] justify-between gap-10 lg:flex-row lg:gap-20">
@@ -42,10 +43,11 @@ const Contact2 = ({
               />
             </div>
             <div className="mx-auto w-fit lg:mx-0">
-              <h3 className="mb-6 text-center text-2xl font-semibold lg:text-left md:text-center">
+              <h3 className="mb-6 text-center text-2xl font-semibold lg:text-left md:text-center text-primary-800">
                 Contact Details
               </h3>
-              <ul className="ml-4 list-disc">
+
+              <ul className="ml-4 list-disc text-primary-800">
                 <li className="flex gap-1">
                   <span className="font-bold ">Phone: </span>
                   <span dangerouslySetInnerHTML={{ __html: phone }}></span>
@@ -95,7 +97,7 @@ const Contact2 = ({
         <BackersPanel />
         <FaqPanel className="bg-transparent" />
       </section>
-    </div>
+    </DarkPanel>
   );
 };
 
