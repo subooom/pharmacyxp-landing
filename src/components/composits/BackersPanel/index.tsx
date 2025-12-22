@@ -7,7 +7,6 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import Image from "next/image";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 
 type PartnersInfoType = {
@@ -41,7 +40,7 @@ function BackersPanel() {
           <Tooltip key={i}>
             <TooltipTrigger asChild>
               <div className="flex bg-primary rounded-full  p-2 lg:p-4 flex-col gap-2 items-center text-primary-100">
-                <Avatar className="h-12 lg:h-14 w-12 lg:w-14">
+                <Avatar className="h-12 lg:h-14 w-12 lg:w-14  ">
                   <AvatarImage
                     src={org.logo}
                     alt="Organization Logo"

@@ -37,6 +37,7 @@
   --color-accent: var(--accent);
   --color-muted-foreground: var(--muted-foreground);
   --color-muted: var(--muted);
+  --color-slate: var(--slate);
   --color-secondary-foreground: var(--secondary-foreground);
   --color-secondary: var(--secondary);
   --color-primary-foreground: var(--primary-foreground);
@@ -204,6 +205,8 @@
   --muted: oklch(96% 0.012 100);
   --muted-foreground: oklch(55% 0.03 100);
 
+  --slate: oklch(0.47 0.16 269.69 / 0.86);
+
   --accent: oklch(88% 0.07 100);
   --accent-foreground: oklch(20% 0.05 100);
 
@@ -270,7 +273,10 @@
   ); /* almost white for contrast */
 
   --muted: oklch(28% 0.05 190); /* deep muted teal */
+
   --muted-foreground: oklch(70% 0.03 190); /* softer text */
+
+  --slate: oklch(0.47 0.16 269.69 / 0.86);
 
   --accent: oklch(65% 0.23 190); /* pop accent teal */
   --accent-foreground: oklch(96% 0.015 190); /* clean contrast */
