@@ -5,6 +5,7 @@ import PageHeader from "@/components/composits/PageHeader";
 import Footer from "@/components/composits/Footer";
 import "leaflet/dist/leaflet.css";
 import { ThemeProvider } from "@/components/theme-provider";
+import Script from "next/script";
 
 const josefinSans = Josefin_Sans({
   variable: "--font-josefin-sans",
@@ -24,10 +25,14 @@ export default function RootLayout({
   return (
     <html lang="en" className="light" style={{ colorScheme: "light" }}>
       <head>
-        <script
-          src="https://cdn.commoninja.com/sdk/latest/commonninja.js"
-          defer
-        ></script>
+        <Script id="tawkio">
+          var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date(); const s1 =
+          document.createElement("script"), s0 =
+          document.getElementsByTagName("script")[0]; s1.async = true; s1.src =
+          "https://embed.tawk.to/6948dbded32ace197baae7b6/1jd29lnr6"; s1.charset
+          = "UTF-8"; s1.setAttribute("crossorigin", "*");
+          s0.parentNode.insertBefore(s1, s0);
+        </Script>
       </head>
       <body
         style={{
@@ -43,7 +48,6 @@ export default function RootLayout({
         >
           <PageHeader />
           <main>{children}</main>
-          <div className="commonninja_component pid-83e5a255-cd3f-49b2-b03d-c5925dd19c57"></div>
         </ThemeProvider>
         <Footer />
       </body>
