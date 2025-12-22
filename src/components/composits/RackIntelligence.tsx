@@ -132,7 +132,16 @@
 
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Palette, Printer, Ruler, X, Youtube, Video } from "lucide-react";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Palette, Printer, Ruler, Youtube, Video } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { Routes } from "@/constants/routes";
@@ -141,22 +150,15 @@ import { useState } from "react";
 export default function RackIntelligence() {
   const router = useRouter();
   const [showVideo, setShowVideo] = useState(false);
-  const [videoType, setVideoType] = useState<string>("youtube");
 
   // Configuration - Set these based on what videos you have available
-  const hasYoutubeVideo = true; // Set to true if you have YouTube video
+  const hasYoutubeVideo = false; // Set to true if you have YouTube video
   const hasLocalVideo = true; // Set to true if you have local video
 
   const youtubeVideoId = "U0rxVXYKemM"; // Your YouTube video ID
   const localVideoPath = "/videos/racks-demo.mp4"; // Path to your local video
 
   const handleDemoClick = () => {
-    // Set default video type based on availability
-    if (hasYoutubeVideo) {
-      setVideoType("youtube");
-    } else if (hasLocalVideo) {
-      setVideoType("local");
-    }
     setShowVideo(true);
   };
 
@@ -227,7 +229,7 @@ export default function RackIntelligence() {
               ))}
             </div>
 
-            {/* Actions - KEPT THE SAME */}
+            {/* Actions */}
             <div className="flex flex-col sm:flex-row gap-3">
               <Button
                 onClick={() => router.push(Routes.sign_up)}
@@ -272,94 +274,106 @@ export default function RackIntelligence() {
         </div>
       </div>
 
-      {/* Video Modal - UPDATED WITH SOURCE SELECTION */}
-      {showVideo && (
-        <div className="fixed inset-0 bg-black/70 z-50 flex items-center justify-center p-4">
-          <div className="bg-background rounded-xl shadow-2xl w-full max-w-4xl">
-            {/* Modal Header */}
-            <div className="flex items-center justify-between p-4 border-b">
-              <h3 className="text-xl font-semibold">Live Demo</h3>
-              <Button
-                variant="ghost"
-                size="icon"
-                onClick={() => setShowVideo(false)}
-                className="hover:bg-gray-100"
-              >
-                <X className="h-5 w-5" />
-              </Button>
-            </div>
+      {/* Video Modal using shadcn Dialog */}
+      <Dialog open={showVideo} onOpenChange={setShowVideo}>
+        <DialogContent className="sm:max-w-4xl max-h-[90vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle>Live Demo</DialogTitle>
+            <DialogDescription className="dark:text-white text-primary-700">
+              Watch how Rack Intelligence simplifies your inventory management
+            </DialogDescription>
+          </DialogHeader>
 
-            {/* Video Source Selector - Inside Modal */}
-            <div className="px-4 pt-4">
-              <div className="flex flex-wrap gap-2">
+          {/* Video Source Selector */}
+          {hasYoutubeVideo && hasLocalVideo ? (
+            <Tabs
+              defaultValue={hasYoutubeVideo ? "youtube" : "local"}
+              className="w-full"
+            >
+              <TabsList className="grid w-full grid-cols-2">
                 {hasYoutubeVideo && (
-                  <Button
-                    variant={videoType === "youtube" ? "default" : "outline"}
-                    onClick={() => setVideoType("youtube")}
-                    size="sm"
-                    className="gap-2"
-                  >
+                  <TabsTrigger value="youtube" className="gap-2">
                     <Youtube className="h-4 w-4" />
                     YouTube Demo
-                  </Button>
+                  </TabsTrigger>
                 )}
-
                 {hasLocalVideo && (
-                  <Button
-                    variant={videoType === "local" ? "default" : "outline"}
-                    onClick={() => setVideoType("local")}
-                    size="sm"
-                    className="gap-2"
-                  >
+                  <TabsTrigger value="local" className="gap-2">
                     <Video className="h-4 w-4" />
                     See Demo Video
-                  </Button>
+                  </TabsTrigger>
                 )}
-              </div>
-            </div>
+              </TabsList>
 
-            {/* Video Container */}
-            <div className="p-4">
-              <div className="aspect-video bg-black rounded-lg overflow-hidden">
-                {videoType === "youtube" && hasYoutubeVideo ? (
-                  // YouTube Video
-                  <iframe
-                    src={`https://www.youtube.com/embed/${youtubeVideoId}?autoplay=1&rel=0`}
-                    className="w-full h-full"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                    title="Demo Video"
-                  />
-                ) : videoType === "local" && hasLocalVideo ? (
-                  // Local Video
-                  <video
-                    src={localVideoPath}
-                    className="w-full h-full"
-                    controls
-                    autoPlay
-                    key={localVideoPath}
-                  >
-                    Your browser does not support the video tag.
-                  </video>
-                ) : (
-                  // No video available
-                  <div className="w-full h-full flex items-center justify-center text-white">
-                    <div className="text-center">
-                      <p className="text-lg font-semibold mb-2">
-                        No video available
-                      </p>
-                      <p className="text-sm text-gray-300">
-                        Please configure your video settings
-                      </p>
-                    </div>
+              {hasYoutubeVideo && (
+                <TabsContent value="youtube" className="mt-4">
+                  <div className="aspect-video bg-black rounded-lg overflow-hidden">
+                    <iframe
+                      src={`https://www.youtube.com/embed/${youtubeVideoId}?autoplay=1&rel=0`}
+                      className="w-full h-full"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                      title="Demo Video"
+                    />
                   </div>
-                )}
-              </div>
-            </div>
+                </TabsContent>
+              )}
 
-            {/* Modal Footer */}
-            <div className="p-4 border-t text-center">
-              <p className="text-sm text-gray-600">
+              {hasLocalVideo && (
+                <TabsContent value="local" className="mt-4">
+                  <div className="aspect-video bg-black rounded-lg overflow-hidden">
+                    <video
+                      src={localVideoPath}
+                      className="w-full h-full"
+                      controls
+                      autoPlay
+                      key={localVideoPath}
+                    >
+                      Your browser does not support the video tag.
+                    </video>
+                  </div>
+                </TabsContent>
+              )}
+            </Tabs>
+          ) : (
+            /* Single video display when only one type is available */
+            <div className="aspect-video bg-black rounded-lg overflow-hidden mt-4">
+              {hasYoutubeVideo ? (
+                <iframe
+                  src={`https://www.youtube.com/embed/${youtubeVideoId}?autoplay=1&rel=0`}
+                  className="w-full h-full"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  title="Demo Video"
+                />
+              ) : hasLocalVideo ? (
+                <video
+                  src={localVideoPath}
+                  className="w-full h-full"
+                  controls
+                  autoPlay
+                  key={localVideoPath}
+                >
+                  Your browser does not support the video tag.
+                </video>
+              ) : (
+                <div className="w-full h-full flex items-center justify-center text-white">
+                  <div className="text-center">
+                    <p className="text-lg font-semibold mb-2">
+                      No video available
+                    </p>
+                    <p className="text-sm text-gray-300">
+                      Please configure your video settings
+                    </p>
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
+
+          <DialogFooter className="flex flex-col sm:flex-col gap-2">
+            <div className="text-center w-full">
+              <p className="text-sm dark:text-white text-primary-700 mb-3">
                 Ready to create your own smart racks?
               </p>
               <Button
@@ -367,14 +381,14 @@ export default function RackIntelligence() {
                   setShowVideo(false);
                   router.push(Routes.sign_up);
                 }}
-                className="mt-2"
+                className="w-full sm:w-auto"
               >
                 Start Building Now
               </Button>
             </div>
-          </div>
-        </div>
-      )}
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </section>
   );
 }
