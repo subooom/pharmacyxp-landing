@@ -9,21 +9,21 @@ import {
   Database,
   ShieldCheck,
   Users,
-  Globe,
   Lock,
   Download,
   Mail,
   Calendar,
   CheckCircle,
   Shield,
-  Zap,
-  Pill,
-  Package,
-  Store,
-  AlertTriangle,
-  FileBarChart,
   RefreshCw,
   FileText,
+  Server,
+  Key,
+  EyeOff,
+  Clock,
+  MapPin,
+  Cpu,
+  FileBarChart,
 } from "lucide-react";
 import { motion } from "framer-motion";
 
@@ -44,136 +44,206 @@ export default function SecurityDetailsPage() {
     }, 1500);
   };
 
-  // Updated for PHARMACY inventory management
+  // UPDATED: Enhanced with critical healthcare security details
   const securityArchitecture = [
     {
       id: 1,
-      title: "Complete Data Isolation",
+      title: "HIPAA-Compliant Data Isolation",
       icon: Database,
       color: "from-blue-500 to-cyan-500",
       items: [
-        "Separate database for each pharmacy location",
-        "Multi-tenant architecture prevents data cross-contamination",
-        "Daily encrypted backups of inventory and prescription data",
-        "Role-based access to prevent unauthorized stock viewing",
+        "Private, isolated database for each healthcare organization",
+        "Business Associate Agreements (BAA) available for all customers",
+        "Daily encrypted backups with 7-year retention for audit compliance",
+        "Clear data ownership - your data remains exclusively yours",
       ],
-      highlight: "Each pharmacy sees only their own inventory and data",
+      highlight: "Enterprise-grade isolation meeting HIPAA requirements",
     },
     {
       id: 2,
-      title: "Inventory Encryption",
+      title: "Military-Grade Encryption",
       icon: Lock,
       color: "from-purple-500 to-pink-500",
       items: [
-        "AES-256 encryption for all inventory and pricing data",
-        "Secure transmission of stock levels and orders",
-        "Encrypted audit trails for controlled substance tracking",
-        "Secure API endpoints for supplier integrations",
+        "AES-256 encryption for all data at rest including PHI",
+        "TLS 1.3 encryption for all data in transit",
+        "Encryption keys managed via AWS KMS (Key Management Service)",
+        "End-to-end encryption for sensitive prescription data",
       ],
-      highlight: "Your inventory data is protected at every level",
+      highlight: "Your healthcare data is protected with bank-level security",
     },
     {
       id: 3,
-      title: "Healthcare-Specific Access Control",
+      title: "Healthcare Access & Audit Controls",
       icon: Users,
       color: "from-green-500 to-emerald-500",
       items: [
-        "Role-based permissions (Pharmacist, Technician, Manager, Admin)",
-        "Two-factor authentication for all pharmacy staff",
-        "Session management with automatic logout",
-        "Granular permissions for sensitive operations",
+        "Role-Based Access Control (RBAC) with least privilege principle",
+        "Mandatory Two-Factor Authentication (2FA) for all staff accounts",
+        "Comprehensive audit logs tracking all PHI access and modifications",
+        "Session timeout after 15 minutes of inactivity",
       ],
-      highlight: "Staff access limited to their responsibilities",
+      highlight: "Granular controls meeting healthcare compliance standards",
     },
     {
       id: 4,
-      title: "Inventory Monitoring & Alerts",
-      icon: Activity,
+      title: "Infrastructure & Physical Security",
+      icon: Server,
       color: "from-orange-500 to-red-500",
       items: [
-        "Real-time monitoring of inventory changes",
-        "Alert system for suspicious stock movements",
-        "Comprehensive audit logs for all inventory transactions",
-        "Regular security assessments of pharmacy operations",
+        "Hosted on AWS HIPAA-eligible services in ISO 27001 certified data centers",
+        "24/7 security monitoring with SOC 2 Type II compliance",
+        "Multi-zone redundancy and disaster recovery with <4 hour RTO",
+        "Regular third-party penetration testing and vulnerability scans",
       ],
-      highlight: "Continuous protection of your pharmacy assets",
+      highlight: "Enterprise infrastructure trusted by healthcare providers",
     },
   ];
 
-  // Pharmacy-specific compliance
+  // UPDATED: Enhanced compliance section with verifiable claims
   const complianceCertifications = [
     {
-      name: "HIPAA Compliant",
+      name: "HIPAA Compliance",
       status: "Fully Compliant",
-      icon: Pill,
-      description: "Protects patient prescription information",
-      details: "BAAs available for all pharmacy partners",
+      icon: ShieldCheck,
+      description: "Designed for HIPAA Security & Privacy Rules",
+      details: "BAAs, audit trails, breach notification procedures",
       verified: true,
+      badgeColor: "bg-blue-500/20 text-blue-700 dark:text-blue-400",
     },
     {
-      name: "DEA Compliance",
-      status: "Enabled",
-      icon: AlertTriangle,
-      description: "Controlled substance tracking capabilities",
-      details: "Audit trails for Schedule II-V medications",
+      name: "Data Encryption",
+      status: "AES-256 + TLS 1.3",
+      icon: Lock,
+      description: "Bank-level encryption standards",
+      details: "Data encrypted at rest and in transit",
       verified: true,
+      badgeColor: "bg-purple-500/20 text-purple-700 dark:text-purple-400",
     },
     {
-      name: "PCI DSS",
-      status: "Certified",
+      name: "Infrastructure",
+      status: "AWS HIPAA Eligible",
+      icon: Cpu,
+      description: "Enterprise-grade cloud infrastructure",
+      details: "SOC 2, ISO 27001 certified data centers",
+      verified: true,
+      badgeColor: "bg-orange-500/20 text-orange-700 dark:text-orange-400",
+    },
+    {
+      name: "Audit & Reporting",
+      status: "Comprehensive Logs",
       icon: FileBarChart,
-      description: "Secure payment processing",
-      details: "Level 1 PCI compliant for transactions",
+      description: "7-year audit trail retention",
+      details: "Real-time monitoring and alerting",
       verified: true,
-    },
-    {
-      name: "GDPR Ready",
-      status: "Implemented",
-      icon: Globe,
-      description: "Global data protection compliance",
-      details: "Data processing agreements available",
-      verified: true,
+      badgeColor: "bg-green-500/20 text-green-700 dark:text-green-400",
     },
   ];
 
-  // Pharmacy-specific security features
-  const securityFeatures = [
+  // NEW: Critical Security Features Section
+  const criticalSecurityFeatures = [
     {
-      icon: Package,
-      title: "Stock Protection",
-      description: "Secure tracking of inventory levels and movements",
+      category: "Compliance & Legal",
+      features: [
+        {
+          icon: FileText,
+          title: "Business Associate Agreement (BAA)",
+          description: "Signed BAAs available for all healthcare customers",
+        },
+        {
+          icon: Clock,
+          title: "60-Day Breach Notification",
+          description: "HIPAA-compliant breach notification commitment",
+        },
+        {
+          icon: EyeOff,
+          title: "Minimum Necessary Access",
+          description: "Role-based access following privacy principles",
+        },
+      ],
     },
     {
-      icon: Store,
-      title: "Multi-Location",
-      description: "Secure data sync between pharmacy branches",
+      category: "Technical Safeguards",
+      features: [
+        {
+          icon: Key,
+          title: "Encryption Key Management",
+          description: "AWS KMS managed keys with regular rotation",
+        },
+        {
+          icon: RefreshCw,
+          title: "Vulnerability Management",
+          description: "Quarterly penetration testing and security audits",
+        },
+        {
+          icon: MapPin,
+          title: "Data Sovereignty",
+          description: "Data stored in region-specific HIPAA-compliant zones",
+        },
+      ],
     },
     {
-      icon: RefreshCw,
-      title: "Auto Backup",
-      description: "Hourly backups of inventory and prescription data",
+      category: "Operational Security",
+      features: [
+        {
+          icon: Users,
+          title: "Staff Security Training",
+          description: "Annual HIPAA and security training for all employees",
+        },
+        {
+          icon: Shield,
+          title: "Vendor Risk Management",
+          description: "All subprocessors vetted and under BAA",
+        },
+        {
+          icon: Activity,
+          title: "Incident Response Plan",
+          description: "Tested IR plan with defined roles and procedures",
+        },
+      ],
+    },
+  ];
+
+  // UPDATED: Security metrics with healthcare focus
+  const securityMetrics = [
+    {
+      value: "HIPAA",
+      label: "Compliant",
+      sublabel: "Security & Privacy Rules",
+      icon: "🛡️",
+      color: "from-blue-500/10 to-blue-600/10",
+      accent: "bg-gradient-to-r from-blue-500 to-blue-600",
     },
     {
-      icon: FileText,
-      title: "Audit Reports",
-      description: "Detailed security and compliance reporting",
+      value: "99.95%",
+      label: "Uptime SLA",
+      sublabel: "Business Hours Support",
+      icon: "⚡",
+      color: "from-green-500/10 to-emerald-600/10",
+      accent: "bg-gradient-to-r from-green-500 to-emerald-600",
     },
     {
-      icon: Shield,
-      title: "Supplier Security",
-      description: "Secure connections to pharmaceutical suppliers",
+      value: "<1 Hour",
+      label: "Backup Recovery",
+      sublabel: "RTO Guarantee",
+      icon: "💾",
+      color: "from-purple-500/10 to-pink-600/10",
+      accent: "bg-gradient-to-r from-purple-500 to-pink-600",
     },
     {
-      icon: Zap,
-      title: "Uptime Guarantee",
-      description: "99.9% uptime for uninterrupted pharmacy operations",
+      value: "24/7",
+      label: "Security Monitoring",
+      sublabel: "SOC Team",
+      icon: "👁️",
+      color: "from-orange-500/10 to-red-600/10",
+      accent: "bg-gradient-to-r from-orange-500 to-red-600",
     },
   ];
 
   return (
     <DarkPanel>
       <div className="container mx-auto px-4 py-8 lg:py-16">
-        {/* Hero Section - Pharmacy Focused */}
+        {/* Hero Section - UPDATED with stronger healthcare focus */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -184,12 +254,28 @@ export default function SecurityDetailsPage() {
             <ShieldCheck className="h-8 w-8 text-primary" />
           </div>
           <h1 className="text-4xl md:text-5xl xl:text-7xl font-bold text-primary mb-4">
-            Healthcare Operations Security
+            Healthcare-Grade Security
           </h1>
           <p className="text-xl text-primary max-w-3xl mx-auto mb-8">
-            Enterprise security for healthcare operations, protecting patient
-            data, medication inventory, and ensuring HIPAA compliance.
+            HIPAA-compliant platform protecting patient data, medication
+            inventory, and healthcare operations with enterprise-grade security.
           </p>
+
+          {/* UPDATED: Trust badges */}
+          <div className="flex flex-wrap justify-center gap-4 mb-8">
+            <span className="px-4 py-2 bg-blue-500/10 text-blue-700 dark:text-blue-400 rounded-full text-sm font-medium">
+              HIPAA Compliant
+            </span>
+            <span className="px-4 py-2 bg-green-500/10 text-green-700 dark:text-green-400 rounded-full text-sm font-medium">
+              AES-256 Encryption
+            </span>
+            <span className="px-4 py-2 bg-purple-500/10 text-purple-700 dark:text-purple-400 rounded-full text-sm font-medium">
+              Business Associate Agreements
+            </span>
+            <span className="px-4 py-2 bg-orange-500/10 text-orange-700 dark:text-orange-400 rounded-full text-sm font-medium">
+              SOC 2 Type II
+            </span>
+          </div>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
             <Button
@@ -211,7 +297,7 @@ export default function SecurityDetailsPage() {
               ) : (
                 <>
                   <Mail className="h-5 w-5" />
-                  Request Security Brief
+                  Request Security & Compliance Brief
                 </>
               )}
             </Button>
@@ -222,7 +308,16 @@ export default function SecurityDetailsPage() {
               className="gap-2 border-primary text-primary hover:bg-primary/10"
             >
               <Download className="h-5 w-5" />
-              Download Security Docs
+              Download Security Whitepaper
+            </Button>
+
+            <Button
+              size="lg"
+              variant="ghost"
+              className="gap-2 text-primary hover:bg-primary/5"
+            >
+              <FileText className="h-5 w-5" />
+              View BAA Template
             </Button>
           </div>
         </motion.div>
@@ -238,130 +333,64 @@ export default function SecurityDetailsPage() {
               <CheckCircle className="h-5 w-5 text-green-500" />
               <div>
                 <p className="font-medium text-green-700 dark:text-green-400">
-                  Security brief requested successfully!
+                  Security & compliance brief requested successfully!
                 </p>
                 <p className="text-sm text-green-600 dark:text-green-500">
-                  Our team will contact you within 24 hours.
+                  Our compliance team will contact you within 24 hours with BAA
+                  and security documentation.
                 </p>
               </div>
             </div>
           </motion.div>
         )}
 
+        {/* UPDATED: Security Metrics */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-5 mb-12">
-          {/* Uptime Card */}
-          <div className="group relative overflow-hidden rounded-xl bg-gradient-to-br from-white to-slate-50 dark:from-gray-900 dark:to-black p-6 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
-            {/* Animated background accent */}
-            <div className="absolute inset-0 bg-gradient-to-r from-primary/0 via-primary/5 to-primary/0 dark:from-primary/0 dark:via-primary/10 dark:to-primary/0 transform translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></div>
+          {securityMetrics.map((metric, index) => (
+            <div
+              key={index}
+              className="group relative overflow-hidden rounded-xl bg-gradient-to-br from-white to-slate-50 dark:from-gray-900 dark:to-black p-6 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2"
+            >
+              <div
+                className={`absolute inset-0 bg-gradient-to-r ${metric.color} transform translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000`}
+              ></div>
 
-            <div className="relative">
-              <div className="inline-flex items-center justify-center w-14 h-14 bg-gradient-to-br from-primary/10 to-primary/20 dark:from-primary/20 dark:to-primary/30 rounded-xl mb-5 group-hover:scale-110 transition-transform duration-300">
-                <div className="text-2xl font-bold text-primary dark:text-primary/90">
-                  ⚡
+              <div className="relative">
+                <div className="inline-flex items-center justify-center w-14 h-14 bg-gradient-to-br from-primary/10 to-primary/20 dark:from-primary/20 dark:to-primary/30 rounded-xl mb-5 group-hover:scale-110 transition-transform duration-300">
+                  <div className="text-2xl font-bold">{metric.icon}</div>
+                </div>
+                <div className="text-3xl font-bold text-primary dark:text-white mb-2 group-hover:text-primary dark:group-hover:text-primary/80 transition-colors">
+                  {metric.value}
+                </div>
+                <div className="text-sm font-semibold text-gray-800 dark:text-gray-200 mb-1">
+                  {metric.label}
+                </div>
+                <div className="text-xs text-primary dark:text-gray-400">
+                  {metric.sublabel}
                 </div>
               </div>
-              <div className="text-4xl font-bold text-primary dark:text-white mb-3 group-hover:text-primary dark:group-hover:text-primary/80 transition-colors">
-                99.9%
-              </div>
-              <div className="text-sm font-semibold text-gray-800 dark:text-gray-200 mb-2">
-                Uptime SLA
-              </div>
-              <div className="text-xs text-primary dark:text-gray-400">
-                Guaranteed reliability
-              </div>
+
+              <div
+                className={`absolute bottom-0 left-0 right-0 h-1 ${metric.accent} transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left`}
+              ></div>
             </div>
-
-            {/* Bottom accent bar */}
-            <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-primary to-primary/80 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
-          </div>
-
-          {/* Alerts Card */}
-          <div className="group relative overflow-hidden rounded-xl bg-gradient-to-br from-white to-slate-50 dark:from-gray-900 dark:to-black p-6 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
-            <div className="absolute inset-0 bg-gradient-to-r from-gray-800/0 via-gray-800/5 to-gray-800/0 dark:from-gray-300/0 dark:via-gray-300/10 dark:to-gray-300/0 transform translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></div>
-
-            <div className="relative">
-              <div className="inline-flex items-center justify-center w-14 h-14 bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900 rounded-xl mb-5 group-hover:scale-110 transition-transform duration-300">
-                <div className="text-2xl font-bold text-gray-800 dark:text-gray-300">
-                  🔔
-                </div>
-              </div>
-              <div className="text-4xl font-bold text-primary dark:text-white mb-3 group-hover:text-gray-800 dark:group-hover:text-gray-300 transition-colors">
-                Real-time
-              </div>
-              <div className="text-sm font-semibold text-gray-800 dark:text-gray-200 mb-2">
-                Stock Alerts
-              </div>
-              <div className="text-xs text-primary dark:text-gray-400">
-                Instant notifications
-              </div>
-            </div>
-
-            <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-gray-800 to-gray-600 dark:from-gray-300 dark:to-gray-400 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
-          </div>
-
-          {/* Monitoring Card */}
-          <div className="group relative overflow-hidden rounded-xl bg-gradient-to-br from-white to-slate-50 dark:from-gray-900 dark:to-black p-6 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
-            <div className="absolute inset-0 bg-gradient-to-r from-blue-500/0 via-blue-500/5 to-blue-500/0 dark:from-blue-400/0 dark:via-blue-400/10 dark:to-blue-400/0 transform translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></div>
-
-            <div className="relative">
-              <div className="inline-flex items-center justify-center w-14 h-14 bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/20 rounded-xl mb-5 group-hover:scale-110 transition-transform duration-300">
-                <div className="text-2xl font-bold text-blue-600 dark:text-blue-400">
-                  👁️
-                </div>
-              </div>
-              <div className="text-4xl font-bold text-primary dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-                24/7
-              </div>
-              <div className="text-sm font-semibold text-gray-800 dark:text-gray-200 mb-2">
-                Monitoring
-              </div>
-              <div className="text-xs text-primary dark:text-gray-400">
-                Security operations
-              </div>
-            </div>
-
-            <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 to-blue-600 dark:from-blue-400 dark:to-blue-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
-          </div>
-
-          {/* Compliance Card */}
-          <div className="group relative overflow-hidden rounded-xl bg-gradient-to-br from-white to-slate-50 dark:from-gray-900 dark:to-black p-6 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
-            <div className="absolute inset-0 bg-gradient-to-r from-green-500/0 via-green-500/5 to-green-500/0 dark:from-green-400/0 dark:via-green-400/10 dark:to-green-400/0 transform translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></div>
-
-            <div className="relative">
-              <div className="inline-flex items-center justify-center w-14 h-14 bg-gradient-to-br from-green-50 to-green-100 dark:from-green-900/30 dark:to-green-800/20 rounded-xl mb-5 group-hover:scale-110 transition-transform duration-300">
-                <div className="text-2xl font-bold text-green-600 dark:text-green-400">
-                  🛡️
-                </div>
-              </div>
-              <div className="text-4xl font-bold text-primary dark:text-white mb-3 group-hover:text-green-600 dark:group-hover:text-green-400 transition-colors">
-                DEA
-              </div>
-              <div className="text-sm font-semibold text-gray-800 dark:text-gray-200 mb-2">
-                Compliant
-              </div>
-              <div className="text-xs text-primary dark:text-gray-400">
-                Controlled substances
-              </div>
-            </div>
-
-            <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-green-500 to-green-600 dark:from-green-400 dark:to-green-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
-          </div>
+          ))}
         </div>
 
-        {/* Core Security Architecture - healthcare Focused */}
-        <div className="mb-16 lg:mb-20 mt-20">
+        {/* Core Security Architecture - UPDATED with healthcare compliance */}
+        <div className="mb-16 lg:mb-20">
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6 }}
           >
             <div className="mb-10 flex flex-col items-center justify-center">
-              <h2 className="text-2xl lg:text-3xl font-bold text-primary-700 mb-4 ">
-                Protecting Your Healthcare Operations
+              <h2 className="text-2xl lg:text-3xl font-bold text-primary mb-4">
+                Healthcare-Specific Security Architecture
               </h2>
-              <p className=" text-primary-700">
-                Security measures specifically designed for healthcare inventory
-                management and prescription data protection.
+              <p className="text-primary text-center max-w-3xl">
+                Built from the ground up to meet HIPAA requirements and protect
+                sensitive healthcare data, inventory, and patient information.
               </p>
             </div>
           </motion.div>
@@ -417,7 +446,7 @@ export default function SecurityDetailsPage() {
                             initial={{ opacity: 0, x: -5 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ delay: index * 0.1 + i * 0.05 }}
-                            className="flex items-start gap-3 p-2 rounded-lg text-white hover:bg-slate-50 dark:hover:bg-slate-900/30 transition-colors"
+                            className="flex items-start gap-3 p-2 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-900/30 transition-colors"
                           >
                             <div className="mt-1 p-1 rounded bg-primary/10">
                               <ShieldCheck className="h-3 w-3 text-primary flex-shrink-0" />
@@ -436,10 +465,57 @@ export default function SecurityDetailsPage() {
           </div>
         </div>
 
-        {/* Pharmacy Compliance Section */}
+        {/* NEW: Critical Security Features Section */}
         <div className="mb-16 lg:mb-20">
           <h2 className="text-2xl lg:text-3xl font-bold text-primary mb-10">
-            Pharmacy Compliance Standards
+            Essential Healthcare Security Features
+          </h2>
+
+          <div className="grid md:grid-cols-3 gap-8 mb-12">
+            {criticalSecurityFeatures.map((category, categoryIndex) => (
+              <div key={categoryIndex}>
+                <h3 className="text-lg font-bold text-primary mb-6 pb-3 border-b border-slate-200 dark:border-slate-800">
+                  {category.category}
+                </h3>
+                <div className="space-y-6">
+                  {category.features.map((feature, featureIndex) => {
+                    const Icon = feature.icon;
+                    return (
+                      <motion.div
+                        key={feature.title}
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{
+                          duration: 0.3,
+                          delay: categoryIndex * 0.2 + featureIndex * 0.1,
+                        }}
+                      >
+                        <div className="flex items-start gap-4 p-4 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-primary/30 hover:shadow-md transition-all">
+                          <div className="p-2 bg-primary/10 rounded-lg">
+                            <Icon className="h-5 w-5 text-primary" />
+                          </div>
+                          <div>
+                            <h4 className="font-bold text-primary mb-1">
+                              {feature.title}
+                            </h4>
+                            <p className="text-sm text-primary-700 dark:text-white">
+                              {feature.description}
+                            </p>
+                          </div>
+                        </div>
+                      </motion.div>
+                    );
+                  })}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* UPDATED: Compliance Section */}
+        <div className="mb-16 lg:mb-20">
+          <h2 className="text-2xl lg:text-3xl font-bold text-primary mb-10">
+            Compliance & Certifications
           </h2>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
@@ -452,7 +528,7 @@ export default function SecurityDetailsPage() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                 >
-                  <Card className="h-full border border-slate-200 dark:border-slate-800 hover:border-primary/50 transition-colors">
+                  <Card className="h-full border border-slate-200 dark:border-slate-800 hover:border-primary/50 transition-colors hover:shadow-lg">
                     <CardHeader className="pb-4">
                       <div className="flex items-center justify-between mb-4">
                         <div className="p-2 bg-primary/10 rounded-lg">
@@ -462,20 +538,22 @@ export default function SecurityDetailsPage() {
                           <CheckCircle className="h-5 w-5 text-green-500" />
                         )}
                       </div>
-                      <CardTitle className="text-lg font-bold text-primary">
+                      <CardTitle className="text-lg font-bold text-primary ">
                         {cert.name}
                       </CardTitle>
                       <div className="flex items-center gap-2 mt-2">
-                        <span className="px-2 py-1 text-xs font-medium bg-green-500/20 text-green-700 dark:text-green-400 rounded-full">
+                        <span
+                          className={`px-3 py-1 text-xs font-medium rounded-full ${cert.badgeColor}`}
+                        >
                           {cert.status}
                         </span>
                       </div>
                     </CardHeader>
                     <CardContent>
-                      <p className="text-sm text-primary-700 dark:text-primary-300 mb-3">
+                      <p className="text-sm text-primary-700 dark:text-white mb-3">
                         {cert.description}
                       </p>
-                      <p className="text-xs text-primary-600 dark:text-primary-400">
+                      <p className="text-xs text-primary-600 dark:text-primary">
                         {cert.details}
                       </p>
                     </CardContent>
@@ -485,26 +563,41 @@ export default function SecurityDetailsPage() {
             })}
           </div>
 
-          <div className="bg-slate-50 dark:bg-slate-900/50 rounded-xl p-6 border border-slate-200 dark:border-slate-800">
+          {/* UPDATED: Compliance notice */}
+          <div className="bg-gradient-to-r from-primary/5 to-primary/10 rounded-xl p-6 border border-primary/20">
             <div className="flex items-start gap-4">
-              <Pill className="h-6 w-6 text-primary flex-shrink-0 mt-1" />
+              <ShieldCheck className="h-6 w-6 text-primary flex-shrink-0 mt-1" />
               <div>
                 <h3 className="font-bold text-primary mb-2">
-                  Controlled Substance Tracking
+                  Healthcare Compliance Commitment
                 </h3>
-                <p className="text-primary-700 dark:text-primary-300 mb-4">
-                  MedicineXP includes DEA-compliant tracking for Schedule II-V
-                  medications with detailed audit trails, automated reporting,
-                  and compliance alerts.
+                <p className="text-primary-700 dark:text-white mb-4">
+                  MedicineXP is designed to help healthcare organizations meet
+                  HIPAA requirements. We provide Business Associate Agreements
+                  (BAA) for all customers, maintain comprehensive audit trails,
+                  and follow strict breach notification procedures as required
+                  by law.
                 </p>
-                <div className="flex gap-3">
-                  <Button variant="outline" size="sm" className="gap-2">
+                <div className="flex flex-wrap gap-3">
+                  <Button variant="default" size="sm" className="gap-2">
                     <FileText className="h-4 w-4" />
-                    View DEA Features
+                    Request BAA
                   </Button>
-                  <Button variant="outline" size="sm" className="gap-2">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="gap-2 text-primary dark:text-white"
+                  >
                     <Download className="h-4 w-4" />
-                    Compliance Guide
+                    Compliance Checklist
+                  </Button>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className="gap-2 text-primary dark:text-white"
+                  >
+                    <Mail className="h-4 w-4" />
+                    Contact Compliance Team
                   </Button>
                 </div>
               </div>
@@ -512,42 +605,7 @@ export default function SecurityDetailsPage() {
           </div>
         </div>
 
-        {/* Pharmacy Security Features */}
-        <div className="mb-16">
-          <h2 className="text-2xl lg:text-3xl font-bold text-primary mb-10">
-            Pharmacy-Specific Security Features
-          </h2>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {securityFeatures.map((feature, index) => {
-              const Icon = feature.icon;
-              return (
-                <motion.div
-                  key={feature.title}
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.3, delay: index * 0.1 }}
-                >
-                  <div className="flex items-start gap-4 p-4 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-primary/50 transition-colors">
-                    <div className="p-2 bg-primary/10 rounded-lg">
-                      <Icon className="h-5 w-5 text-primary" />
-                    </div>
-                    <div>
-                      <h3 className="font-bold text-primary mb-1">
-                        {feature.title}
-                      </h3>
-                      <p className="text-sm text-primary-700 dark:text-primary-300">
-                        {feature.description}
-                      </p>
-                    </div>
-                  </div>
-                </motion.div>
-              );
-            })}
-          </div>
-        </div>
-
-        {/* CTA Section - Pharmacy Focused */}
+        {/* CTA Section - UPDATED with compliance focus */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -556,11 +614,12 @@ export default function SecurityDetailsPage() {
         >
           <ShieldCheck className="h-12 w-12 text-primary mx-auto mb-4" />
           <h2 className="text-2xl lg:text-3xl font-bold text-primary mb-4">
-            Secure Your Pharmacy Inventory Today
+            Ready to Secure Your Healthcare Data?
           </h2>
-          <p className="text-primary-700 dark:text-primary-300 max-w-2xl mx-auto mb-6">
-            Get a pharmacy-specific security assessment, schedule a compliance
-            review, or download our pharmacy security implementation guide.
+          <p className="text-primary-700 dark:text-white max-w-2xl mx-auto mb-6">
+            Schedule a security review with our compliance team, request a
+            Business Associate Agreement, or download our comprehensive
+            healthcare security documentation.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -583,24 +642,33 @@ export default function SecurityDetailsPage() {
               ) : (
                 <>
                   <Mail className="h-5 w-5" />
-                  Request Pharmacy Security Brief
+                  Request Security Assessment
                 </>
               )}
             </Button>
 
-            <Button size="lg" variant="outline" className="gap-2">
+            <Button
+              size="lg"
+              variant="outline"
+              className="gap-2 text-primary dark:text-white"
+            >
               <Calendar className="h-5 w-5" />
-              Schedule Compliance Demo
+              Schedule Compliance Review
             </Button>
 
-            <Button size="lg" variant="ghost" className="gap-2">
-              <Download className="h-5 w-5" />
-              Pharmacy Security Guide
+            <Button
+              size="lg"
+              variant="ghost"
+              className="gap-2 text-primary dark:text-white"
+            >
+              <Download className="h-5 w-5 " />
+              Healthcare Security Guide
             </Button>
           </div>
 
-          <p className="text-sm text-primary-600 dark:text-primary-400 mt-6">
-            Pharmacy security experts available • HIPAA compliance guaranteed
+          <p className="text-sm text-primary-600 dark:text-white mt-6">
+            HIPAA compliance experts • Business Associate Agreements •
+            Enterprise security documentation
           </p>
         </motion.div>
       </div>
