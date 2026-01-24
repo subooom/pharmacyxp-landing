@@ -5,7 +5,7 @@ export const Body: React.FC<BodyProps> = ({
   renderLegend,
   renderCurrentStep,
 }) => (
-  <div className="flex-grow bg-primary-50 px-20 py-10">
+  <div className="flex-grow bg-primary-50 px-4 py-10 sm:px-10 lg:px-20">
     <h4 className="text-sm font-light text-primary-950 mb-6">
       {renderLegend()}
     </h4>

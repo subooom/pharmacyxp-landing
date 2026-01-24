@@ -39,7 +39,7 @@ export const Footer: React.FC<FooterProps> = ({
   });
 
   return (
-    <div className="border-t fixed bottom-0 inset-x-0 z-50 bg-background px-20 py-3 flex items-center justify-between">
+    <div className="z-50 flex flex-col items-center justify-between gap-4 border-t bg-background px-4 py-3 sm:flex-row sm:px-8 lg:px-20">
       {page !== 7 ? (
         <>
           <Link
@@ -55,7 +55,7 @@ export const Footer: React.FC<FooterProps> = ({
               <Button
                 onClick={handleBack}
                 variant="outline"
-                className="w-[200px]"
+                className="w-full sm:w-[200px]"
               >
                 Back
               </Button>
@@ -70,7 +70,7 @@ export const Footer: React.FC<FooterProps> = ({
                   console.error(err);
                 }
               }}
-              className="uppercase tracking-wide px-10 py-6 text-lg w-[200px]"
+              className="uppercase tracking-wide px-10 py-6 text-lg w-full sm:w-[200px]"
             >
               {renderButtonText()}
             </Button>
@@ -100,7 +100,7 @@ export const Footer: React.FC<FooterProps> = ({
                   console.error(err);
                 }
               }}
-              className="uppercase tracking-wide px-10 py-6 text-lg w-fit"
+              className="uppercase tracking-wide px-10 py-6 text-lg w-full sm:w-auto"
             >
               Go to your Admin Panel
             </Button>

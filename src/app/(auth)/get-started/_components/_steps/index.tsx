@@ -26,28 +26,23 @@ const Steps: React.FC<StepsProps> = (props) => {
   });
 
   return (
-    <div
-      className="fixed inset-0 z-40 overflow-y-auto bg-background"
-      tabIndex={-1}
-    >
-      <div className="fixed top-0 inset-x-0 bg-background w-full h-full flex flex-col">
-        <Header title={title} />
+    <div className="flex min-h-screen flex-col bg-background">
+      <Header title={title} />
 
-        <ProgressBar currentPage={currentPage} totalPages={totalPages} />
+      <ProgressBar currentPage={currentPage} totalPages={totalPages} />
 
-        <Body
-          renderLegend={renderLegend}
-          renderCurrentStep={renderCurrentStep}
-        />
+      <Body
+        renderLegend={renderLegend}
+        renderCurrentStep={renderCurrentStep}
+      />
 
-        <Footer
-          currentPage={currentPage}
-          handleBack={handleBack}
-          handleNext={handleNext}
-          renderButtonText={renderButtonText}
-          isNextDisabled={isNextDisabled}
-        />
-      </div>
+      <Footer
+        currentPage={currentPage}
+        handleBack={handleBack}
+        handleNext={handleNext}
+        renderButtonText={renderButtonText}
+        isNextDisabled={isNextDisabled}
+      />
     </div>
   );
 };

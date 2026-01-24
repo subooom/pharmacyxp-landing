@@ -30,7 +30,14 @@ function BackersPanel() {
     <DarkPanel className="py-4 md:py-8 lg:py-16 bg-transparent mt-8 lg:mt-4 md:-mt-5 mb-0 lg:-mb-32 flex min-h-fit flex-col gap-6 items-center justify-center  ">
       <p className="text-3xl text-primary-800 font-medium max-sm:text-xl text-center  ">
         Trusted by{" "}
-        {partners.count === 0 ? "God!" : partners.count + "+ Healthcare Orgs"}
+        {partners.count === 0 ? (
+          <>
+            God!
+            <br /> <br /> <span className="text-[72px]">ॐ</span>
+          </>
+        ) : (
+          partners.count + "+ Healthcare Orgs"
+        )}
       </p>
       <div
         className="flex gap-8 flex-wrap justify-center"

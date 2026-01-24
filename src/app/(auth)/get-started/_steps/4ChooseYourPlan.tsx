@@ -128,11 +128,10 @@ const ChooseYourPlan = () => {
 
               <div
                 className={cn(
-                  "relative h-full overflow-hidden p-6 rounded-xl flex flex-col items-center justify-center border-2 border-dashed border-primary/50 bg-background transition-all duration-100 cursor-pointer",
+                  "relative h-full w-full overflow-hidden rounded-xl border-2 border-dashed border-primary/50 bg-background p-6 transition-all duration-100 ease-in-out hover:border-primary",
                   chooseClassName,
                   currentPlanId === 0 && "border-2 border-primary",
                 )}
-                style={{ width: "18rem" }}
                 onClick={() => {
                   setChooseClassName("ripple-animation");
                   setTimeout(() => setChooseClassName(""), 400);

@@ -184,7 +184,7 @@ const ChooseYourDepartments = () => {
             )}
           </div>
         </div>
-        <div className="fixed bottom-0 left-[50%] translate-x-[-50%] inset-x-0 z-[100] px-4 py-2 rounded-md w-[700px] flex items-center justify-between">
+        <div className="flex w-full flex-col items-center justify-between gap-4 border-t bg-background p-4 sm:flex-row">
           <div>Current Plan: {currentlyActivePlan?.name}</div>
           {currentlyActivePlan?.image && (
             <Image
@@ -195,7 +195,7 @@ const ChooseYourDepartments = () => {
               className="h-[50px] object-contain"
             />
           )}
-          <div className="flex flex-col w-2/5">
+          <div className="flex flex-col w-full sm:w-2/5">
             <p className="m-0 text-sm">
               NRP {currentlyActivePlan?.price_for_first_year}
               <span className="text-emerald-500 ml-1 text-xs">

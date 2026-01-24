@@ -14,6 +14,7 @@ import RapidRetrieval from "@/components/composits/RapidRetrieval";
 import FEFOIntegration from "@/components/composits/FEFOIntegrations";
 import TrustAndSecuritySection from "../../components/composits/TrustAndSecurity";
 import DatabaseReliabilityCard from "@/components/composits/DatabaseReliabilityCard";
+import { DoctorPlatformShowcase } from "../../components/composits/DoctorPlatformShowcase";
 
 export const metadata: Metadata = {
   title: "medicinexp - From Racks to Receipts",
@@ -30,15 +31,16 @@ export default function Home() {
       <Callout />
       <RackIntelligence />
       <DatabaseReliabilityCard />
-      {/* <InventoryAccuracy /> */}
-      {/* <PharmacyAnalytics /> */}
-      {/* <IntegrationsPanel /> */}
-      {/* <CustomerLogos /> */}
       <WaveDivider />
       <RapidRetrieval />
       <FEFOIntegration />
+
+      {/* ⭐ New Doctor Platform Section Here */}
+
       <WaveDivider invert />
+      <DoctorPlatformShowcase />
       <GrowthAndImpact />
+
       <BackersPanel />
       <WaveDivider />
       <TestimonialSection />

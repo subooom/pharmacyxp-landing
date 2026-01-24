@@ -2,13 +2,13 @@
 
 ### 1. Create Profile Steps Page - Responsive Design
 
-- [ ] **Current Status**: Page exists but not fully responsive
-- [ ] **Tasks**:
-  - [ ] Audit current profile steps page layout
-  - [ ] Implement mobile-first responsive design
-  - [ ] Test on different screen sizes (mobile, tablet, desktop)
-  - [ ] Ensure form elements are touch-friendly on mobile
-  - [ ] Add responsive breakpoints:
+- [x] **Current Status**: Page exists but not fully responsive
+- [x] **Tasks**:
+  - [x] Audit current profile steps page layout
+  - [x] Implement mobile-first responsive design
+  - [x] Test on different screen sizes (mobile, tablet, desktop)
+  - [x] Ensure form elements are touch-friendly on mobile
+  - [x] Add responsive breakpoints:
     - Mobile: < 768px
     - Tablet: 768px - 1024px
     - Desktop: > 1024px
@@ -37,6 +37,6 @@
 
 ### 4. Fix Pharmacy Logo in Dashboard
 
-- [ ] **Current Status**: Logo not displaying
-- [ ] **Tasks**:
-  - [ ] Investigate logo display issue
+- [x] **Current Status**: Logo not displaying
+- [x] **Tasks**:
+  - [x] Investigate logo display issue

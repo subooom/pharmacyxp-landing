@@ -4,7 +4,7 @@ import React from "react";
 
 const WelcomeScreen = () => {
   return (
-    <div className="flex flex-col lg:flex-row items-center justify-start gap-24 px-[120px] py-[90px]">
+    <div className="flex flex-col items-center justify-start gap-8 px-4 py-12 lg:flex-row lg:gap-24 lg:px-28 lg:py-20">
       {/* Left Image Section */}
       <div className="flex lg:justify-around items-center flex-wrap">
         <Image
@@ -12,7 +12,7 @@ const WelcomeScreen = () => {
           width={400}
           src="https://medicinexp-staging.com/web/subooom_a_light_themed_image_of_a_doctor_wearing_a_stethoscope__b5c2bff0-8744-40c3-b590-94b3812622fc.png"
           alt="bannerImage"
-          className="w-[400px] rounded-tl-[122px] rounded-br-[122px]"
+          className="w-full max-w-sm rounded-br-[122px] rounded-tl-[122px] lg:w-[400px]"
         />
       </div>
 
