@@ -353,14 +353,16 @@ export default function SecurityDetailsPage() {
                 </>
               )}
             </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              className="gap-2 border-primary text-primary hover:bg-primary/10"
-            >
-              <Download className="h-5 w-5" />
-              Download Security Whitepaper
-            </Button>
+            <a href="/whitepaper/MEDICINEXP_Security_Whitepaper.pdf" download>
+              <Button
+                size="lg"
+                variant="outline"
+                className="gap-2 border-primary text-primary hover:bg-primary/10"
+              >
+                <Download className="h-5 w-5" />
+                Download Security Whitepaper
+              </Button>
+            </a>
             <Button
               size="lg"
               variant="ghost"
