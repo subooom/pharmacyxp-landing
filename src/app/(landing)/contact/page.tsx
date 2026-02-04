@@ -4,10 +4,10 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import BackersPanel from "@/components/composits/BackersPanel";
 import FromRacksToReceipts from "./_components/RackToReciepts";
 import FaqPanel from "@/components/composits/FaqPanel";
 import SectionTitle from "@/components/composits/SectionTitle";
-import BackersPanel from "@/components/composits/BackersPanel";
 import { CTABanner } from "@/components/composits/CTABanner";
 import DarkPanel from "@/components/composits/DarkPanel";
 

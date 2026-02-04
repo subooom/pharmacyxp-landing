@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Josefin_Sans } from "next/font/google";
-import "../globals.css";
+import "./../globals.css";
 import PageHeader from "@/components/composits/PageHeader";
 import Footer from "@/components/composits/Footer";
 import "leaflet/dist/leaflet.css";
