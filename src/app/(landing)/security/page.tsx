@@ -353,7 +353,7 @@ export default function SecurityDetailsPage() {
                 </>
               )}
             </Button>
-            <a href="/whitepaper/MEDICINEXP_Security_Whitepaper.pdf" download>
+            <a href="/whitepaper/Security_Whitepaper.pdf" download>
               <Button
                 size="lg"
                 variant="outline"
