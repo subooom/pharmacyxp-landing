@@ -17,11 +17,17 @@ export const metadata: Metadata = {
   description: "medicinexp - built for pharmacies, polyclinics, and hospitals",
 };
 
+interface LayoutProps {
+  children: React.ReactNode;
+  renderHeader?: boolean;
+  renderFooter?: boolean;
+}
+
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+  renderHeader = true,
+  renderFooter = true,
+}: LayoutProps) {
   return (
     <html lang="en" className="light" style={{ colorScheme: "light" }}>
       <head>
@@ -56,10 +62,10 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <PageHeader />
+          {renderHeader && <PageHeader />}
           <main>{children}</main>
+          {renderFooter && <Footer />}
         </ThemeProvider>
-        <Footer />
       </body>
     </html>
   );
