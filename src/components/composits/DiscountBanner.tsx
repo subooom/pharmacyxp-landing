@@ -4,17 +4,9 @@ import { Button } from "@/components/ui/button";
 import { Sparkles, ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { Routes } from "@/constants/routes";
-import VintageOfferTimer from "./VintageOfferTimer";
+import LaunchPulseTimer from "./VintageOfferTimer";
 
-interface DiscountBannerProps {
-  discount: number;
-  days: number;
-}
-
-export const DiscountBanner: React.FC<DiscountBannerProps> = ({
-  discount,
-  days,
-}) => {
+export const DiscountBanner: React.FC = () => {
   return (
     <div className="layout-container mx-auto my-12 md:my-20">
       <div className="relative overflow-hidden rounded-[2.5rem] bg-primary px-8 py-12 md:px-16 md:py-20 shadow-[0_20px_50px_rgba(0,0,0,0.2)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.4)] transition-all duration-500 hover:shadow-[0_30px_60px_rgba(0,0,0,0.3)] group/container">
@@ -39,7 +31,7 @@ export const DiscountBanner: React.FC<DiscountBannerProps> = ({
           <div className="flex-shrink-0 w-full lg:w-auto">
             {" "}
             <div className="mb-8 w-full max-w-2xl">
-              <VintageOfferTimer className="w-full" />
+              <LaunchPulseTimer className="w-full" variant="large" />
             </div>
             <Link href={Routes.sign_up} className="block w-full">
               <Button className="w-full lg:w-auto bg-white text-primary hover:bg-primary-50 hover:scale-105 active:scale-95 transition-all duration-300 font-black text-xl px-16 py-10 rounded-[2rem] shadow-[0_15px_30px_rgba(255,255,255,0.2)] flex items-center justify-center group">
