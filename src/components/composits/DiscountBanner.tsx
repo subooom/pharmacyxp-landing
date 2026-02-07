@@ -16,12 +16,12 @@ export const DiscountBanner: React.FC = () => {
 
         <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-12">
           <div className="flex-1 flex flex-col items-center lg:items-start text-center lg:text-left">
-            <Badge className="bg-white/20 text-white mb-8 hover:bg-white/30 border-none px-8 py-2.5 text-xs md:text-sm uppercase tracking-[0.2em] font-black backdrop-blur-xl rounded-full shadow-lg">
+            <Badge className="bg-white/20 text-white dark:text-primary-50 mb-8 hover:bg-white/30 border-none px-8 py-2.5 text-xs md:text-sm uppercase tracking-[0.2em] font-black backdrop-blur-xl rounded-full shadow-lg">
               <Sparkles className="w-4 h-4 mr-2 fill-yellow-400 text-yellow-400 animate-bounce" />
               Exclusive Launch Offer
             </Badge>
 
-            <p className="text-white/90 text-lg md:text-2xl max-w-2xl font-medium leading-relaxed">
+            <p className="text-white/90 dark:text-primary-50 text-lg md:text-2xl max-w-2xl font-medium leading-relaxed">
               Join the future of pharmacy management today.{" "}
               <br className="hidden sm:block" />
               Experience full-scale automation at half the price.
