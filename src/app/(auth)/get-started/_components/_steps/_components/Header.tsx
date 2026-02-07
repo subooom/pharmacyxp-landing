@@ -15,7 +15,7 @@ export const Header: React.FC<HeaderProps> = ({ title }) => (
 
     <div className="flex items-center gap-4">
       <div className="hidden lg:block">
-        <LaunchPulseTimer variant="mini" />
+        <LaunchPulseTimer className="fixed bottom-22 left-12" />
       </div>
       <ModeToggle />
     </div>

@@ -1,18 +1,9 @@
 "use client";
 
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, memo } from "react";
 import { cn } from "@/lib/utils";
 import { motion, AnimatePresence } from "framer-motion";
 import constants from "@/config/constants";
-
-interface TimeLeft {
-  days: number;
-  hours: number;
-  minutes: number;
-  seconds: number;
-  isActive: boolean;
-  isUpcoming: boolean;
-}
 
 interface LaunchPulseTimerProps {
   className?: string;
@@ -21,66 +12,18 @@ interface LaunchPulseTimerProps {
   discount?: number;
 }
 
-const LaunchPulseTimer: React.FC<LaunchPulseTimerProps> = ({
-  className,
-  variant = "large",
-  offerName = "Founder's Special",
-  discount = constants.discountPercentage,
-}) => {
-  const calculateTimeLeft = useCallback(() => {
-    const now = new Date().getTime();
-    const start = new Date(constants.discountStartDate).getTime();
-    const end = new Date(constants.discountEndDate).getTime();
-
-    let target = end;
-    const isActive = now >= start && now <= end;
-    const isUpcoming = now < start;
-
-    if (isUpcoming) {
-      target = start;
-    }
-
-    const difference = target - now;
-
-    if (difference <= 0 && !isUpcoming) {
-      return {
-        days: 0,
-        hours: 0,
-        minutes: 0,
-        seconds: 0,
-        isActive: false,
-        isUpcoming: false,
-      };
-    }
-
-    return {
-      days: Math.floor(difference / (1000 * 60 * 60 * 24)),
-      hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
-      minutes: Math.floor((difference / 1000 / 60) % 60),
-      seconds: Math.floor((difference / 1000) % 60),
-      isActive,
-      isUpcoming,
-    };
-  }, []);
-
-  const [timeLeft, setTimeLeft] = useState<TimeLeft>(calculateTimeLeft());
-
-  useEffect(() => {
-    // Throttle: runs exactly every second
-    const timer = setInterval(() => {
-      setTimeLeft(calculateTimeLeft());
-    }, 1000);
-    return () => clearInterval(timer);
-  }, [calculateTimeLeft]);
-
-  const Digit = ({
+// Separate component for digits to ensure only changed ones re-render/animate
+const Digit = memo(
+  ({
     value,
     label,
     color,
+    variant,
   }: {
     value: number;
     label: string;
     color: string;
+    variant: "large" | "mini";
   }) => (
     <div className="flex flex-col items-center gap-1">
       <div
@@ -91,13 +34,13 @@ const LaunchPulseTimer: React.FC<LaunchPulseTimerProps> = ({
             : "w-6 h-8 rounded-lg",
         )}
       >
-        <AnimatePresence mode="popLayout">
+        <AnimatePresence mode="popLayout" initial={false}>
           <motion.span
             key={value}
             initial={{ y: 15, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: -15, opacity: 0 }}
-            transition={{ duration: 0.3, ease: [0.23, 1, 0.32, 1] }}
+            transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
             className={cn(
               "font-black text-white font-[family-name:var(--font-josefin-sans)]",
               variant === "large" ? "text-xl md:text-2xl" : "text-[10px]",
@@ -118,9 +61,70 @@ const LaunchPulseTimer: React.FC<LaunchPulseTimerProps> = ({
         {label}
       </span>
     </div>
-  );
+  ),
+);
 
-  if (!timeLeft.isActive && !timeLeft.isUpcoming) return null;
+Digit.displayName = "Digit";
+
+const LaunchPulseTimer: React.FC<LaunchPulseTimerProps> = ({
+  className,
+  variant = "large",
+  offerName = "Founder's Special",
+  discount = constants.discountPercentage,
+}) => {
+  const [days, setDays] = useState(0);
+  const [hours, setHours] = useState(0);
+  const [minutes, setMinutes] = useState(0);
+  const [seconds, setSeconds] = useState(0);
+  const [status, setStatus] = useState<{
+    isActive: boolean;
+    isUpcoming: boolean;
+  }>({ isActive: false, isUpcoming: false });
+
+  const updateTimer = useCallback(() => {
+    const now = new Date().getTime();
+    const start = new Date(constants.discountStartDate).getTime();
+    const end = new Date(constants.discountEndDate).getTime();
+
+    let target = end;
+    let isActive = now >= start && now <= end;
+    let isUpcoming = now < start;
+
+    if (isUpcoming) target = start;
+
+    const difference = target - now;
+
+    if (difference <= 0 && !isUpcoming) {
+      setStatus({ isActive: false, isUpcoming: false });
+      return;
+    }
+
+    const d = Math.floor(difference / (1000 * 60 * 60 * 24));
+    const h = Math.floor((difference / (1000 * 60 * 60)) % 24);
+    const m = Math.floor((difference / 1000 / 60) % 60);
+    const s = Math.floor((difference / 1000) % 60);
+
+    // Only update state if values actually changed to prevent unnecessary re-renders
+    setDays((prev) => (prev !== d ? d : prev));
+    setHours((prev) => (prev !== h ? h : prev));
+    setMinutes((prev) => (prev !== m ? m : prev));
+    setSeconds((prev) => (prev !== s ? s : prev));
+    setStatus((prev) =>
+      prev.isActive !== isActive || prev.isUpcoming !== isUpcoming
+        ? { isActive, isUpcoming }
+        : prev,
+    );
+  }, []);
+
+  useEffect(() => {
+    updateTimer(); // Initial call
+
+    // Throttled timer: runs exactly every second
+    const timer = setInterval(updateTimer, 1000);
+    return () => clearInterval(timer);
+  }, [updateTimer]);
+
+  if (!status.isActive && !status.isUpcoming) return null;
 
   return (
     <div
@@ -137,7 +141,7 @@ const LaunchPulseTimer: React.FC<LaunchPulseTimerProps> = ({
             variant === "large" ? "text-[10px]" : "text-[5px]",
           )}
         >
-          {timeLeft.isUpcoming ? "Starts In" : offerName}
+          {status.isUpcoming ? "Starts In" : offerName}
         </span>
         <div
           className={cn(
@@ -164,7 +168,12 @@ const LaunchPulseTimer: React.FC<LaunchPulseTimerProps> = ({
             : "gap-1 px-1.5 py-1 rounded-xl",
         )}
       >
-        <Digit value={timeLeft.days} label="Days" color="text-blue-400" />
+        <Digit
+          value={days}
+          label="Days"
+          color="text-blue-400"
+          variant={variant}
+        />
         <span
           className={cn(
             "font-bold text-primary-950",
@@ -173,7 +182,12 @@ const LaunchPulseTimer: React.FC<LaunchPulseTimerProps> = ({
         >
           :
         </span>
-        <Digit value={timeLeft.hours} label="Hrs" color="text-purple-400" />
+        <Digit
+          value={hours}
+          label="Hrs"
+          color="text-purple-400"
+          variant={variant}
+        />
         <span
           className={cn(
             "font-bold text-primary-950",
@@ -182,7 +196,12 @@ const LaunchPulseTimer: React.FC<LaunchPulseTimerProps> = ({
         >
           :
         </span>
-        <Digit value={timeLeft.minutes} label="Min" color="text-emerald-400" />
+        <Digit
+          value={minutes}
+          label="Min"
+          color="text-emerald-400"
+          variant={variant}
+        />
         <span
           className={cn(
             "font-bold text-primary-950",
@@ -191,7 +210,12 @@ const LaunchPulseTimer: React.FC<LaunchPulseTimerProps> = ({
         >
           :
         </span>
-        <Digit value={timeLeft.seconds} label="Sec" color="text-rose-400" />
+        <Digit
+          value={seconds}
+          label="Sec"
+          color="text-rose-400"
+          variant={variant}
+        />
       </div>
 
       {variant === "large" && (

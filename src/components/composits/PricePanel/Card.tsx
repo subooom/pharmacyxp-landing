@@ -119,7 +119,7 @@ const PriceCard = ({
 
         {discount && (
           <div className="mb-6 flex justify-center">
-            <LaunchPulseTimer variant="mini" />
+            <LaunchPulseTimer className="items-center scale-80 -mt-4 -mb-16" />
           </div>
         )}
         <div className="my-4 rounded-lg p-4">
