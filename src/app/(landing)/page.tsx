@@ -15,6 +15,8 @@ import TrustAndSecuritySection from "../../components/composits/TrustAndSecurity
 import DatabaseReliabilityCard from "@/components/composits/DatabaseReliabilityCard";
 import { DoctorPlatformShowcase } from "../../components/composits/DoctorPlatformShowcase";
 import BackersPanel from "@/components/composits/BackersPanel";
+import { DiscountBanner } from "@/components/composits/DiscountBanner";
+import constants from "@/config/constants";
 
 export const metadata: Metadata = {
   title: "medicinexp - From Racks to Receipts",
@@ -26,6 +28,10 @@ export default function Home() {
     <div className="max-w-screen">
       {/* <FixedCTAButton /> */}
       <Banner />
+      <DiscountBanner
+        discount={constants.discountPercentage}
+        days={constants.discountDays}
+      />
       {/* <ClinicBuilder3D /> */}
       <PenAndPaper />
       <Callout />

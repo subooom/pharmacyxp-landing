@@ -4,6 +4,7 @@ import { cn } from "@/lib/utils";
 import { CSSProperties, useState } from "react";
 import Image from "next/image";
 import { ANIMATION_DURATION } from "@/app/(auth)/get-started/_steps/4ChooseYourPlan";
+import LaunchPulseTimer from "../VintageOfferTimer";
 
 export interface Price {
   id?: number;
@@ -21,6 +22,7 @@ export interface Price {
   created_at?: string;
   updated_at?: string;
   key?: string | number;
+  discount?: number;
 }
 
 const PriceCard = ({
@@ -34,8 +36,12 @@ const PriceCard = ({
   features,
   style,
   onMouseEnter,
+  discount,
 }: Price) => {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const discountedPrice = discount
+    ? price_for_first_year * (1 - discount / 100)
+    : price_for_first_year;
   return (
     <Card
       className={cn(
@@ -111,12 +117,24 @@ const PriceCard = ({
           )}
         </div>
 
+        {discount && (
+          <div className="mb-6 transform scale-90 origin-top">
+            <LaunchPulseTimer className="" />
+          </div>
+        )}
         <div className="my-4 rounded-lg p-4">
           <div className="mt-2">
-            <span className="text-3xl font-extrabold text-primary">
-              <span className="mr-2 text-lg font-semibold">रू</span>
-              {price_for_first_year}
-            </span>
+            <div className="flex flex-col items-center">
+              {discount && (
+                <span className="text-sm text-card-foreground/50 line-through font-bold">
+                  रू {price_for_first_year}
+                </span>
+              )}
+              <span className="text-3xl font-extrabold text-primary flex items-center">
+                <span className="mr-2 text-lg font-semibold">रू</span>
+                {discountedPrice}
+              </span>
+            </div>
             <span className="block text-sm text-card-foreground/70">
               Registration Cost
             </span>
