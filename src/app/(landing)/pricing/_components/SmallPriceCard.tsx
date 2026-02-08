@@ -6,7 +6,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React from "react";
 import LaunchPulseTimer from "@/components/composits/VintageOfferTimer";
-import constants from "@/config/constants";
+import { useDiscountOffer } from "@/hooks/useDiscountOffer";
 
 type PlanName = "basic" | "premium" | "executive" | "elite";
 
@@ -21,7 +21,8 @@ const currency = getCurrencySymbol("ne-NP", "NPR");
 function SmallPriceCard({ plan }: { plan: Plan }) {
   const router = useRouter();
   const planKey = plan.name.toLowerCase() as PlanName;
-  const discount = constants.discountPercentage;
+  const { data } = useDiscountOffer();
+  const discount = data ? Number(data.amount) : 0;
   const discountedPrice = discount
     ? plan.price_for_first_year * (1 - discount / 100)
     : plan.price_for_first_year;
@@ -75,14 +76,20 @@ function SmallPriceCard({ plan }: { plan: Plan }) {
             </small>
           </p>
 
-          {discount && (
+          {discount > 0 && data && (
             <div className="-my-4 flex justify-center scale-90 origin-center">
-              <LaunchPulseTimer className="items-start scale-75" />
+              <LaunchPulseTimer
+                className="items-start scale-75"
+                startDate={data.start_date}
+                endDate={data.end_date}
+                offerName={data.name}
+                discount={discount}
+              />
             </div>
           )}
           <div className="mb-6 p-3 bg-white/50 dark:bg-black/20 rounded-2xl border border-primary-900/5">
             <div className="flex flex-col items-center">
-              {discount && (
+              {discount > 0 && (
                 <span className="text-xs text-foreground/40 line-through font-bold">
                   {currency} {plan.price_for_first_year}
                 </span>

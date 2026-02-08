@@ -3,13 +3,14 @@
 import React, { useState, useEffect, useCallback, memo } from "react";
 import { cn } from "@/lib/utils";
 import { motion, AnimatePresence } from "framer-motion";
-import constants from "@/config/constants";
 
 interface LaunchPulseTimerProps {
   className?: string;
   variant?: "large" | "mini";
   offerName?: string;
   discount?: number;
+  startDate?: string;
+  endDate?: string;
 }
 
 // Separate component for digits to ensure only changed ones re-render/animate
@@ -70,7 +71,9 @@ const LaunchPulseTimer: React.FC<LaunchPulseTimerProps> = ({
   className,
   variant = "large",
   offerName = "Founder's Special",
-  discount = constants.discountPercentage,
+  discount = 50,
+  startDate,
+  endDate,
 }) => {
   const [days, setDays] = useState(0);
   const [hours, setHours] = useState(0);
@@ -82,13 +85,14 @@ const LaunchPulseTimer: React.FC<LaunchPulseTimerProps> = ({
   }>({ isActive: false, isUpcoming: false });
 
   const updateTimer = useCallback(() => {
+    if (!startDate || !endDate) return;
     const now = new Date().getTime();
-    const start = new Date(constants.discountStartDate).getTime();
-    const end = new Date(constants.discountEndDate).getTime();
+    const start = new Date(startDate).getTime();
+    const end = new Date(endDate).getTime();
 
     let target = end;
-    let isActive = now >= start && now <= end;
-    let isUpcoming = now < start;
+    const isActive = now >= start && now <= end;
+    const isUpcoming = now < start;
 
     if (isUpcoming) target = start;
 
@@ -114,7 +118,7 @@ const LaunchPulseTimer: React.FC<LaunchPulseTimerProps> = ({
         ? { isActive, isUpcoming }
         : prev,
     );
-  }, []);
+  }, [startDate, endDate]);
 
   useEffect(() => {
     updateTimer(); // Initial call

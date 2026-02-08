@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -5,8 +6,15 @@ import { Sparkles, ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { Routes } from "@/constants/routes";
 import LaunchPulseTimer from "./VintageOfferTimer";
+import { useDiscountOffer } from "@/hooks/useDiscountOffer";
 
 export const DiscountBanner: React.FC = () => {
+  const { data, loading } = useDiscountOffer();
+
+  if (loading || !data) {
+    return null;
+  }
+
   return (
     <div className="layout-container mx-auto my-12 md:my-20">
       <div className="relative overflow-hidden rounded-[2.5rem] bg-primary px-4 py-6 md:px-12 md:py-12 shadow-[0_20px_50px_rgba(0,0,0,0.2)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.4)] transition-all duration-500 hover:shadow-[0_30px_60px_rgba(0,0,0,0.3)] group/container">
@@ -18,19 +26,25 @@ export const DiscountBanner: React.FC = () => {
           <div className="flex-1 flex flex-col items-center lg:items-start text-center lg:text-left">
             <Badge className="bg-white/20 text-white dark:text-primary-50 mb-8 hover:bg-white/30 border-none px-8 py-2.5 text-xs md:text-sm uppercase tracking-[0.2em] font-black backdrop-blur-xl rounded-full shadow-lg">
               <Sparkles className="w-4 h-4 mr-2 fill-yellow-400 text-yellow-400 animate-bounce" />
-              Exclusive Launch Offer
+              {data.tagline}
             </Badge>
 
             <p className="text-white/90 dark:text-primary-50 text-lg md:text-2xl max-w-2xl font-medium leading-relaxed">
-              Join the future of pharmacy management today.{" "}
-              <br className="hidden sm:block" />
-              Experience full-scale automation at half the price.
+              {data.description} <br className="hidden sm:block" />
+              {data.description_line_2}
             </p>
           </div>
 
           <div className="flex-shrink-0 w-full lg:w-auto">
             <div className=" w-full max-w-2xl scale-90 -translate-x-4 mb-4">
-              <LaunchPulseTimer className="w-full" variant="large" />
+              <LaunchPulseTimer
+                className="w-full"
+                variant="large"
+                startDate={data.start_date}
+                endDate={data.end_date}
+                offerName={data.name}
+                discount={Number(data.amount)}
+              />
             </div>
             <Link href={Routes.sign_up} className="block w-full">
               <Button className="w-full lg:w-auto bg-white text-primary hover:bg-primary-50 hover:scale-105 active:scale-95 transition-all duration-300 font-black text-xl px-8 py-4 rounded-[2rem] shadow-[0_15px_30px_rgba(255,255,255,0.2)] flex items-center justify-center group">

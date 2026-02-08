@@ -5,6 +5,7 @@ import { CSSProperties, useState } from "react";
 import Image from "next/image";
 import { ANIMATION_DURATION } from "@/app/(auth)/get-started/_steps/4ChooseYourPlan";
 import LaunchPulseTimer from "../VintageOfferTimer";
+import { useDiscountOffer } from "@/hooks/useDiscountOffer";
 
 export interface Price {
   id?: number;
@@ -36,9 +37,16 @@ const PriceCard = ({
   features,
   style,
   onMouseEnter,
-  discount,
 }: Price) => {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const { data } = useDiscountOffer();
+
+  // Use API discount if available, otherwise fall back to prop discount (or 0)
+  // Per requirements: "if there is no data returned... no discount offers should be shown"
+  // So strictly speaking we should rely on data. But prop might be used for other overrides?
+  // Assuming API is source of truth.
+  const discount = data ? Number(data.amount) : 0;
+
   const discountedPrice = discount
     ? price_for_first_year * (1 - discount / 100)
     : price_for_first_year;
@@ -117,15 +125,21 @@ const PriceCard = ({
           )}
         </div>
 
-        {discount && (
+        {discount > 0 && data && (
           <div className="mb-6 flex justify-center">
-            <LaunchPulseTimer className="items-center scale-80 -mt-4 -mb-16" />
+            <LaunchPulseTimer
+              className="items-center scale-80 -mt-4 -mb-16"
+              startDate={data.start_date}
+              endDate={data.end_date}
+              offerName={data.name}
+              discount={discount}
+            />
           </div>
         )}
         <div className="my-4 rounded-lg p-4">
           <div className="mt-2">
             <div className="flex flex-col items-center">
-              {discount && (
+              {discount > 0 && (
                 <span className="text-sm text-card-foreground/50 line-through font-bold">
                   रू {price_for_first_year}
                 </span>

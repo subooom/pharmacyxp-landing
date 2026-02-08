@@ -86,7 +86,6 @@ function PricePanel() {
                   price_for_first_year={price_for_first_year}
                   number_of_services={number_of_services}
                   features={`${features}`}
-                  discount={constants.discountPercentage}
                 />
               );
             })}
