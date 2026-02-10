@@ -12,7 +12,6 @@ import { Button } from "@/components/ui/button";
 import { AxiosError, AxiosResponse } from "axios";
 import { backupPlans, Plan } from "./data";
 import { setLocalPlan } from "@/lib/utils";
-import constants from "@/config/constants";
 
 function PricePanel() {
   const [plans, setPlans] = useState<Plan[]>(backupPlans);
