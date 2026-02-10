@@ -87,10 +87,10 @@ const colors = [
   "bg-blue-500 hover:bg-blue-500/90",
   "bg-green-500 hover:bg-green-500/90",
   "bg-purple-500 hover:bg-purple-500/90 text-primary-50",
-  "bg-red-500 hover:bg-red-500/90",
+  "bg-red-500 hover:bg-red-500/90 text-primary-50",
   "bg-yellow-500 hover:bg-yellow-500/90 text-primary-50",
-  "bg-pink-500 hover:bg-pink-500/90",
-  "bg-primary hover:bg-primary/90 text-black",
+  "bg-pink-500 hover:bg-pink-500/90 text-white",
+  "bg-primary hover:bg-primary/90 text-white",
 ];
 
 export function DoctorPlatformShowcase() {
@@ -124,7 +124,7 @@ export function DoctorPlatformShowcase() {
           <img
             src="/logo-light.png"
             alt="Medicinexp Logo"
-            className="inline-block mx-auto hidden dark:inline-block h-16 mr-2"
+            className="mx-auto hidden dark:inline-block h-16 mr-2"
           />{" "}
           <img
             src="/logo.png"
