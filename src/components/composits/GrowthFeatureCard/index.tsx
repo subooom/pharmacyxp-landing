@@ -7,6 +7,7 @@ import { Settings } from "lucide-react";
 import CardImage from "./CardImage";
 import SectionTitle from "../SectionTitle";
 import DarkPanel from "../DarkPanel";
+import Link from "next/link";
 
 function GrowthAndImpact() {
   return (
@@ -61,9 +62,11 @@ function GrowthAndImpact() {
             <GrowthFeatureCard
               bottomPanel={
                 <div className="h-12">
-                  <Button size="lg" className="h-12 w-full rounded-4xl">
-                    Get Started
-                  </Button>
+                  <Link href="/get-started">
+                    <Button size="lg" className="h-12 w-full rounded-4xl">
+                      Get Started
+                    </Button>
+                  </Link>
                 </div>
               }
               feature={{
