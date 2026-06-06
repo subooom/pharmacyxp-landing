@@ -1,4 +1,4 @@
-import Image from "next/image";
+// import Image from "next/image";
 import {
   Card,
   CardContent,
@@ -61,18 +61,18 @@ const doctorTypes = [
   { name: "Specialists", tag: "Expert" },
 ];
 
-const doctors = [
-  { id: "1", name: "Dr. Aasha Sharma", specialization: "Cardiologist" },
-  { id: "2", name: "Dr. Bikram Thapa", specialization: "Neurologist" },
-  { id: "3", name: "Dr. Sunita Koirala", specialization: "Pediatrician" },
-  { id: "4", name: "Dr. Rajan Mahat", specialization: "Orthopedic Surgeon" },
-  { id: "5", name: "Dr. Manisha Gurung", specialization: "Dermatologist" },
-  {
-    id: "6",
-    name: "Dr. Shubham Kharel",
-    specialization: "Computer Specialist",
-  },
-];
+// const doctors = [
+//   { id: "1", name: "Dr. Aasha Sharma", specialization: "Cardiologist" },
+//   { id: "2", name: "Dr. Bikram Thapa", specialization: "Neurologist" },
+//   { id: "3", name: "Dr. Sunita Koirala", specialization: "Pediatrician" },
+//   { id: "4", name: "Dr. Rajan Mahat", specialization: "Orthopedic Surgeon" },
+//   { id: "5", name: "Dr. Manisha Gurung", specialization: "Dermatologist" },
+//   {
+//     id: "6",
+//     name: "Dr. Shubham Kharel",
+//     specialization: "Computer Specialist",
+//   },
+// ];
 
 const benefits = [
   "31-day free trial",
@@ -133,7 +133,7 @@ export function DoctorPlatformShowcase() {
           />{" "}
         </div>
         {/* Meet Our Doctors */}
-        <div className="py-12 text-center relative">
+        {/* <div className="py-12 text-center relative">
           <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">
             Meet Our Doctors
           </h2>
@@ -170,7 +170,7 @@ export function DoctorPlatformShowcase() {
               </div>
             ))}
           </div>
-        </div>
+        </div> */}
         {/* Doctor Types */}
         <div className="py-10 text-center">
           <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">
