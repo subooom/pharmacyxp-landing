@@ -47,7 +47,7 @@ function PricePanel() {
       <SectionTitle
         title="Our"
         titleContinued="Plans"
-        description="We don't ask for credit cards, it's free for the first 3 months. You can decide if you wanna pay or not later on."
+        description="No credit card required. Free for the first month. Pay only when you're sure."
       />
       <APIFetchHandler
         height="auto"
