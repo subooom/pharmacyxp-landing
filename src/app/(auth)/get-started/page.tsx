@@ -1,7 +1,7 @@
 "use client";
 import { usePlans } from "./_hooks/usePlans";
 import { useSignUpValidation } from "./_hooks/useSignUpValidation";
-import { useCallback } from "react";
+import { useCallback, useEffect } from "react";
 import { mapJoiErrorToFieldMessages } from "@/lib/utils";
 import renderStep from "./_utils/renderStep";
 import { initFirebaseApp } from "@/auth/firebase.app";
@@ -21,7 +21,17 @@ export default function SignUp() {
     isLastPage,
     setErrors,
     formData: state,
+    updateFormData,
   } = useSignUpStore();
+
+  // MR referral QR codes / links open /get-started?coupon=<code>: pre-fill it into
+  // "Coupon/MR Code" (the last step verifies it once it is 7 characters)
+  useEffect(() => {
+    const code = new URLSearchParams(window.location.search).get("coupon");
+    if (code) {
+      updateFormData({ coupon_code: code.trim().toUpperCase() });
+    }
+  }, [updateFormData]);
 
   // Use the custom hooks that now interact with Zustand
   const { plans } = usePlans();
