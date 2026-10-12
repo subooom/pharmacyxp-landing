@@ -10,17 +10,17 @@ export function useCoupon() {
   const verifyCoupon = (code: string) => {
     setStatus({ couponLoading: true, couponError: "" });
 
-    console.log("verifying coupon");
-    if (code.length !== 7) {
+    // MR codes are 4–12 characters: letters, numbers and dashes (e.g. SAR-52)
+    if (!/^[A-Za-z0-9-]{4,12}$/.test(code)) {
       setStatus({
-        couponError: "Coupon Code must be 7 characters long.",
+        couponError: "Codes are 4 to 12 letters, numbers or dashes.",
         couponLoading: false,
       });
       setCouponData(undefined);
       return;
     }
 
-    Api.get(`/verify-coupon-code/${code}`)
+    Api.get(`/verify-coupon-code/${encodeURIComponent(code.toUpperCase())}`)
       .then((resp) => {
         if (Object.keys(resp.data || {}).length === 0) {
           setStatus({

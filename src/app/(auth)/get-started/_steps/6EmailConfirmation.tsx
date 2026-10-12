@@ -201,12 +201,10 @@ const EmailConfirmation = () => {
   }, [data]);
 
   useEffect(() => {
-    if (couponCode.length === 7) {
-      // make api request to verify coupon code
-      if (verifyCoupon) {
-        verifyCoupon(couponCode);
-      }
-    }
+    // Codes are 4–12 characters; check once the pharmacy pauses typing
+    if (couponCode.length < 4 || couponCode.length > 12 || !verifyCoupon) return;
+    const timer = setTimeout(() => verifyCoupon(couponCode), 500);
+    return () => clearTimeout(timer);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [couponCode]);
 
@@ -437,7 +435,8 @@ const EmailConfirmation = () => {
                       onCouponCodeChange(e.target.value);
                     }}
                     disabled={couponCodeLoading && !couponError}
-                    placeholder="TFX356"
+                    placeholder="SAR-52"
+                    maxLength={12}
                   />
                   {couponError || errors.coupon_code ? (
                     <Button
