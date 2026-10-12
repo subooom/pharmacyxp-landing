@@ -39,23 +39,24 @@ export const Footer: React.FC<FooterProps> = ({
   });
 
   return (
-    <div className="z-50 flex flex-col items-center justify-between gap-4 border-t bg-background px-4 py-3 sm:flex-row sm:px-8 lg:px-20">
+    // Stays at the bottom of the screen so Next is always in reach on a phone
+    <div className="sticky bottom-0 z-50 flex flex-col items-center justify-between gap-3 border-t bg-background/95 px-4 py-3 backdrop-blur sm:flex-row sm:gap-4 sm:px-8 lg:px-20">
       {page !== 7 ? (
         <>
           <Link
             href={Routes.home}
-            className="flex items-center text-primary-950 hover:underline"
+            className="hidden items-center text-primary-950 hover:underline sm:flex"
           >
             <ArrowLeft className="w-4 h-4 mr-2" />
             Go Back
           </Link>
 
-          <div className="flex items-center gap-4">
+          <div className="flex w-full items-center gap-3 sm:w-auto sm:gap-4">
             {currentPage > 0 && (
               <Button
                 onClick={handleBack}
                 variant="outline"
-                className="w-full sm:w-[200px]"
+                className="h-12 flex-1 sm:w-[200px] sm:flex-none"
               >
                 Back
               </Button>
@@ -70,7 +71,7 @@ export const Footer: React.FC<FooterProps> = ({
                   console.error(err);
                 }
               }}
-              className="uppercase tracking-wide px-10 py-6 text-lg w-full sm:w-[200px]"
+              className="h-12 flex-1 text-base uppercase tracking-wide sm:w-[200px] sm:flex-none sm:text-lg"
             >
               {renderButtonText()}
             </Button>
@@ -82,11 +83,11 @@ export const Footer: React.FC<FooterProps> = ({
         </h1>
       ) : (
         <>
-          <h1>
-            <CheckCircle className="w-10 h-10 text-green-500" />
+          <h1 className="flex items-center gap-2 text-center">
+            <CheckCircle className="h-8 w-8 shrink-0 text-green-500 sm:h-10 sm:w-10" />
             Your account has been created successfully!{" "}
           </h1>
-          <h1>
+          <h1 className="w-full sm:w-auto">
             <Button
               disabled={isNextDisabled}
               onClick={() => {

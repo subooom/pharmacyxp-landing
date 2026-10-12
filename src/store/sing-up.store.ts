@@ -49,6 +49,10 @@ interface SignUpStore {
   setCouponData: (data?: CouponCode) => void;
 
   clearCoupon: () => void;
+
+  // Filled in from a rep's visit (personal link, or rep code + PAN)
+  invite: { repName: string | null } | null;
+  setInvite: (invite: { repName: string | null } | null) => void;
   // --- API Status Slice ---
   status: {
     plansLoading: boolean;
@@ -160,7 +164,8 @@ export const useSignUpStore = create<SignUpStore>()(
     nextPage: () =>
       set((state) => ({ page: Math.min(state.page + 1, state.maxSteps) })),
     goToPage: (page) =>
-      set((state) => ({ page: Math.max(1, Math.min(page, state.maxSteps)) })),
+      // Back from step 1 returns to the welcome screen (and its "visited by a rep?" card)
+      set((state) => ({ page: Math.max(0, Math.min(page, state.maxSteps)) })),
     get isFirstPage() {
       return get().page === 1;
     },
@@ -188,6 +193,8 @@ export const useSignUpStore = create<SignUpStore>()(
       couponError: null,
       couponSuccess: false,
     },
+    invite: null,
+    setInvite: (invite) => set({ invite }),
     clearCoupon: () => {
       set((state) => {
         state.status.couponError = null;

@@ -258,7 +258,8 @@ const EmailConfirmation = () => {
         {!isEmailVerified ? (
           <>
             <div className="flex flex-col mt-5">
-              <div className="social-auth flex items-center gap-2 max-w-sm">
+              <div className="social-auth flex w-full flex-col items-stretch gap-2 sm:w-auto sm:flex-row sm:items-center">
+                {/* Stacked on phones, side by side from tablet up */}
                 <Button
                   className="flex items-center gap-2 bg-white not-disabled:hover:bg-primary-400/10 disabled:bg-white/80 dark:bg-primary-100 text-primary-950 border border-primary-900/10 dark:disabled:bg-primary-50 dark:not-disabled:hover:bg-primary-200"
                   style={{ fontSize: 12 }}
@@ -274,7 +275,7 @@ const EmailConfirmation = () => {
                   />
                   <span>Google Authentication</span>
                 </Button>
-                <h4 className="m-0">OR</h4>
+                <h4 className="m-0 text-center">OR</h4>
                 <Button
                   className="facebook-auth flex items-center gap-2 bg-white hover:bg-primary-400/10 dark:bg-primary-100 text-primary-950 border border-primary-900/10 dark:hover:bg-primary-200"
                   style={{ fontSize: 12 }}
@@ -412,7 +413,7 @@ const EmailConfirmation = () => {
               </div>
             </div>
           ) : null}
-          <div className="transition-all duration-200 ease-in mt-32">
+          <div className="transition-all duration-200 ease-in mt-10 sm:mt-32">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="space-y-2">
                 <Label htmlFor="coupon_code">Coupon/MR Code</Label>
@@ -426,7 +427,7 @@ const EmailConfirmation = () => {
                     id="coupon_code"
                     type="text"
                     className={cn(
-                      "h-14 uppercase min-w-xs",
+                      "h-14 uppercase min-w-0 flex-1",
                       couponError ? "border-2 border-destructive" : "",
                     )}
                     style={{}}
@@ -512,7 +513,7 @@ const EmailConfirmation = () => {
         <div className="mt-4">
           <div className="flex justify-between items-center w-full">
             <Button
-              className="flex items-center gap-2 bg-primary hover:bg-primary/80 rounded-sm h-[56px] min-w-md mt-3 disabled:opacity-90"
+              className="flex w-full items-center gap-2 bg-primary hover:bg-primary/80 rounded-sm h-[56px] mt-3 disabled:opacity-90 sm:w-auto sm:min-w-md"
               onClick={() =>
                 handleCreateApplicationClicked(validateCurrentStep)
               }
