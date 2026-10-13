@@ -2,6 +2,8 @@
 
 One line per change: date · what · where (PR/branch). Append when you finish work.
 
+- 2026-10-14 · agents/architecture.md is the single entry point (index, keep-current rules,
+  anti-abuse); replaces overview.md; CLAUDE.md imports it · PR #22.
 - 2026-10-14 · AGENTS.md + agents/ docs.
 - 2026-10-13 · Sign-up filled from a rep's visit (invite link, rep code + PAN); relaxed validation
   (shop names, any email TLD, PAN as text, municipality/ward optional); phone layout fixes (sticky
