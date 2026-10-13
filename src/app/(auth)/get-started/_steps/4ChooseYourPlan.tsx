@@ -33,7 +33,8 @@ const ChooseYourPlan = () => {
   const [localPlan] = useState<number>();
   useEffect(() => {
     const locPlan = getLocalPlan();
-    if (locPlan) {
+    // A plan already chosen (e.g. the one the rep pitched) wins over the pricing page's
+    if (locPlan && !currentPlanId) {
       setLocalPlan(locPlan);
       updateFormData({ plan_id: locPlan });
     }

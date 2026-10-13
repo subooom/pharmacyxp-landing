@@ -30,6 +30,8 @@ export interface SignUpState {
   password: string;
   confirm_password: string;
   coupon_code: string;
+  // Set when the form was filled from a rep's visit; ties the pharmacy to that lead
+  lead_token?: string;
 }
 
 export type UpdateStateType = (

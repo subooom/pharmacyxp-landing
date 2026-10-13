@@ -151,7 +151,7 @@ const OrganizationAddress = () => {
         {loading ? "Auto Filling" : success ? "Auto Filled" : "Auto Fill"}
       </Button>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+      <div className="mb-6 grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
         <div className="space-y-2">
           <Label htmlFor={"countrySelect"}>
             Country *{loading && <Spinner />}
@@ -213,9 +213,9 @@ const OrganizationAddress = () => {
             </p>
           )}
         </div>
-        {renderField("vdc_municipality", "Municipality *", "text")}
-        {renderField("line_3_area_locality", "Line 3 Area Locality *", "text")}
-        {renderField("ward_number", "Ward Number *", "number")}
+        {renderField("line_3_area_locality", "Area / Locality *", "text")}
+        {renderField("vdc_municipality", "Municipality", "text")}
+        {renderField("ward_number", "Ward Number", "number")}
         {renderField(
           "line_1_number_building",
           "Line 1 Building Number",

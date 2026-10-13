@@ -13,18 +13,19 @@ export const useSignUpValidation = (
       case 1:
         return Joi.object({
           admin_name: Joi.string()
-            .pattern(/^[A-Za-z ]+$/)
+            .pattern(/^[\p{L} .']+$/u)
             .min(3)
             .max(30)
             .required()
             .messages({
               "string.base": `Your name should only contain letters.`,
+              "string.pattern.base": `Your name should only contain letters.`,
               "string.empty": `Your name cannot be empty.`,
               "string.min": `Your name should have a minimum length of {#limit}`,
               "string.max": `Your name should have a maximum length of {#limit}`,
             }),
           admin_email: Joi.string()
-            .email({ minDomainSegments: 2, tlds: { allow: ["com", "net"] } })
+            .email({ minDomainSegments: 2, tlds: { allow: false } })
             .required()
             .messages({
               "string.email": `Not a valid email.`,
@@ -45,13 +46,15 @@ export const useSignUpValidation = (
       case 2:
         return Joi.object({
           organization_name: Joi.string()
-            .pattern(/^[A-Za-z .]+$/)
+            // Real shop names: "Sharma Pharmacy & Clinic", "New Life Pharma 2"
+            .pattern(/^[\p{L}\p{N} .,&'()/-]+$/u)
             .min(3)
             .max(70)
             .required()
             .messages({
               "string.required": "Organization name is required",
               "string.base": `Your organization name should only contain letters.`,
+              "string.pattern.base": `Use letters, numbers, spaces and . , & ' ( ) / - only.`,
               "string.empty": `Your organization name cannot be empty.`,
               "string.min": `Your organization name should have a minimum length of {#limit}`,
               "string.max": `Your organization name should have a maximum length of {#limit}`,
@@ -111,12 +114,8 @@ export const useSignUpValidation = (
           zip_postcode: Joi.number().allow("").optional().messages({
             "number.base": `ZIP/Postcode must be a number.`,
           }),
-          ward_number: Joi.string().required().messages({
-            "string.empty": `Ward Number cannot be empty.`,
-          }),
-          vdc_municipality: Joi.string().required().messages({
-            "string.empty": `VDC/Municipality cannot be empty.`,
-          }),
+          ward_number: Joi.string().allow("").optional(),
+          vdc_municipality: Joi.string().allow("").optional(),
 
           city: Joi.string().required().messages({
             "string.empty": `City cannot be empty.`,
@@ -155,7 +154,7 @@ export const useSignUpValidation = (
           admin_email: Joi.string()
             .email({
               minDomainSegments: 2,
-              tlds: { allow: ["com", "net"] },
+              tlds: { allow: false },
             })
             .required()
             .messages({

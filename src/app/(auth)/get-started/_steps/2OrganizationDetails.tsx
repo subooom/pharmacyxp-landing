@@ -137,7 +137,9 @@ const OrganizationDetails = () => {
             onChange={({ target }) =>
               updateFormData({ organization_pan_number: target.value })
             }
-            type="number"
+            // Text, not number: keeps leading zeros and has no spinner
+            type="text"
+            inputMode="numeric"
             className={
               errors?.organization_pan_number ? "border-destructive" : ""
             }

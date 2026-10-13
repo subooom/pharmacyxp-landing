@@ -1,12 +1,14 @@
 "use client";
 import { usePlans } from "./_hooks/usePlans";
 import { useSignUpValidation } from "./_hooks/useSignUpValidation";
-import { useCallback } from "react";
+import { useCallback, useEffect } from "react";
 import { mapJoiErrorToFieldMessages } from "@/lib/utils";
 import renderStep from "./_utils/renderStep";
 import { initFirebaseApp } from "@/auth/firebase.app";
 import { useSignUpStore } from "@/store/sing-up.store";
 import Steps from "./_components/_steps";
+import { useSignupInvite } from "./_hooks/useSignupInvite";
+import { toast } from "sonner";
 
 initFirebaseApp();
 
@@ -17,11 +19,35 @@ export default function SignUp() {
     maxSteps,
     nextPage,
     goToPage,
-    isFirstPage,
-    isLastPage,
     setErrors,
     formData: state,
+    updateFormData,
   } = useSignUpStore();
+  // The store's own isFirstPage/isLastPage never update; the last step before
+  // "thank you" is the email step
+  const isFirstPage = page === 0;
+  const isLastPage = page === maxSteps - 1;
+
+  const { fromLink } = useSignupInvite();
+
+  // MR referral QR codes / links open /get-started?coupon=<code>: pre-fill it into
+  // "Coupon/MR Code" (the last step verifies it). A rep's personal link
+  // (?invite=<token>) fills in the whole form from their visit.
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const code = params.get("coupon");
+    if (code) {
+      updateFormData({ coupon_code: code.trim().toUpperCase() });
+    }
+    const invite = params.get("invite");
+    if (invite) {
+      fromLink(invite).then((filled) => {
+        if (!filled) {
+          toast.error("This link has expired or was already used. You can still fill the form yourself.");
+        }
+      });
+    }
+  }, [updateFormData, fromLink]);
 
   // Use the custom hooks that now interact with Zustand
   const { plans } = usePlans();
