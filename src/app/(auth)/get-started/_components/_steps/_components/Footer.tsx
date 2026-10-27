@@ -87,25 +87,30 @@ export const Footer: React.FC<FooterProps> = ({
             <CheckCircle className="h-8 w-8 shrink-0 text-green-500 sm:h-10 sm:w-10" />
             Your account has been created successfully!{" "}
           </h1>
-          <h1 className="w-full sm:w-auto">
-            <Button
-              disabled={isNextDisabled}
-              onClick={() => {
-                try {
-                  window.open(
-                    getActualUrl(
-                      domainEvent?.data.url || "https://medicinexp.com",
-                    ),
-                  );
-                } catch (err) {
-                  console.error(err);
-                }
-              }}
-              className="uppercase tracking-wide px-10 py-6 text-lg w-full sm:w-auto"
-            >
-              Go to your Admin Panel
-            </Button>
-          </h1>
+          {
+            domainEvent?.data.url ? (
+              <h1 className="w-full sm:w-auto">
+                <Button
+                  disabled={isNextDisabled}
+                  onClick={() => {
+                    try {
+                      window.open(
+                        getActualUrl(
+                          domainEvent?.data.url || "https://medicinexp.com",
+                        ),
+                      );
+                    } catch (err) {
+                      console.error(err);
+                    }
+                  }}
+                  className="uppercase tracking-wide px-10 py-6 text-lg w-full sm:w-auto"
+                >
+                  Go to your Admin Panel
+                </Button>
+              </h1>
+              ) : null
+          }
+          
         </>
       )}
     </div>
