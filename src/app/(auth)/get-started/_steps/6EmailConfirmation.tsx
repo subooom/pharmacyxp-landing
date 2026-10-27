@@ -491,8 +491,6 @@ const EmailConfirmation = () => {
                     <div className="flex flex-col w-1/2 h-full justify-center">
                       <h4>{couponData?.discount_in_percentage} % OFF</h4>
                       <div>{couponData?.coupon}</div>
-                      <div>{couponData?.medical_representative?.contact}</div>
-                      <div>{couponData?.medical_representative?.email}</div>
                     </div>
                     <div className="w-1/3 flex flex-col h-full justify-center items-center">
                       <Image

@@ -41,37 +41,59 @@ export function useSignupInvite() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  const apply = useCallback((prefill: SignupPrefill) => {
-    const { updateFormData, updateOrganizationAddress, setInvite, goToPage } =
+    const apply = useCallback((prefill: SignupPrefill) => {
+    const { formData, updateFormData, updateOrganizationAddress, setInvite, goToPage, page } =
       useSignUpStore.getState();
-    const address = prefill.organization_address;
+    const address = prefill.organization_address || {};
     const country = address.country || "NP";
+
+    // Helper: only use the incoming value if the current value is empty
+    const merge = (current: any, incoming: any) => {
+      // If current has a value, keep it. Otherwise use incoming.
+      if (current !== undefined && current !== null && current !== "") {
+        return current;
+      }
+      return incoming;
+    };
 
     updateFormData(
       present({
-        admin_name: prefill.admin_name,
-        admin_contact: prefill.admin_contact,
-        admin_email: prefill.admin_email,
-        organization_name: prefill.organization_name,
-        organization_contact: prefill.organization_contact,
-        organization_pan_number: prefill.organization_pan_number,
-        plan_id: prefill.plan_id,
-        coupon_code: prefill.coupon_code,
+        admin_name: merge(formData.admin_name, prefill.admin_name),
+        admin_contact: merge(formData.admin_contact, prefill.admin_contact),
+        admin_email: merge(formData.admin_email, prefill.admin_email),
+        organization_name: merge(formData.organization_name, prefill.organization_name),
+        organization_contact: merge(formData.organization_contact, prefill.organization_contact),
+        organization_pan_number: merge(formData.organization_pan_number, prefill.organization_pan_number),
+        plan_id: merge(formData.plan_id, prefill.plan_id),
+        coupon_code: merge(formData.coupon_code, prefill.coupon_code),
         lead_token: prefill.token,
       }),
     );
     updateOrganizationAddress(
       present({
-        country,
-        state_province_county: matchRegion(country, address.state_province_county),
-        city: address.city || address.district,
-        line_3_area_locality: address.line_3_area_locality,
+        country: merge(formData.organization_address?.country, country),
+        state_province_county: merge(
+          formData.organization_address?.state_province_county,
+          matchRegion(country, address.state_province_county)
+        ),
+        city: merge(
+          formData.organization_address?.city,
+          address.city || address.district
+        ),
+        line_3_area_locality: merge(
+          formData.organization_address?.line_3_area_locality,
+          address.line_3_area_locality
+        ),
       }),
     );
     setInvite({ repName: prefill.rep_name });
-    goToPage(1);
+    
+    // Only jump to page 1 if user is still on the welcome page
+    if (page === 0) {
+      goToPage(1);
+    }
   }, []);
-
+  
   const handle = useCallback(
     async (request: Promise<{ data: SignupPrefill }>) => {
       setLoading(true);

@@ -9,6 +9,7 @@ import { useSignUpStore } from "@/store/sing-up.store";
 import Steps from "./_components/_steps";
 import { useSignupInvite } from "./_hooks/useSignupInvite";
 import { toast } from "sonner";
+import { SignUpState } from "./_hooks/useSignUpState";
 
 initFirebaseApp();
 
@@ -28,6 +29,12 @@ export default function SignUp() {
   const isFirstPage = page === 0;
   const isLastPage = page === maxSteps - 1;
 
+  useEffect(() => {
+    if (isLastPage) { // clear storage on last page hit(successfull verification and tenant creation initiated)
+      localStorage.removeItem("signup-storage");
+    }
+  }, [isLastPage]);
+
   const { fromLink } = useSignupInvite();
 
   // MR referral QR codes / links open /get-started?coupon=<code>: pre-fill it into
@@ -40,12 +47,21 @@ export default function SignUp() {
       updateFormData({ coupon_code: code.trim().toUpperCase() });
     }
     const invite = params.get("invite");
-    if (invite) {
+    // Only fire the invite API if there's no in-progress signup saved in local storage
+    const hasStoredSignup = localStorage.getItem("signup-storage");
+    if (invite && !hasStoredSignup) {
       fromLink(invite).then((filled) => {
         if (!filled) {
           toast.error("This link has expired or was already used. You can still fill the form yourself.");
         }
       });
+    }
+    if(hasStoredSignup) {
+      const parsedStoredSignup = JSON.parse(hasStoredSignup);
+      console.log(parsedStoredSignup)
+      const page = parsedStoredSignup.state.page;
+      updateFormData(parsedStoredSignup.state.formData as  Partial<SignUpState> )
+      goToPage(page)
     }
   }, [updateFormData, fromLink]);
 
@@ -56,7 +72,6 @@ export default function SignUp() {
 
   const handleNext = useCallback(() => {
     const { error } = validateCurrentStep();
-    console.log(error);
     if (error) {
       setErrors(mapJoiErrorToFieldMessages(error));
       return;
@@ -64,64 +79,6 @@ export default function SignUp() {
     setErrors({});
     nextPage();
   }, [nextPage, validateCurrentStep, setErrors]);
-
-  // const handleCreateApplicationClicked = useCallback(() => {
-  //   setShowEmailVerificationLoading(true);
-  //   const { error, value } = validateCurrentStep();
-  //   const { admin_email, password } = value;
-
-  //   setErrors({});
-  //   if (error) {
-  //     setShowEmailVerificationLoading(false);
-  //     setErrors(mapJoiErrorToFieldMessages(error));
-  //   } else {
-  //     const auth = getAuth();
-  //     if (!isEmailVerified) {
-  //       createUserWithEmailAndPassword(auth, admin_email, password)
-  //         .then((userCredential) => {
-  //           Api.post("/verify-email", userCredential.user).then(() => {
-  //             sendEmailVerification(userCredential.user, {
-  //               url: `${process.env.REACT_APP_API_URL}/email-verification/${userCredential.user.email}/${userCredential.user.uid}`,
-  //             })
-  //               .then(() => {
-  //                 setUid(userCredential.user.uid);
-  //                 setShowEmailVerificationLoading(false);
-  //                 nextPage();
-  //               })
-  //               .catch(() => {
-  //                 setShowEmailVerificationLoading(false);
-  //                 setErrors({
-  //                   admin_email:
-  //                     "An error occurred while trying to send email verification.",
-  //                 });
-  //               });
-  //           });
-  //         })
-  //         .catch(() => {
-  //           setShowEmailVerificationLoading(false);
-  //           setErrors({
-  //             admin_email: "Something bad happened.",
-  //           });
-  //         });
-  //     } else {
-  //       nextPage();
-  //     }
-  //   }
-  // }, [
-  //   isEmailVerified,
-  //   nextPage,
-  //   validateCurrentStep,
-  //   setErrors,
-  //   setShowEmailVerificationLoading,
-  //   setUid,
-  // ]);
-
-  // const onEmailVerified = useCallback(() => {
-  //   Api.post("/create-an-account", {
-  //     ...state,
-  //     uid,
-  //   });
-  // }, [state, uid]);
 
   const renderButtonText = useCallback(
     () => (isFirstPage ? "Get Started" : isLastPage ? "Finish" : "Next"),

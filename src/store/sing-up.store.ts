@@ -1,5 +1,7 @@
 import { create } from "zustand";
 import { immer } from "zustand/middleware/immer";
+// ADD THESE TWO IMPORTS
+import { persist, createJSONStorage } from "zustand/middleware"; 
 
 import { Plan, Service } from "@/app/(auth)/get-started/_utils/types";
 import { SignUpState } from "@/app/(auth)/get-started/_hooks/useSignUpState";
@@ -18,6 +20,11 @@ import { fileToBase64 } from "@/app/(auth)/get-started/_utils/utils";
 
 // Define the interface for the entire store
 interface SignUpStore {
+  resetStore: () => void;
+
+  _hasHydrated: boolean;
+  setHasHydrated: (state: boolean) => void;
+
   // --- Form Data Slice ---
   formData: SignUpState & { foreignKey: string };
   updateFormData: (update: Partial<SignUpState>) => void;
@@ -104,41 +111,53 @@ interface SignUpStore {
     renderCurrentStep: (page: number) => React.ReactNode;
   };
 }
-
+const initialFormData = {
+    // ... initial state from useSignUpState ...
+    admin_name: "",
+    admin_email: "",
+    admin_contact: "",
+    organization_name: "",
+    organization_contact: "",
+    organization_logo: undefined,
+    organization_pan_number: "",
+    organization_description: "",
+    organization_address: {
+      line_1_number_building: "",
+      line_2_number_street: "",
+      line_3_area_locality: "",
+      city: "",
+      zip_postcode: "",
+      vdc_municipality: "",
+      ward_number: "",
+      state_province_county: "",
+      country: "",
+      data: "",
+    },
+    service_ids: [],
+    password: "",
+    confirm_password: "",
+    coupon_code: "",
+    foreignKey: "",
+  };
 // Create the store with Immer for mutable-looking immutable updates
 export const useSignUpStore = create<SignUpStore>()(
-  immer((set, get) => ({
+  persist(immer((set, get) => ({
+    resetStore: () => {
+      set((state) => {
+        // Use a deep-ish clone to prevent mutating the initialFormData constant
+        state.formData = JSON.parse(JSON.stringify(initialFormData)); 
+        state.page = 0;
+        state.errors = {};
+        state.auth = { uid: null, isEmailVerified: false };
+      });
+      localStorage.removeItem("signup-storage");
+    },
+    _hasHydrated: false,
+    setHasHydrated: (state) => set({ _hasHydrated: state }),
     page: 0,
     isEmailVerified: false,
     // --- Initial State for Form Data ---
-    formData: {
-      // ... initial state from useSignUpState ...
-      admin_name: "",
-      admin_email: "",
-      admin_contact: "",
-      organization_name: "",
-      organization_contact: "",
-      organization_logo: undefined,
-      organization_pan_number: "",
-      organization_description: "",
-      organization_address: {
-        line_1_number_building: "",
-        line_2_number_street: "",
-        line_3_area_locality: "",
-        city: "",
-        zip_postcode: "",
-        vdc_municipality: "",
-        ward_number: "",
-        state_province_county: "",
-        country: "",
-        data: "",
-      },
-      service_ids: [],
-      password: "",
-      confirm_password: "",
-      coupon_code: "",
-      foreignKey: "",
-    },
+    formData: initialFormData,
     updateFormData: (update) =>
       set((state) => {
         Object.assign(state.formData, update);
@@ -343,6 +362,25 @@ export const useSignUpStore = create<SignUpStore>()(
       },
     },
   })),
+    {
+      name: "signup-storage", // The key used in localStorage
+      storage: createJSONStorage(() => localStorage),
+      
+      // --- SECURITY: Exclude passwords ---
+      partialize: (state) => {
+        // Create a copy of formData and delete the sensitive fields
+        const safeFormData = { ...state.formData };
+        delete (safeFormData as any).password;
+        delete (safeFormData as any).confirm_password;
+        delete (safeFormData as any).organization_logo;
+
+        return {
+          ...state,
+          formData: safeFormData,
+        };
+      },
+    }
+  ),
 );
 
 // Optional: Create custom hooks for common selections to avoid repetition
