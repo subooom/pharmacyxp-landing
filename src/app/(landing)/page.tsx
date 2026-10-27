@@ -16,6 +16,7 @@ import DatabaseReliabilityCard from "@/components/composits/DatabaseReliabilityC
 import { DoctorPlatformShowcase } from "../../components/composits/DoctorPlatformShowcase";
 import BackersPanel from "@/components/composits/BackersPanel";
 import { DiscountBanner } from "@/components/composits/DiscountBanner";
+import { OnboardingWizard } from "@/components/composits/OnboardingWizard";
 
 export const metadata: Metadata = {
   title: "medicinexp - From Racks to Receipts",
@@ -30,6 +31,7 @@ export default function Home() {
       <DiscountBanner />
       {/* <ClinicBuilder3D /> */}
       <PenAndPaper />
+      <OnboardingWizard />
       <Callout />
       <RackIntelligence />
       <DatabaseReliabilityCard />
