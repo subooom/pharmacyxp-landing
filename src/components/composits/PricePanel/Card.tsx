@@ -23,8 +23,12 @@ export interface Price {
   created_at?: string;
   updated_at?: string;
   key?: string | number;
-  discount?: number;
 }
+
+const formatMoney = (v: number) =>
+  new Intl.NumberFormat("en-IN", { maximumFractionDigits: 0 }).format(
+    Math.round(v),
+  );
 
 const PriceCard = ({
   name,
@@ -37,98 +41,95 @@ const PriceCard = ({
   features,
   style,
   onMouseEnter,
-}: Price) => {
+  className, // Adding this so we can pass 'h-full' from the parent
+}: Price & { className?: string}) => {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const { data } = useDiscountOffer();
 
-  // Use API discount if available, otherwise fall back to prop discount (or 0)
-  // Per requirements: "if there is no data returned... no discount offers should be shown"
-  // So strictly speaking we should rely on data. But prop might be used for other overrides?
-  // Assuming API is source of truth.
   const discount = data ? Number(data.amount) : 0;
-
   const discountedPrice = discount
     ? price_for_first_year * (1 - discount / 100)
     : price_for_first_year;
+
   return (
     <Card
       className={cn(
-        "group relative h-full w-full bg-card-radial-reversed overflow-hidden text-center transition-all duration-300 ease-in-out",
+        "group relative h-full w-full overflow-hidden bg-card-radial-reversed text-center transition-all duration-300 ease-in-out",
         isSelected
           ? "border-2 border-primary shadow-[0_10px_25px_rgba(59,54,140,0.15)]"
           : "border-2 border-primary/20 shadow-[0_4px_12px_rgba(0,0,0,0.05)]",
       )}
       style={{
         borderRadius: "12px",
-        // transform: isSelected ? "translateY(-5px)" : "",
-        zIndex: isSelected ? 10 : "",
+        zIndex: isSelected ? 10 : undefined,
         ...style,
       }}
       onMouseMove={(e) => {
-        if (onMouseMove) onMouseMove();
+        onMouseMove?.();
         const rect = e.currentTarget.getBoundingClientRect();
-        const x = e.clientX - rect.left; // distance from element's left edge
-        const y = e.clientY - rect.top; // distance from element's top edge
-        setMousePos({ x, y });
+        setMousePos({
+          x: e.clientX - rect.left,
+          y: e.clientY - rect.top,
+        });
       }}
-      onMouseEnter={() => {
-        if (onMouseEnter) onMouseEnter();
-      }}
+      onMouseEnter={onMouseEnter}
     >
+      {/* cursor glow */}
       <div
         style={{
-          top: `${Math.min(200, Math.min(0, mousePos.y * 0.7 - 500))}px`,
-          left: `${Math.min(0, mousePos.x * 0.7 - 200)}px`,
+          top: `${mousePos.y * 0.7 - 500}px`,
+          left: `${mousePos.x * 0.7 - 200}px`,
         }}
-        className="absolute w-[1000px] h-[1000px] top-0 left-0 bg-card-radial-reversed-hover dark:bg-card-radial-reversed-hover-dark z-0 duration-1000 ease-in-out transition-opacity opacity-0 group-hover:opacity-100"
-      ></div>
-      {/* Free Trial Badge */}
-      <Image
-        width={94.19}
-        height={94.19}
-        src="/free-trail.svg"
-        alt="Free Trial"
-        className="absolute z-10 -right-2 -top-8 h-[130px] rotate-[-12deg]"
+        className="pointer-events-none absolute h-[1000px] w-[1000px] bg-card-radial-reversed-hover opacity-0 transition-opacity duration-1000 ease-in-out group-hover:opacity-100 dark:bg-card-radial-reversed-hover-dark"
       />
 
-      <CardContent className="p-8 z-10  flex flex-col h-full justify-between">
-        <h3 className="mb-4 text-2xl font-bold text-card-foreground">
-          {name}
-          <div>
-            <span className="text-xl font-bold text-primary">
-              रू {(price_per_year / 12).toFixed(2)}
-            </span>
-            <span className="ml-1 text-sm text-card-foreground/70">/month</span>
-          </div>
-        </h3>
+      {/* Free Trial Badge — smaller */}
+      <Image
+        width={60}
+        height={60}
+        src="/free-trail.svg"
+        alt="Free Trial"
+        className="absolute -right-1 -top-4 z-10 h-[80px] w-[80px] rotate-[-12deg]"
+      />
 
-        {features && (
+      <CardContent className="relative z-10 flex h-full flex-col gap-3 p-5">
+        {/* header */}
+        <div>
+          <h3 className="text-lg font-bold text-card-foreground">{name}</h3>
+          <div className="mt-0.5">
+            <span className="text-sm font-bold text-primary">
+              रू {formatMoney(price_per_year / 12)}
+            </span>
+            <span className="ml-1 text-xs text-card-foreground/70">/mo</span>
+          </div>
+        </div>
+
+        {/* features (hidden on minimized, shown in tooltip on parent) */}
+        {features && !minimizedHidden && (
           <div
-            className="features-content mt-4 border-t text-card-foreground/70 border-card-foreground px-4 pt-4 text-sm leading-relaxed"
+            className="features-content text-xs leading-snug text-card-foreground/70"
             dangerouslySetInnerHTML={{ __html: features }}
           />
         )}
 
-        <div className="my-6 border-y text-card-foreground text-lg border-[#eee] py-2">
-          {number_of_services === 0 ? (
-            <p className="my-2 text-card-foreground">
-              Get access to our Pharmacy Module
-            </p>
+        {/* services line */}
+        <div className="border-y border-card-foreground/10 py-2 text-sm text-card-foreground">
+          {number_of_services === 0 ? ( 
+            <p>Pharmacy Module access</p>
           ) : (
-            <p className="my-2 text-card-foreground">
-              Choose up to{" "}
-              <strong className="text-[oklch(.71_.17_286.09)]">
-                {number_of_services}
-              </strong>{" "}
-              Medical Departments
+            <p>
+              Up to{" "}
+              <strong className="text-primary">{number_of_services}</strong>{" "}
+              departments
             </p>
           )}
         </div>
 
+        {/* discount timer */}
         {discount > 0 && data && (
-          <div className="mb-6 flex justify-center">
+          <div className="flex justify-center">
             <LaunchPulseTimer
-              className="items-center scale-80 -mt-4 -mb-16"
+              className="scale-75"
               startDate={data.start_date}
               endDate={data.end_date}
               offerName={data.name}
@@ -136,44 +137,47 @@ const PriceCard = ({
             />
           </div>
         )}
-        <div className="my-4 rounded-lg p-4">
-          <div className="mt-2">
-            <div className="flex flex-col items-center">
-              {discount > 0 && (
-                <span className="text-sm text-card-foreground/50 line-through font-bold">
-                  रू {price_for_first_year}
-                </span>
-              )}
-              <span className="text-3xl font-extrabold text-primary flex items-center">
-                <span className="mr-2 text-lg font-semibold">रू</span>
-                {discountedPrice}
-              </span>
+
+        {/* price block */}
+        <div className="rounded-lg bg-primary/5 px-3 py-2">
+          {discount > 0 && (
+            <div className="text-xs font-bold text-card-foreground/50 line-through">
+              रू {formatMoney(price_for_first_year)}
             </div>
-            <span className="block text-sm text-card-foreground/70">
-              Registration Cost
+          )}
+          <div className="flex items-baseline justify-center gap-1 text-primary">
+            <span className="text-sm font-semibold">रू</span>
+            <span className="text-2xl font-extrabold">
+              {formatMoney(discountedPrice)}
             </span>
           </div>
+          <span className="block text-[11px] text-card-foreground/70">
+            Registration
+          </span>
         </div>
 
+        {/* CTA */}
         <Button
           className={cn(
-            "z-10 mt-6 w-full whitespace-nowrap rounded-full border-2 border-primary px-8 py-6 text-base font-semibold transition-all duration-200 ease-in-out",
+            "mt-auto w-full rounded-full px-6 py-5 text-sm font-semibold transition-all duration-200",
             isSelected
               ? "bg-primary text-white hover:bg-primary/90 hover:text-white"
-              : "bg-card text-primary hover:primary hover:text-white",
+              : "border-2 border-primary bg-card text-primary hover:bg-primary hover:text-white",
           )}
           onClick={onClick}
         >
-          {isSelected ? "Selected" : `${name}`}
+          {isSelected ? "Selected" : name}
         </Button>
       </CardContent>
+
+      {/* selected underline */}
       <div
-        className="h-[2px] z-[60000] absolute bottom-0 bg-primary transition-all"
+        className="absolute bottom-0 z-[60] h-[2px] bg-primary transition-all"
         style={{
           transitionDuration: ANIMATION_DURATION + "ms",
-          width: isSelected ? `100%` : `0%`,
+          width: isSelected ? "100%" : "0%",
         }}
-      ></div>
+      />
     </Card>
   );
 };

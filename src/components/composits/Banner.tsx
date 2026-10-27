@@ -33,7 +33,7 @@ function Banner() {
             className="flex justify-center lg:justify-start mt-2 lg:mt-0"
           >
             <Button className="rounded-none px-24 my-4 p4-6">
-              Start Free Trail
+              Start Free Trial
             </Button>
           </Link>
         </div>
