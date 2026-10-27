@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Routes } from "@/constants/routes";
 import { ArrowLeft, CheckCircle } from "lucide-react";
 import { FooterProps } from "../_types";
-import { usePage, useTimelineEvents } from "@/store/sing-up.store";
+import { usePage, useSignUpStore, useTimelineEvents } from "@/store/sing-up.store";
 import { getActualUrl } from "../../../_utils/utils";
 
 export const Footer: React.FC<FooterProps> = ({
@@ -16,6 +16,7 @@ export const Footer: React.FC<FooterProps> = ({
 }) => {
   const page = usePage();
   const dotDotDotRef = React.useRef<HTMLSpanElement>(null);
+    const { resetStore } = useSignUpStore();
   const { domainEvent, seedingDatabaseEvent } = useTimelineEvents();
 
   React.useEffect(() => {
@@ -93,6 +94,7 @@ export const Footer: React.FC<FooterProps> = ({
                 <Button
                   disabled={isNextDisabled}
                   onClick={() => {
+                    resetStore()
                     try {
                       window.open(
                         getActualUrl(

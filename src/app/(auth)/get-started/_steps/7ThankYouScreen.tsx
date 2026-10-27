@@ -23,7 +23,7 @@ const ThankYou = () => {
     setForeignKey,
     foreignKey,
     setTimelineEvent,
-    handlers: { onEmailVerified },
+    handlers: { onEmailVerified }, resetStore
   } = useSignUpStore();
 
   const interval = useRef<NodeJS.Timeout | null>(null);
@@ -246,6 +246,9 @@ const ThankYou = () => {
         <div className="flex flex-col items-center mt-5 w-fill">
           {domainEvent?.data.url ? (
             <a
+              onClick={e => {
+                resetStore()
+              }}
               href={getActualUrl(domainEvent.data.url)}
               className="bg-primary hover:primary/90 text-white font-bold py-2 px-4 rounded-md h-12 flex items-center justify-center mt-2 mb-2"
             >
