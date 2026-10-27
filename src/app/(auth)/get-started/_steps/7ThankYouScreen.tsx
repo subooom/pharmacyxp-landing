@@ -7,7 +7,6 @@ import { useSignUpStore } from "@/store/sing-up.store";
 import {
   getActualUrl,
   getTime,
-  objectToTable,
   unslugify,
 } from "../_utils/utils";
 
@@ -171,7 +170,7 @@ const ThankYou = () => {
     <div className="container mx-auto mt-2 p-0">
       <div className="flex flex-col">
         <div className="w-full">
-          <h2 className="font-bold text-2xl text-purple-800">Thank you!</h2>
+          <h2 className="font-bold text-2xl text-primary-800">Thank you!</h2>
           <p className="mb-3">
             Your application is being created. Please check back in a few
             minutes.
@@ -180,16 +179,16 @@ const ThankYou = () => {
             After your application is created, we will show you the details of
             your application and how to access it here.
           </p>
-          <p className="mb-5">
+          {/* <p className="mb-5">
             {emailVerifiedEvent ? (
               <></>
             ) : (
-              <span className="bg-purple-800 text-white font-bold p-2 uppercase inline-block">
+              <span className="bg-primary-800 text-white font-bold p-2 uppercase inline-block">
                 Please check your email inbox, we have sent you an email with
                 the verification link.
               </span>
             )}
-          </p>
+          </p> */}
         </div>
         <div className="flex flex-col mt-5">
           <div className="w-full">
