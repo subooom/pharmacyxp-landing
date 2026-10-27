@@ -27,15 +27,6 @@ const ThankYou = () => {
     handlers: { onEmailVerified },
   } = useSignUpStore();
 
-  console.log({
-    databaseEvent,
-    tenantEvent,
-    domainEvent,
-    emailVerifiedEvent,
-    seedingDatabaseEvent,
-    foreignKey,
-  });
-
   const interval = useRef<NodeJS.Timeout | null>(null);
   // Use a ref to track the current identifier without causing re-renders
   const currentIdentifierRef = useRef(admin_email);
